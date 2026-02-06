@@ -23,7 +23,6 @@
            -webkit-font-smoothing: antialiased;
        }
 
-       /* Nav Height variable for consistent spacing */
        :root { --nav-height: 72px; }
 
        .nexus-btn {
@@ -92,7 +91,7 @@
        </div>
    </nav>
 
-   <!-- Hero Section: Adjusted for Android/Browser spacing issues -->
+   <!-- Hero Section -->
    <section class="mt-[84px] px-6 text-center">
        <div class="inline-block px-3 py-1 bg-blue-50 border border-blue-100 rounded-full text-[9px] font-black text-blue-600 uppercase tracking-widest mb-3">
            Project Management Professional
@@ -195,7 +194,7 @@
                    <div class="w-full bg-slate-100 h-1.5 rounded-full mb-6 overflow-hidden">
                        <div id="progress-1" class="bg-blue-600 h-full w-0 transition-all duration-300"></div>
                    </div>
-                   <button onclick="runSimulation(1)" id="sim-btn-1" class="w-full py-4 bg-slate-900 text-white rounded-xl font-black text-[10px] uppercase tracking-widest active:scale-95 transition-all">
+                   <button onclick="handleSimulation(1)" id="sim-btn-1" data-state="initial" class="w-full py-4 bg-slate-900 text-white rounded-xl font-black text-[10px] uppercase tracking-widest active:scale-95 transition-all">
                        Resolve
                    </button>
                </div>
@@ -215,7 +214,7 @@
                    <div class="w-full bg-slate-100 h-1.5 rounded-full mb-6 overflow-hidden">
                        <div id="progress-2" class="bg-blue-600 h-full w-0 transition-all duration-300"></div>
                    </div>
-                   <button onclick="runSimulation(2)" id="sim-btn-2" class="w-full py-4 bg-slate-900 text-white rounded-xl font-black text-[10px] uppercase tracking-widest active:scale-95 transition-all">
+                   <button onclick="handleSimulation(2)" id="sim-btn-2" data-state="initial" class="w-full py-4 bg-slate-900 text-white rounded-xl font-black text-[10px] uppercase tracking-widest active:scale-95 transition-all">
                        Resolve
                    </button>
                </div>
@@ -235,7 +234,7 @@
                    <div class="w-full bg-slate-100 h-1.5 rounded-full mb-6 overflow-hidden">
                        <div id="progress-3" class="bg-blue-600 h-full w-0 transition-all duration-300"></div>
                    </div>
-                   <button onclick="runSimulation(3)" id="sim-btn-3" class="w-full py-4 bg-slate-900 text-white rounded-xl font-black text-[10px] uppercase tracking-widest active:scale-95 transition-all">
+                   <button onclick="handleSimulation(3)" id="sim-btn-3" data-state="initial" class="w-full py-4 bg-slate-900 text-white rounded-xl font-black text-[10px] uppercase tracking-widest active:scale-95 transition-all">
                        Resolve
                    </button>
                </div>
@@ -275,6 +274,12 @@
    </footer>
 
    <script>
+       const initialProblems = {
+           1: { text: "Managing $20M installation with 1:12 manager-to-labor ratio (100+ personnel) causing communication lag.", icon: 'fa-users-gear' },
+           2: { text: "$50M facility launch delay stalls client revenue-generation and eats capital investment.", icon: 'fa-microchip' },
+           3: { text: "Directing 5 simultaneous $12M sites creating a \"domino effect\" where one crisis drains all resources.", icon: 'fa-layer-group' }
+       };
+
        function toggleSection(type) {
            const btn = document.getElementById(type + 'Btn');
            const icon = document.getElementById(type + 'Icon');
@@ -292,6 +297,17 @@
                }, 400);
            } else {
                icon.className = `fa-solid ${originalIcons[type]} text-3xl text-white shake-icon`;
+           }
+       }
+
+       function handleSimulation(id) {
+           const btn = document.getElementById(`sim-btn-${id}`);
+           const state = btn.getAttribute('data-state');
+
+           if (state === 'initial') {
+               runSimulation(id);
+           } else if (state === 'deployed') {
+               resetSimulation(id);
            }
        }
 
@@ -318,14 +334,37 @@
                progress.style.width = width + '%';
                if (width >= 100) {
                    clearInterval(interval);
-                   btn.innerText = "STRATEGY DEPLOYED";
-                   btn.className = "w-full py-4 bg-emerald-500 text-white rounded-xl font-black text-[10px] uppercase tracking-widest cursor-default";
+                   btn.disabled = false;
+                   btn.innerText = "RESET SIMULATOR";
+                   btn.setAttribute('data-state', 'deployed');
+                   btn.className = "w-full py-4 bg-emerald-500 text-white rounded-xl font-black text-[10px] uppercase tracking-widest active:scale-95 transition-all";
                    text.innerText = solutions[id];
                    text.className = "text-xs font-bold text-emerald-600 uppercase leading-relaxed flex items-center justify-center min-h-[80px]";
                    statusIcon.className = "w-14 h-14 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center mb-6 mx-auto transition-colors duration-500";
                    statusIcon.innerHTML = '<i class="fa-solid fa-check-double text-xl"></i>';
                }
            }, 50);
+       }
+
+       function resetSimulation(id) {
+           const card = document.getElementById(`sim-card-${id}`);
+           const btn = document.getElementById(`sim-btn-${id}`);
+           const progress = document.getElementById(`progress-${id}`);
+           const text = document.getElementById(`problem-text-${id}`);
+           const statusIcon = document.getElementById(`status-icon-${id}`);
+
+           card.classList.remove('active-solving');
+           btn.innerText = "Resolve";
+           btn.setAttribute('data-state', 'initial');
+           btn.className = "w-full py-4 bg-slate-900 text-white rounded-xl font-black text-[10px] uppercase tracking-widest active:scale-95 transition-all";
+           
+           progress.style.width = '0%';
+           
+           text.innerText = initialProblems[id].text;
+           text.className = "text-xs font-bold text-slate-800 uppercase leading-relaxed min-h-[60px]";
+           
+           statusIcon.className = "w-14 h-14 rounded-full bg-amber-50 text-amber-500 flex items-center justify-center mb-6 mx-auto";
+           statusIcon.innerHTML = `<i class="fa-solid ${initialProblems[id].icon} text-xl"></i>`;
        }
    </script>
 </body>
