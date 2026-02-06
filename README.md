@@ -10,6 +10,8 @@
    <style>
        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
        
+       * { margin: 0; padding: 0; box-sizing: border-box; }
+
        body {
            font-family: 'Inter', sans-serif;
            background-color: #ffffff;
@@ -21,17 +23,8 @@
            -webkit-font-smoothing: antialiased;
        }
 
-       html, body {
-           max-width: 100%;
-           position: relative;
-       }
-
-       @keyframes icon-shake {
-           0%, 85%, 100% { transform: translateX(0); }
-           87% { transform: translateX(-4px) rotate(-3deg); }
-           90% { transform: translateX(4px) rotate(3deg); }
-       }
-       .shake-icon { animation: icon-shake 3s ease-in-out infinite; }
+       /* Nav Height variable for consistent spacing */
+       :root { --nav-height: 72px; }
 
        .nexus-btn {
            width: 112px; height: 96px;
@@ -72,18 +65,22 @@
            flex-direction: column;
        }
        .sim-card.active-solving { border-color: #3b82f6; background: #eff6ff; }
-       
        .problem-content { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
 
-       .radar-container { width: 100%; max-width: 320px; margin: 0 auto; min-height: 260px; }
-
+       @keyframes icon-shake {
+           0%, 85%, 100% { transform: translateX(0); }
+           87% { transform: translateX(-4px) rotate(-3deg); }
+           90% { transform: translateX(4px) rotate(3deg); }
+       }
+       .shake-icon { animation: icon-shake 3s ease-in-out infinite; }
+       
        button, a { touch-action: manipulation; }
    </style>
 </head>
 <body class="pb-40 no-scrollbar">
 
    <!-- Header Navigation -->
-   <nav class="p-4 md:p-6 flex justify-between items-center fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-100">
+   <nav class="px-4 py-4 md:px-6 flex justify-between items-center fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 h-[72px]">
        <div class="text-[9px] font-black tracking-[0.3em] text-blue-600 uppercase">PMP® CERTIFIED</div>
        <div class="flex gap-2 md:gap-3">
            <a href="https://www.linkedin.com/in/aditya-sachidanandham" target="_blank" class="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center border border-slate-200 text-blue-600 active:scale-90 transition-transform">
@@ -95,22 +92,22 @@
        </div>
    </nav>
 
-   <!-- Hero Section -->
-   <section class="pt-24 px-6 text-center"> <!-- Reduced padding-top from 32 to 24 -->
-       <div class="inline-block px-3 py-1 bg-blue-50 border border-blue-100 rounded-full text-[9px] font-black text-blue-600 uppercase tracking-widest mb-4"> <!-- Reduced mb-6 to mb-4 -->
+   <!-- Hero Section: Adjusted for Android/Browser spacing issues -->
+   <section class="mt-[84px] px-6 text-center">
+       <div class="inline-block px-3 py-1 bg-blue-50 border border-blue-100 rounded-full text-[9px] font-black text-blue-600 uppercase tracking-widest mb-3">
            Project Management Professional
        </div>
-       <h1 class="text-4xl sm:text-5xl font-black tracking-tighter uppercase leading-[0.9] mb-6 text-slate-900"> <!-- Reduced mb-8 to mb-6 -->
+       <h1 class="text-4xl sm:text-5xl font-black tracking-tighter uppercase leading-[0.9] mb-5 text-slate-900 mt-0">
            Aditya<br><span class="text-blue-600">Sachidanandham</span>
        </h1>
-       <p class="text-slate-500 text-sm font-bold leading-relaxed mb-10 max-w-xs mx-auto uppercase">
+       <p class="text-slate-500 text-sm font-bold leading-relaxed mb-8 max-w-xs mx-auto uppercase">
            3+ years delivering $50M+ automation installation projects for semiconductor leaders.
        </p>
 
        <!-- Skill Radar -->
-       <div class="glass-card p-4 py-8 rounded-[2.5rem] mb-12 max-w-sm mx-auto overflow-visible shadow-sm"> <!-- Reduced mb-16 to mb-12 -->
-           <div class="text-[10px] font-black text-blue-600 uppercase tracking-[0.2em] mb-10 text-center">Core Competencies</div>
-           <div class="radar-container overflow-visible flex items-center justify-center">
+       <div class="glass-card p-4 py-8 rounded-[2.5rem] mb-10 max-w-sm mx-auto overflow-visible shadow-sm">
+           <div class="text-[10px] font-black text-blue-600 uppercase tracking-[0.2em] mb-8 text-center">Core Competencies</div>
+           <div class="w-full max-w-[320px] mx-auto min-h-[260px] overflow-visible flex items-center justify-center">
                <svg viewBox="-40 -30 280 260" class="w-full h-auto max-h-[260px] overflow-visible">
                    <circle cx="100" cy="100" r="80" fill="none" stroke="#e2e8f0" stroke-dasharray="2,2" />
                    <circle cx="100" cy="100" r="50" fill="none" stroke="#e2e8f0" stroke-dasharray="2,2" />
@@ -128,7 +125,7 @@
        </div>
 
        <!-- Metrics -->
-       <div class="grid grid-cols-3 gap-2 mb-12"> <!-- Reduced mb-16 to mb-12 -->
+       <div class="grid grid-cols-3 gap-2 mb-10">
            <div class="glass-card p-4 rounded-2xl flex flex-col items-center justify-center">
                <i class="fa-solid fa-briefcase text-blue-600 mb-2 text-sm"></i>
                <div class="text-lg sm:text-xl font-black text-slate-900">$50M+</div>
@@ -148,9 +145,9 @@
    </section>
 
    <!-- Experience -->
-   <section class="px-6 py-6 flex flex-col items-center"> <!-- Reduced py-10 to py-6 -->
-       <h2 class="text-3xl font-black text-blue-600 uppercase tracking-tighter mb-6 text-center">Experience</h2> <!-- Reduced mb-10 to mb-6 -->
-       <button id="expBtn" onclick="toggleSection('exp')" class="nexus-btn bg-blue-600 shadow-xl shadow-blue-200 pulse-wave mb-2">
+   <section class="px-6 py-4 flex flex-col items-center">
+       <h2 class="text-3xl font-black text-blue-600 uppercase tracking-tighter mb-4 text-center">Experience</h2>
+       <button id="expBtn" onclick="toggleSection('exp')" class="nexus-btn bg-blue-600 shadow-xl shadow-blue-200 pulse-wave mb-1">
            <i id="expIcon" class="fa-solid fa-briefcase text-3xl text-white shake-icon"></i>
        </button>
 
@@ -177,8 +174,8 @@
    </section>
 
    <!-- Simulator -->
-   <section class="px-6 py-10">
-       <div class="text-center mb-10">
+   <section class="px-6 py-8">
+       <div class="text-center mb-8">
            <h2 class="text-3xl font-black text-slate-800 uppercase tracking-tighter">Simulator</h2>
            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-2">Interactive Problem Solving</p>
        </div>
@@ -247,9 +244,9 @@
    </section>
 
    <!-- Academics -->
-   <section class="px-6 py-6 flex flex-col items-center"> <!-- Reduced py-10 to py-6 -->
-       <h2 class="text-3xl font-black text-blue-600 uppercase tracking-tighter mb-6 text-center">Academics</h2> <!-- Reduced mb-10 to mb-6 -->
-       <button id="acadBtn" onclick="toggleSection('acad')" class="nexus-btn bg-slate-900 shadow-xl pulse-wave mb-2">
+   <section class="px-6 py-4 flex flex-col items-center">
+       <h2 class="text-3xl font-black text-blue-600 uppercase tracking-tighter mb-4 text-center">Academics</h2>
+       <button id="acadBtn" onclick="toggleSection('acad')" class="nexus-btn bg-slate-900 shadow-xl pulse-wave mb-1">
            <i id="acadIcon" class="fa-solid fa-graduation-cap text-3xl text-white shake-icon"></i>
        </button>
 
@@ -271,7 +268,7 @@
    <footer class="px-6 py-20 text-center">
        <h2 class="text-4xl font-black uppercase tracking-tighter text-slate-900 mb-10 leading-none">Ready to<br><span class="text-blue-600">Optimise?</span></h2>
        <div class="flex justify-center">
-           <a href="https://forms.gle/egL3EHFaJsd6WjWS9" target="_blank" class="px-12 py-4 bg-blue-600 text-white rounded-full font-black text-[10px] uppercase tracking-[0.2em] shadow-lg active:scale-95 transition-all cursor-pointer inline-block">
+           <a href="mailto:sachidanandhamaditya@gmail.com" class="px-12 py-4 bg-blue-600 text-white rounded-full font-black text-[10px] uppercase tracking-[0.2em] shadow-lg active:scale-95 transition-all cursor-pointer inline-block">
                Let's Connect
            </a>
        </div>
