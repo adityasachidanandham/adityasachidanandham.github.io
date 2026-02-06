@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
    <meta charset="UTF-8">
@@ -17,12 +18,10 @@
            -webkit-tap-highlight-color: transparent;
            overflow-x: hidden;
            width: 100%;
-           /* Fix for Android font rendering */
            text-rendering: optimizeLegibility;
            -webkit-font-smoothing: antialiased;
        }
 
-       /* Prevent layout horizontal overflow on Android */
        html, body {
            max-width: 100%;
            position: relative;
@@ -49,7 +48,7 @@
            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
            opacity: 0; width: 100%;
        }
-       .exp-container.show { max-height: 4000px; opacity: 1; margin-top: 2rem; }
+       .exp-container.show { max-height: 4000px; opacity: 1; margin-top: 1.5rem; }
 
        .glass-card {
            background: rgba(248, 250, 252, 0.95);
@@ -66,7 +65,6 @@
 
        .no-scrollbar::-webkit-scrollbar { display: none; }
 
-       /* Android Alignment Fixes */
        .sim-card {
            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
            height: auto;
@@ -99,11 +97,11 @@
    </nav>
 
    <!-- Hero Section -->
-   <section class="pt-32 px-6 text-center">
-       <div class="inline-block px-3 py-1 bg-blue-50 border border-blue-100 rounded-full text-[9px] font-black text-blue-600 uppercase tracking-widest mb-6">
+   <section class="pt-24 px-6 text-center"> <!-- Reduced padding-top from 32 to 24 -->
+       <div class="inline-block px-3 py-1 bg-blue-50 border border-blue-100 rounded-full text-[9px] font-black text-blue-600 uppercase tracking-widest mb-4"> <!-- Reduced mb-6 to mb-4 -->
            Project Management Professional
        </div>
-       <h1 class="text-4xl sm:text-5xl font-black tracking-tighter uppercase leading-[0.9] mb-8 text-slate-900">
+       <h1 class="text-4xl sm:text-5xl font-black tracking-tighter uppercase leading-[0.9] mb-6 text-slate-900"> <!-- Reduced mb-8 to mb-6 -->
            Aditya<br><span class="text-blue-600">Sachidanandham</span>
        </h1>
        <p class="text-slate-500 text-sm font-bold leading-relaxed mb-10 max-w-xs mx-auto uppercase">
@@ -111,7 +109,7 @@
        </p>
 
        <!-- Skill Radar -->
-       <div class="glass-card p-4 py-8 rounded-[2.5rem] mb-16 max-w-sm mx-auto overflow-visible shadow-sm">
+       <div class="glass-card p-4 py-8 rounded-[2.5rem] mb-12 max-w-sm mx-auto overflow-visible shadow-sm"> <!-- Reduced mb-16 to mb-12 -->
            <div class="text-[10px] font-black text-blue-600 uppercase tracking-[0.2em] mb-10 text-center">Core Competencies</div>
            <div class="radar-container overflow-visible flex items-center justify-center">
                <svg viewBox="-40 -30 280 260" class="w-full h-auto max-h-[260px] overflow-visible">
@@ -131,7 +129,7 @@
        </div>
 
        <!-- Metrics -->
-       <div class="grid grid-cols-3 gap-2 mb-16">
+       <div class="grid grid-cols-3 gap-2 mb-12"> <!-- Reduced mb-16 to mb-12 -->
            <div class="glass-card p-4 rounded-2xl flex flex-col items-center justify-center">
                <i class="fa-solid fa-briefcase text-blue-600 mb-2 text-sm"></i>
                <div class="text-lg sm:text-xl font-black text-slate-900">$50M+</div>
@@ -151,14 +149,14 @@
    </section>
 
    <!-- Experience -->
-   <section class="px-6 py-10 flex flex-col items-center">
-       <h2 class="text-3xl font-black text-blue-600 uppercase tracking-tighter mb-10 text-center">Experience</h2>
-       <button id="expBtn" onclick="toggleSection('exp')" class="nexus-btn bg-blue-600 shadow-xl shadow-blue-200 pulse-wave">
+   <section class="px-6 py-6 flex flex-col items-center"> <!-- Reduced py-10 to py-6 -->
+       <h2 class="text-3xl font-black text-blue-600 uppercase tracking-tighter mb-6 text-center">Experience</h2> <!-- Reduced mb-10 to mb-6 -->
+       <button id="expBtn" onclick="toggleSection('exp')" class="nexus-btn bg-blue-600 shadow-xl shadow-blue-200 pulse-wave mb-2">
            <i id="expIcon" class="fa-solid fa-briefcase text-3xl text-white shake-icon"></i>
        </button>
 
        <div id="expContent" class="exp-container space-y-6">
-           <div class="glass-card p-8 rounded-[2rem] border-l-4 border-blue-600 mt-4">
+           <div class="glass-card p-8 rounded-[2rem] border-l-4 border-blue-600 mt-2">
                <div class="text-blue-600 font-black text-xs mb-3 uppercase tracking-widest">Mar 2025 — Jan 2026</div>
                <h3 class="text-2xl font-black uppercase tracking-tight text-slate-900">Installation Manager</h3>
                <p class="text-sm font-bold text-slate-400 mb-6 uppercase">STMicroelectronics</p>
@@ -250,14 +248,14 @@
    </section>
 
    <!-- Academics -->
-   <section class="px-6 py-10 flex flex-col items-center">
-       <h2 class="text-3xl font-black text-blue-600 uppercase tracking-tighter mb-10 text-center">Academics</h2>
-       <button id="acadBtn" onclick="toggleSection('acad')" class="nexus-btn bg-slate-900 shadow-xl pulse-wave">
+   <section class="px-6 py-6 flex flex-col items-center"> <!-- Reduced py-10 to py-6 -->
+       <h2 class="text-3xl font-black text-blue-600 uppercase tracking-tighter mb-6 text-center">Academics</h2> <!-- Reduced mb-10 to mb-6 -->
+       <button id="acadBtn" onclick="toggleSection('acad')" class="nexus-btn bg-slate-900 shadow-xl pulse-wave mb-2">
            <i id="acadIcon" class="fa-solid fa-graduation-cap text-3xl text-white shake-icon"></i>
        </button>
 
        <div id="acadContent" class="exp-container space-y-6">
-           <div class="glass-card p-8 rounded-3xl text-center mt-4">
+           <div class="glass-card p-8 rounded-3xl text-center mt-2">
                <i class="fa-solid fa-graduation-cap text-blue-600 mb-6 text-xl"></i>
                <h4 class="text-xl font-black uppercase text-slate-900 leading-tight">M.Sc Project Management</h4>
                <p class="text-[10px] font-black text-slate-400 uppercase mt-4 tracking-widest">NTU Singapore | GPA: 4.14</p>
