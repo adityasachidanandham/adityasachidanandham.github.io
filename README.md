@@ -2,35 +2,31 @@
 <html lang="en">
 <head>
    <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
    <title>Aditya Sachidanandham | PMP® Portfolio</title>
    
-   <!-- External Dependencies -->
    <script src="https://cdn.tailwindcss.com"></script>
    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
    
    <style>
        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
        
-       :root {
-           --primary-blue: #2563eb;
-           --slate-dark: #0f172a;
-       }
-
        body {
            font-family: 'Inter', sans-serif;
            background-color: #ffffff;
-           color: var(--slate-dark);
+           color: #0f172a;
            -webkit-tap-highlight-color: transparent;
            overflow-x: hidden;
            width: 100%;
-           position: relative;
+           /* Fix for Android font rendering */
+           text-rendering: optimizeLegibility;
+           -webkit-font-smoothing: antialiased;
        }
 
-       /* Prevent Horizontal Scroll */
+       /* Prevent layout horizontal overflow on Android */
        html, body {
            max-width: 100%;
-           overflow-x: hidden;
+           position: relative;
        }
 
        @keyframes icon-shake {
@@ -45,7 +41,7 @@
            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
            display: flex; align-items: center; justify-content: center;
            border-radius: 2.5rem; cursor: pointer; z-index: 20;
-           border: none;
+           touch-action: manipulation;
        }
        .nexus-btn.active { transform: rotate(90deg); background-color: #ef4444 !important; }
 
@@ -54,12 +50,11 @@
            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
            opacity: 0; width: 100%;
        }
-       .exp-container.show { max-height: 3000px; opacity: 1; margin-top: 2rem; }
+       .exp-container.show { max-height: 4000px; opacity: 1; margin-top: 2rem; }
 
        .glass-card {
-           background: rgba(248, 250, 252, 0.9);
+           background: rgba(248, 250, 252, 0.95);
            backdrop-filter: blur(12px);
-           -webkit-backdrop-filter: blur(12px);
            border: 1px solid #f1f5f9;
        }
 
@@ -72,25 +67,33 @@
 
        .no-scrollbar::-webkit-scrollbar { display: none; }
 
+       /* Android Alignment Fixes */
        .sim-card {
            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-           min-height: 480px; display: flex; flex-direction: column; justify-content: space-between;
+           height: auto;
+           min-height: 480px;
+           display: flex;
+           flex-direction: column;
        }
-       .sim-card.active-solving { border-color: #3b82f6; background: #eff6ff; transform: translateY(-5px); }
+       .sim-card.active-solving { border-color: #3b82f6; background: #eff6ff; }
+       
+       .problem-content { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
 
-       .radar-container { width: 100%; max-width: 320px; margin: 0 auto; }
+       .radar-container { width: 100%; max-width: 320px; margin: 0 auto; min-height: 260px; }
+
+       button, a { touch-action: manipulation; }
    </style>
 </head>
 <body class="pb-40 no-scrollbar">
 
    <!-- Header Navigation -->
-   <nav class="p-6 flex justify-between items-center fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
+   <nav class="p-4 md:p-6 flex justify-between items-center fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-100">
        <div class="text-[9px] font-black tracking-[0.3em] text-blue-600 uppercase">PMP® CERTIFIED</div>
-       <div class="flex gap-3">
-           <a href="https://www.linkedin.com/in/aditya-sachidanandham" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center border border-slate-200 text-blue-600 active:scale-95 transition-transform">
+       <div class="flex gap-2 md:gap-3">
+           <a href="https://www.linkedin.com/in/aditya-sachidanandham" target="_blank" class="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center border border-slate-200 text-blue-600 active:scale-90 transition-transform">
                <i class="fa-brands fa-linkedin-in text-sm"></i>
            </a>
-           <a href="https://wa.me/qr/NTQZ4PIDDIN3N1" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center border border-emerald-100 text-emerald-600 active:scale-95 transition-transform">
+           <a href="https://wa.me/qr/NTQZ4PIDDIN3N1" target="_blank" class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center border border-emerald-100 text-emerald-600 active:scale-90 transition-transform">
                <i class="fa-brands fa-whatsapp text-lg"></i>
            </a>
        </div>
@@ -101,7 +104,7 @@
        <div class="inline-block px-3 py-1 bg-blue-50 border border-blue-100 rounded-full text-[9px] font-black text-blue-600 uppercase tracking-widest mb-6">
            Project Management Professional
        </div>
-       <h1 class="text-5xl font-black tracking-tighter uppercase leading-[0.9] mb-8 text-slate-900">
+       <h1 class="text-4xl sm:text-5xl font-black tracking-tighter uppercase leading-[0.9] mb-8 text-slate-900">
            Aditya<br><span class="text-blue-600">Sachidanandham</span>
        </h1>
        <p class="text-slate-500 text-sm font-bold leading-relaxed mb-10 max-w-xs mx-auto uppercase">
@@ -111,15 +114,15 @@
        <!-- Skill Radar -->
        <div class="glass-card p-4 py-8 rounded-[2.5rem] mb-16 max-w-sm mx-auto overflow-visible shadow-sm">
            <div class="text-[10px] font-black text-blue-600 uppercase tracking-[0.2em] mb-10 text-center">Core Competencies</div>
-           <div class="radar-container overflow-visible">
-               <svg viewBox="-40 -30 280 260" class="w-full h-full overflow-visible">
+           <div class="radar-container overflow-visible flex items-center justify-center">
+               <svg viewBox="-40 -30 280 260" class="w-full h-auto max-h-[260px] overflow-visible">
                    <circle cx="100" cy="100" r="80" fill="none" stroke="#e2e8f0" stroke-dasharray="2,2" />
                    <circle cx="100" cy="100" r="50" fill="none" stroke="#e2e8f0" stroke-dasharray="2,2" />
-                   <text x="100" y="-15" text-anchor="middle" class="text-[12px] font-black fill-blue-600 uppercase">CPM Scheduling</text>
+                   <text x="100" y="-15" text-anchor="middle" class="text-[11px] font-black fill-blue-600 uppercase">CPM Scheduling</text>
                    <text x="100" y="215" text-anchor="middle" class="text-[12px] font-black fill-slate-500 uppercase">Root Cause (RCA)</text>
-                   <text x="215" y="104" text-anchor="end" class="text-[11px] font-black fill-slate-500 uppercase">ROI Optimization</text>
-                   <text x="-15" y="104" text-anchor="start" class="text-[11px] font-black fill-slate-500 uppercase">Risk Mitigation</text>
-                   <polygon points="100,20 175,100 100,165 35,100" fill="rgba(37, 99, 235, 0.15)" stroke="#2563eb" stroke-width="2.5" />
+                   <text x="215" y="104" text-anchor="end" class="text-[10px] font-black fill-slate-500 uppercase">ROI Optimization</text>
+                   <text x="-15" y="104" text-anchor="start" class="text-[10px] font-black fill-slate-500 uppercase">Risk Mitigation</text>
+                   <polygon points="100,20 175,100 100,165 35,100" fill="rgba(37, 99, 235, 0.2)" stroke="#2563eb" stroke-width="2.5" />
                    <circle cx="100" cy="20" r="4" fill="#2563eb" />
                    <circle cx="175" cy="100" r="4" fill="#2563eb" />
                    <circle cx="100" cy="165" r="4" fill="#2563eb" />
@@ -130,19 +133,19 @@
 
        <!-- Metrics -->
        <div class="grid grid-cols-3 gap-2 mb-16">
-           <div class="glass-card p-4 rounded-2xl">
+           <div class="glass-card p-4 rounded-2xl flex flex-col items-center justify-center">
                <i class="fa-solid fa-briefcase text-blue-600 mb-2 text-sm"></i>
-               <div class="text-xl font-black text-slate-900">$50M+</div>
-               <div class="text-[7px] font-bold text-slate-400 uppercase">Portfolio Value</div>
+               <div class="text-lg sm:text-xl font-black text-slate-900">$50M+</div>
+               <div class="text-[7px] font-bold text-slate-400 uppercase">Portfolio</div>
            </div>
-           <div class="glass-card p-4 rounded-2xl">
+           <div class="glass-card p-4 rounded-2xl flex flex-col items-center justify-center">
                <i class="fa-solid fa-circle-check text-emerald-500 mb-2 text-sm"></i>
-               <div class="text-xl font-black text-slate-900">98%</div>
+               <div class="text-lg sm:text-xl font-black text-slate-900">98%</div>
                <div class="text-[7px] font-bold text-slate-400 uppercase">On-Time</div>
            </div>
-           <div class="glass-card p-4 rounded-2xl">
+           <div class="glass-card p-4 rounded-2xl flex flex-col items-center justify-center">
                <i class="fa-solid fa-arrow-trend-up text-blue-600 mb-2 text-sm"></i>
-               <div class="text-xl font-black text-slate-900">11%</div>
+               <div class="text-lg sm:text-xl font-black text-slate-900">11%</div>
                <div class="text-[7px] font-bold text-slate-400 uppercase">Efficiency</div>
            </div>
        </div>
@@ -186,12 +189,12 @@
 
        <div class="space-y-6 max-w-lg mx-auto">
            <div id="sim-card-1" class="sim-card glass-card p-8 rounded-[2.5rem] text-center">
-               <div>
+               <div class="problem-content">
                    <div id="status-icon-1" class="w-14 h-14 rounded-full bg-amber-50 text-amber-500 flex items-center justify-center mb-6 mx-auto">
                        <i class="fa-solid fa-users-gear text-xl"></i>
                    </div>
                    <h3 class="text-[10px] font-black text-blue-600 uppercase tracking-widest mb-3">Oversight Dilution</h3>
-                   <div id="problem-text-1" class="text-xs font-bold text-slate-800 uppercase leading-relaxed">
+                   <div id="problem-text-1" class="text-xs font-bold text-slate-800 uppercase leading-relaxed min-h-[60px]">
                        Managing $20M installation with 1:12 manager-to-labor ratio (100+ personnel) causing communication lag.
                    </div>
                </div>
@@ -206,12 +209,12 @@
            </div>
 
            <div id="sim-card-2" class="sim-card glass-card p-8 rounded-[2.5rem] text-center">
-               <div>
+               <div class="problem-content">
                    <div id="status-icon-2" class="w-14 h-14 rounded-full bg-amber-50 text-amber-500 flex items-center justify-center mb-6 mx-auto">
                        <i class="fa-solid fa-microchip text-xl"></i>
                    </div>
                    <h3 class="text-[10px] font-black text-blue-600 uppercase tracking-widest mb-3">Technical Latency</h3>
-                   <div id="problem-text-2" class="text-xs font-bold text-slate-800 uppercase leading-relaxed">
+                   <div id="problem-text-2" class="text-xs font-bold text-slate-800 uppercase leading-relaxed min-h-[60px]">
                        $50M facility launch delay stalls client revenue-generation and eats capital investment.
                    </div>
                </div>
@@ -226,12 +229,12 @@
            </div>
 
            <div id="sim-card-3" class="sim-card glass-card p-8 rounded-[2.5rem] text-center">
-               <div>
+               <div class="problem-content">
                    <div id="status-icon-3" class="w-14 h-14 rounded-full bg-amber-50 text-amber-500 flex items-center justify-center mb-6 mx-auto">
                        <i class="fa-solid fa-layer-group text-xl"></i>
                    </div>
                    <h3 class="text-[10px] font-black text-blue-600 uppercase tracking-widest mb-3">Resource Fragmentation</h3>
-                   <div id="problem-text-3" class="text-xs font-bold text-slate-800 uppercase leading-relaxed">
+                   <div id="problem-text-3" class="text-xs font-bold text-slate-800 uppercase leading-relaxed min-h-[60px]">
                        Directing 5 simultaneous $12M sites creating a "domino effect" where one crisis drains all resources.
                    </div>
                </div>
@@ -258,12 +261,12 @@
            <div class="glass-card p-8 rounded-3xl text-center mt-4">
                <i class="fa-solid fa-graduation-cap text-blue-600 mb-6 text-xl"></i>
                <h4 class="text-xl font-black uppercase text-slate-900 leading-tight">M.Sc Project Management</h4>
-               <p class="text-xs font-black text-slate-400 uppercase mt-4 tracking-widest">NTU Singapore | GPA: 4.14</p>
+               <p class="text-[10px] font-black text-slate-400 uppercase mt-4 tracking-widest">NTU Singapore | GPA: 4.14</p>
            </div>
            <div class="glass-card p-8 rounded-3xl text-center">
                <i class="fa-solid fa-user-graduate text-slate-400 mb-6 text-xl"></i>
                <h4 class="text-xl font-black uppercase text-slate-900 leading-tight">B.Tech Aerospace</h4>
-               <p class="text-xs font-black text-slate-400 uppercase mt-4 tracking-widest">PM Institute | GPA: 4.07</p>
+               <p class="text-[10px] font-black text-slate-400 uppercase mt-4 tracking-widest">PM Institute | GPA: 4.07</p>
            </div>
        </div>
    </section>
@@ -272,18 +275,13 @@
    <footer class="px-6 py-20 text-center">
        <h2 class="text-4xl font-black uppercase tracking-tighter text-slate-900 mb-10 leading-none">Ready to<br><span class="text-blue-600">Optimise?</span></h2>
        <div class="flex justify-center">
-           <a href="https://forms.gle/egL3EHFaJsd6WjWS9" target="_blank" rel="noopener noreferrer" class="px-12 py-4 bg-blue-600 text-white rounded-full font-black text-[10px] uppercase tracking-[0.2em] shadow-lg active:scale-95 transition-all cursor-pointer inline-block">
+           <a href="https://forms.gle/egL3EHFaJsd6WjWS9" target="_blank" class="px-12 py-4 bg-blue-600 text-white rounded-full font-black text-[10px] uppercase tracking-[0.2em] shadow-lg active:scale-95 transition-all cursor-pointer inline-block">
                Let's Connect
            </a>
        </div>
    </footer>
 
    <script>
-       // Use a standard approach to wait for DOM
-       document.addEventListener('DOMContentLoaded', () => {
-           console.log('Portfolio Loaded');
-       });
-
        function toggleSection(type) {
            const btn = document.getElementById(type + 'Btn');
            const icon = document.getElementById(type + 'Icon');
@@ -298,7 +296,7 @@
                icon.className = 'fa-solid fa-xmark text-3xl text-white';
                setTimeout(() => {
                    content.scrollIntoView({ behavior: 'smooth', block: 'start' });
-               }, 300);
+               }, 400);
            } else {
                icon.className = `fa-solid ${originalIcons[type]} text-3xl text-white shake-icon`;
            }
@@ -331,11 +329,11 @@
                    btn.className = "w-full py-4 bg-emerald-500 text-white rounded-xl font-black text-[10px] uppercase tracking-widest cursor-default";
                    text.innerText = solutions[id];
                    text.className = "text-xs font-bold text-emerald-600 uppercase leading-relaxed flex items-center justify-center min-h-[80px]";
-                   statusIcon.className = "w-14 h-14 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center mb-6 mx-auto";
+                   statusIcon.className = "w-14 h-14 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center mb-6 mx-auto transition-colors duration-500";
                    statusIcon.innerHTML = '<i class="fa-solid fa-check-double text-xl"></i>';
                }
            }, 50);
        }
    </script>
 </body>
-</html> 
+</html>
