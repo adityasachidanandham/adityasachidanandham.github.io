@@ -35,44 +35,42 @@
             padding: 0 24px;
         }
 
-        /* Nav Height */
-        :root { --nav-height: 72px; }
-
-        /* Unified Section Heading Style */
+        /* Unified Section Heading Style for Perfect Centering */
         .section-header {
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             text-align: center;
             width: 100%;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
         }
 
         .section-title {
-            font-size: 1.875rem; /* text-3xl */
+            font-size: 1.875rem;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: -0.05em;
-            line-height: 1;
+            line-height: 1.2;
         }
 
         .section-divider {
-            width: 40px;
-            height: 3px;
+            width: 48px;
+            height: 4px;
             background-color: #e2e8f0;
-            margin-top: 0.75rem;
+            margin-top: 0.5rem;
             border-radius: 99px;
         }
 
         /* Main Action Buttons (Experience/Academics) */
         .nexus-btn {
-            width: 112px; height: 112px;
+            width: 120px; height: 120px;
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex; align-items: center; justify-content: center;
-            border-radius: 3rem; cursor: pointer; z-index: 20;
+            border-radius: 3.5rem; cursor: pointer; z-index: 20;
             touch-action: manipulation;
             flex-shrink: 0;
-            box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.1), 0 10px 10px -5px rgba(37, 99, 235, 0.04);
+            box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.1);
         }
         .nexus-btn.active { transform: rotate(90deg); background-color: #ef4444 !important; }
 
@@ -81,7 +79,7 @@
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             opacity: 0; width: 100%;
         }
-        .exp-container.show { max-height: 4000px; opacity: 1; margin-top: 2rem; }
+        .exp-container.show { max-height: 4000px; opacity: 1; margin-top: 2.5rem; }
 
         .glass-card {
             background: rgba(248, 250, 252, 0.95);
@@ -102,7 +100,7 @@
         .sim-card {
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             height: auto;
-            min-height: 360px;
+            min-height: 340px;
             display: flex;
             flex-direction: column;
             width: 100%;
@@ -146,7 +144,7 @@
             </p>
 
             <!-- Metrics -->
-            <div class="grid grid-cols-3 gap-3 mb-12 w-full">
+            <div class="grid grid-cols-3 gap-3 mb-16 w-full">
                 <div class="glass-card p-5 rounded-3xl flex flex-col items-center justify-center shadow-sm">
                     <i class="fa-solid fa-briefcase text-blue-600 mb-2 text-sm"></i>
                     <div class="text-xl font-black text-slate-900">$50M+</div>
@@ -166,7 +164,7 @@
         </section>
 
         <!-- Experience Section -->
-        <section class="py-10 w-full flex flex-col items-center">
+        <section class="py-12 w-full flex flex-col items-center">
             <div class="section-header">
                 <h2 class="section-title text-blue-600">Experience</h2>
                 <div class="section-divider"></div>
@@ -201,12 +199,12 @@
         <!-- Simulator Section -->
         <section class="py-12 w-full flex flex-col items-center">
             <div class="section-header">
-                <h2 class="section-title text-slate-800">Simulator</h2>
-                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-3">Interactive Problem Solving</p>
+                <h2 class="section-title text-slate-900">Simulator</h2>
                 <div class="section-divider"></div>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-3">Interactive Problem Solving</p>
             </div>
 
-            <div class="space-y-6 w-full mt-2">
+            <div class="space-y-6 w-full">
                 <!-- Card 1 -->
                 <div id="sim-card-1" class="sim-card glass-card p-6 py-10 rounded-[2.5rem] text-center flex flex-col items-center shadow-sm">
                     <div id="status-icon-1" class="w-16 h-16 rounded-full bg-amber-50 text-amber-500 flex items-center justify-center mb-8">
@@ -261,7 +259,7 @@
         </section>
 
         <!-- Academics Section -->
-        <section class="py-10 w-full flex flex-col items-center">
+        <section class="py-12 w-full flex flex-col items-center">
             <div class="section-header">
                 <h2 class="section-title text-blue-600">Academics</h2>
                 <div class="section-divider"></div>
