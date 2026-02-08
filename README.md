@@ -29,18 +29,27 @@
             --eclipse-3: #505081; /* Medium */
             --eclipse-4: #0F0E47; /* Deep */
             
-            /* Salt and Pepper Palette */
-            --salt-white: #FFFFFF;
-            --salt-light: #D4D4D4;
-            --salt-medium: #B3B3B3;
-            --pepper-dark: #2B2B2B;
+            /* Shopify Foundations Palette */
+            --foundation-blue-1: #3D52A0; /* Deep blue */
+            --foundation-blue-2: #7091E6; /* Medium blue */
+            --foundation-blue-3: #8697C4; /* Soft blue */
+            --foundation-purple: #ADBBDA; /* Light purple */
+            --foundation-lavender: #EDE8F5; /* Lavender */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, var(--salt-white) 0%, var(--salt-light) 50%, var(--salt-medium) 100%);
+            background: linear-gradient(165deg, 
+                #EDE8F5 0%,
+                #C8D5F0 15%,
+                #ADBBDA 30%,
+                #8697C4 50%,
+                #7091E6 70%,
+                #5D7BC4 85%,
+                #3D52A0 100%
+            );
             background-attachment: fixed;
             color: var(--eclipse-4);
             -webkit-tap-highlight-color: transparent;
@@ -52,9 +61,10 @@
             flex-direction: column;
             align-items: center;
             position: relative;
+            min-height: 100vh;
         }
         
-        /* Alternative: Geometric pattern background */
+        /* Subtle overlay pattern */
         body::before {
             content: '';
             position: fixed;
@@ -63,11 +73,10 @@
             right: 0;
             bottom: 0;
             background: 
-                linear-gradient(90deg, var(--salt-light) 1px, transparent 1px),
-                linear-gradient(180deg, var(--salt-light) 1px, transparent 1px);
-            background-size: 50px 50px;
-            opacity: 0.3;
-            z-index: -1;
+                radial-gradient(circle at 20% 80%, rgba(237, 232, 245, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(61, 82, 160, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(173, 187, 218, 0.25) 0%, transparent 40%);
+            z-index: 0;
             pointer-events: none;
         }
 
@@ -88,41 +97,40 @@
             transform: translateY(0) !important;
         }
 
-        /* Updated: Background Blobs with Salt & Pepper colors */
+        /* Updated: Background Blobs with blue tones */
         .blob {
             position: fixed;
-            filter: blur(120px);
+            filter: blur(100px);
             border-radius: 50%;
-            z-index: -1;
-            opacity: 0.25;
+            z-index: 0;
+            opacity: 0.4;
             pointer-events: none;
             will-change: transform;
             transform: translate3d(0, 0, 0);
         }
         
         .blob:nth-child(1) {
-            background: var(--pepper-dark);
-            width: 450px;
-            height: 450px;
+            background: rgba(61, 82, 160, 0.5);
+            width: 500px;
+            height: 500px;
             top: -150px;
             right: -150px;
         }
         
         .blob:nth-child(2) {
-            background: var(--salt-medium);
-            width: 350px;
-            height: 350px;
-            bottom: 5%;
-            left: -120px;
+            background: rgba(173, 187, 218, 0.6);
+            width: 400px;
+            height: 400px;
+            bottom: 10%;
+            left: -150px;
         }
         
         .blob:nth-child(3) {
-            background: var(--pepper-dark);
-            width: 300px;
-            height: 300px;
-            top: 40%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            background: rgba(112, 145, 230, 0.4);
+            width: 350px;
+            height: 350px;
+            top: 50%;
+            right: -100px;
         }
 
         .main-content {
@@ -144,16 +152,16 @@
             left: 0;
             right: 0;
             z-index: 9999;
-            background-color: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: saturate(180%) blur(20px);
-            border-bottom: 1px solid var(--salt-light);
+            border-bottom: 1px solid rgba(173, 187, 218, 0.3);
             height: 72px;
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 0 24px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 1px 3px rgba(61, 82, 160, 0.08);
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
         }
@@ -206,10 +214,10 @@
         .section-divider {
             width: 40px;
             height: 4px;
-            background-color: var(--pepper-dark);
+            background: linear-gradient(90deg, var(--foundation-blue-1), var(--foundation-blue-2));
             margin-top: 0.75rem;
             border-radius: 99px;
-            opacity: 0.4;
+            opacity: 0.6;
         }
 
         /* FIX 3: Reduced spacing for PMP badge */
@@ -225,7 +233,7 @@
             display: flex; align-items: center; justify-content: center;
             border-radius: 3rem; cursor: pointer; z-index: 20;
             touch-action: manipulation;
-            box-shadow: 0 25px 50px -12px rgba(43, 43, 43, 0.25);
+            box-shadow: 0 25px 50px -12px rgba(61, 82, 160, 0.3);
             border: none;
             outline: none;
         }
@@ -248,29 +256,35 @@
         }
 
         .glass-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(212, 212, 212, 0.3);
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             width: 100%;
             transition: transform 0.3s ease;
-            box-shadow: 0 4px 6px rgba(43, 43, 43, 0.05);
+            box-shadow: 0 8px 32px rgba(61, 82, 160, 0.12);
+        }
+        
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 12px 40px rgba(61, 82, 160, 0.18);
         }
 
         .apple-card {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.85);
             border-radius: 28px;
-            border: 1px solid var(--salt-light);
+            border: 1px solid rgba(255, 255, 255, 0.5);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 8px 16px rgba(43, 43, 43, 0.08);
+            box-shadow: 0 12px 32px rgba(61, 82, 160, 0.15);
         }
         
         .apple-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(43, 43, 43, 0.12);
+            box-shadow: 0 20px 48px rgba(61, 82, 160, 0.25);
+            background: rgba(255, 255, 255, 0.95);
         }
 
         .pmp-badge-container {
-            background: linear-gradient(135deg, var(--pepper-dark) 0%, #1a1a1a 100%);
+            background: linear-gradient(135deg, var(--foundation-blue-1) 0%, var(--foundation-blue-2) 100%);
             width: 70px;
             height: 70px;
             border-radius: 20px;
@@ -278,14 +292,14 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            box-shadow: 0 10px 20px rgba(43, 43, 43, 0.3);
+            box-shadow: 0 12px 24px rgba(61, 82, 160, 0.35);
         }
 
         .pulse-wave { animation: pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(43, 43, 43, 0.4); }
-            70% { box-shadow: 0 0 0 25px rgba(43, 43, 43, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(43, 43, 43, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(61, 82, 160, 0.5); }
+            70% { box-shadow: 0 0 0 25px rgba(61, 82, 160, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(61, 82, 160, 0); }
         }
 
         .no-scrollbar::-webkit-scrollbar { display: none; }
@@ -297,11 +311,11 @@
             display: flex;
             flex-direction: column;
             width: 100%;
-            border: 1px solid var(--salt-light);
+            border: 1px solid rgba(255, 255, 255, 0.4);
         }
         .sim-card.active-solving { 
-            border-color: var(--pepper-dark); 
-            background: rgba(212, 212, 212, 0.3); 
+            border-color: var(--foundation-blue-1); 
+            background: rgba(173, 187, 218, 0.3); 
             transform: scale(1.02);
         }
         
@@ -315,7 +329,7 @@
 
         .progress-bar {
             height: 6px;
-            background: var(--salt-light);
+            background: rgba(173, 187, 218, 0.3);
             border-radius: 99px;
             overflow: hidden;
             margin: 2rem 0;
@@ -324,7 +338,7 @@
 
         .progress-fill {
             height: 100%;
-            background: var(--pepper-dark);
+            background: linear-gradient(90deg, var(--foundation-blue-1), var(--foundation-blue-2));
             width: 0%;
             transition: width 0.1s linear;
         }
@@ -341,16 +355,16 @@
 </head>
 <body class="pb-24 no-scrollbar">
 
-    <!-- Updated: Background blobs with salt & pepper colors -->
+    <!-- Updated: Background blobs with blue/purple tones -->
     <div class="blob"></div>
     <div class="blob"></div>
     <div class="blob"></div>
 
     <nav>
         <div class="nav-inner">
-            <div class="nav-badge text-[10px] font-black tracking-[0.3em] text-[var(--eclipse-1)] uppercase">PMP® CERTIFIED</div>
+            <div class="nav-badge text-[10px] font-black tracking-[0.3em] text-[var(--foundation-blue-1)] uppercase">PMP® CERTIFIED</div>
             <div class="flex gap-3">
-                <a href="https://www.linkedin.com/in/aditya-sachidanandham" target="_blank" rel="noopener noreferrer" class="haptic-btn w-11 h-11 rounded-2xl bg-white flex items-center justify-center border border-slate-200 text-[var(--eclipse-1)] active:scale-90 transition-all shadow-sm">
+                <a href="https://www.linkedin.com/in/aditya-sachidanandham" target="_blank" rel="noopener noreferrer" class="haptic-btn w-11 h-11 rounded-2xl bg-white flex items-center justify-center border border-blue-100 text-[var(--foundation-blue-1)] active:scale-90 transition-all shadow-sm">
                     <i class="fa-brands fa-linkedin-in text-base"></i>
                 </a>
                 <a href="https://wa.me/qr/NTQZ4PIDDIN3N1" target="_blank" rel="noopener noreferrer" class="haptic-btn w-11 h-11 rounded-2xl bg-white flex items-center justify-center border border-emerald-100 text-emerald-600 active:scale-90 transition-all shadow-sm">
@@ -364,11 +378,11 @@
         <!-- Hero (Wrapped in reveal) -->
         <section class="hero-section"> 
             <div class="reveal reveal-immediate">
-                <div class="pmp-badge-hero inline-flex px-4 py-1.5 bg-[var(--eclipse-2)]/10 border border-[var(--eclipse-2)]/20 rounded-full text-[10px] font-black text-[var(--eclipse-1)] uppercase tracking-[0.15em] mb-6">
+                <div class="pmp-badge-hero inline-flex px-4 py-1.5 bg-white/40 backdrop-blur-md border border-white/50 rounded-full text-[10px] font-black text-[var(--foundation-blue-1)] uppercase tracking-[0.15em] mb-6">
                     Project Management Professional
                 </div>
                 <h1 class="text-5xl sm:text-6xl tracking-tighter uppercase leading-[0.9] mb-8 text-[var(--eclipse-4)]" style="font-weight: 950;">
-                    Aditya<br><span class="text-[var(--eclipse-1)]">Sachidanandham</span>
+                    Aditya<br><span class="text-[var(--foundation-blue-1)]">Sachidanandham</span>
                 </h1>
                 <p class="text-[var(--eclipse-3)] text-[14px] font-bold leading-relaxed mb-12 max-w-md tracking-tight mx-auto">
                     Delivering $50M+ semiconductor automation projects with<br>flawless execution and measurable impact.
@@ -376,19 +390,19 @@
 
                 <div class="grid grid-cols-3 gap-4 mb-16 w-full">
                     <div class="glass-card p-6 rounded-[2rem] flex flex-col items-center justify-center shadow-sm">
-                        <i class="fa-solid fa-briefcase text-[var(--eclipse-1)] mb-2.5 text-base"></i>
+                        <i class="fa-solid fa-briefcase text-[var(--foundation-blue-1)] mb-2.5 text-base"></i>
                         <div class="text-2xl font-black text-[var(--eclipse-4)] leading-none">$50M+</div>
-                        <div class="text-[8px] font-black text-[var(--eclipse-2)] uppercase tracking-widest mt-2">Portfolio</div>
+                        <div class="text-[8px] font-black text-[var(--foundation-blue-2)] uppercase tracking-widest mt-2">Portfolio</div>
                     </div>
                     <div class="glass-card p-6 rounded-[2rem] flex flex-col items-center justify-center shadow-sm">
                         <i class="fa-solid fa-circle-check text-[var(--eclipse-4)] mb-2.5 text-base"></i>
                         <div class="text-2xl font-black text-[var(--eclipse-4)] leading-none">98%</div>
-                        <div class="text-[8px] font-black text-[var(--eclipse-2)] uppercase tracking-widest mt-2">On-Time</div>
+                        <div class="text-[8px] font-black text-[var(--foundation-blue-2)] uppercase tracking-widest mt-2">On-Time</div>
                     </div>
                     <div class="glass-card p-6 rounded-[2rem] flex flex-col items-center justify-center shadow-sm">
-                        <i class="fa-solid fa-arrow-trend-up text-[var(--eclipse-1)] mb-2.5 text-base"></i>
+                        <i class="fa-solid fa-arrow-trend-up text-[var(--foundation-blue-1)] mb-2.5 text-base"></i>
                         <div class="text-2xl font-black text-[var(--eclipse-4)] leading-none">11%</div>
-                        <div class="text-[8px] font-black text-[var(--eclipse-2)] uppercase tracking-widest mt-2">Efficiency</div>
+                        <div class="text-[8px] font-black text-[var(--foundation-blue-2)] uppercase tracking-widest mt-2">Efficiency</div>
                     </div>
                 </div>
             </div>
@@ -398,31 +412,31 @@
         <section class="pt-4 pb-16 w-full flex flex-col items-center">
             <div class="reveal w-full flex flex-col items-center">
                 <div class="section-header">
-                    <h2 class="section-title text-[var(--eclipse-1)]">Experience</h2>
+                    <h2 class="section-title text-[var(--foundation-blue-1)]">Experience</h2>
                     <div class="section-divider"></div>
                 </div>
                 
-                <button id="expBtn" onclick="toggleSection('exp')" class="haptic-btn nexus-btn bg-[var(--pepper-dark)] pulse-wave">
+                <button id="expBtn" onclick="toggleSection('exp')" class="haptic-btn nexus-btn bg-[var(--foundation-blue-1)] pulse-wave">
                     <i id="expIcon" class="fa-solid fa-briefcase text-4xl text-white shake-icon"></i>
                 </button>
 
                 <div id="expContent" class="exp-container space-y-6">
-                    <div class="glass-card p-8 rounded-[2.5rem] border-l-4 border-[var(--pepper-dark)] shadow-lg">
-                        <div class="text-[var(--eclipse-1)] font-black text-[10px] mb-4 uppercase tracking-[0.2em]">Mar 2025 — Jan 2026</div>
+                    <div class="glass-card p-8 rounded-[2.5rem] border-l-4 border-[var(--foundation-blue-1)] shadow-lg">
+                        <div class="text-[var(--foundation-blue-1)] font-black text-[10px] mb-4 uppercase tracking-[0.2em]">Mar 2025 — Jan 2026</div>
                         <h3 class="text-2xl font-black uppercase tracking-tight text-[var(--eclipse-4)]">Installation Manager</h3>
-                        <p class="text-xs font-bold text-[var(--eclipse-2)] mb-6 uppercase">STMicroelectronics</p>
+                        <p class="text-xs font-bold text-[var(--foundation-blue-2)] mb-6 uppercase">STMicroelectronics</p>
                         <p class="text-[14px] text-[var(--eclipse-3)] font-bold leading-relaxed uppercase">• Led $20M automation project coordinating 100+ subcontractors.</p>
                     </div>
-                    <div class="glass-card p-8 rounded-[2.5rem] border-l-4 border-slate-300 shadow-sm">
-                        <div class="text-slate-400 font-black text-[10px] mb-4 uppercase tracking-[0.2em]">Aug 2024 — Feb 2025</div>
+                    <div class="glass-card p-8 rounded-[2.5rem] border-l-4 border-blue-200 shadow-sm">
+                        <div class="text-blue-400 font-black text-[10px] mb-4 uppercase tracking-[0.2em]">Aug 2024 — Feb 2025</div>
                         <h3 class="text-2xl font-black uppercase tracking-tight text-[var(--eclipse-4)]">Site Manager</h3>
-                        <p class="text-xs font-bold text-slate-400 mb-6 uppercase">Texas Instruments</p>
+                        <p class="text-xs font-bold text-blue-400 mb-6 uppercase">Texas Instruments</p>
                         <p class="text-[14px] text-slate-600 font-bold leading-relaxed uppercase">• $50M On-site execution management with 31% faster resolution.</p>
                     </div>
-                    <div class="glass-card p-8 rounded-[2.5rem] border-l-4 border-slate-300 shadow-sm">
-                        <div class="text-slate-400 font-black text-[10px] mb-4 uppercase tracking-[0.2em]">Jul 2022 — Jul 2024</div>
+                    <div class="glass-card p-8 rounded-[2.5rem] border-l-4 border-blue-200 shadow-sm">
+                        <div class="text-blue-400 font-black text-[10px] mb-4 uppercase tracking-[0.2em]">Jul 2022 — Jul 2024</div>
                         <h3 class="text-2xl font-black uppercase tracking-tight text-[var(--eclipse-4)]">Engineer</h3>
-                        <p class="text-xs font-bold text-slate-400 mb-6 uppercase">UMC, Soitec, Siltronic</p>
+                        <p class="text-xs font-bold text-blue-400 mb-6 uppercase">UMC, Soitec, Siltronic</p>
                         <p class="text-[14px] text-slate-600 font-bold leading-relaxed uppercase">• Collaborated on 5 complex $12M+ projects leading risk mitigation.</p>
                     </div>
                 </div>
@@ -435,7 +449,7 @@
                 <div class="section-header">
                     <h2 class="section-title text-[var(--eclipse-4)]">The Simulator</h2>
                     <div class="section-divider"></div>
-                    <p class="simulator-text text-[11px] font-black text-[var(--eclipse-2)] uppercase tracking-[0.25em] mt-4">Interactive Problem Solving</p>
+                    <p class="simulator-text text-[11px] font-black text-[var(--foundation-blue-2)] uppercase tracking-[0.25em] mt-4">Interactive Problem Solving</p>
                 </div>
 
                 <div class="space-y-6 w-full">
@@ -444,14 +458,14 @@
                         <div id="status-icon-1" class="w-16 h-16 rounded-3xl bg-amber-50 text-amber-500 flex items-center justify-center mb-10 transition-all duration-500">
                             <i class="fa-solid fa-users-gear text-2xl"></i>
                         </div>
-                        <h3 class="simulator-text font-black text-[var(--eclipse-1)] uppercase tracking-[0.2em] mb-4">Oversight Dilution</h3>
+                        <h3 class="simulator-text font-black text-[var(--foundation-blue-1)] uppercase tracking-[0.2em] mb-4">Oversight Dilution</h3>
                         <div id="problem-text-1" class="simulator-problem-text font-bold text-slate-800 uppercase leading-relaxed min-h-[60px] px-4">
                             Managing $20M installation with 1:12 manager-to-labor ratio (100+ personnel) causing communication lag.
                         </div>
                         <div class="progress-bar">
                             <div id="progress-1" class="progress-fill"></div>
                         </div>
-                        <button onclick="handleSimulation(1)" id="sim-btn-1" data-state="initial" class="haptic-btn w-full py-5 bg-[var(--pepper-dark)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg">
+                        <button onclick="handleSimulation(1)" id="sim-btn-1" data-state="initial" class="haptic-btn w-full py-5 bg-[var(--foundation-blue-1)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg">
                             Resolve Issue
                         </button>
                     </div>
@@ -461,14 +475,14 @@
                         <div id="status-icon-2" class="w-16 h-16 rounded-3xl bg-amber-50 text-amber-500 flex items-center justify-center mb-10 transition-all duration-500">
                             <i class="fa-solid fa-microchip text-2xl"></i>
                         </div>
-                        <h3 class="simulator-text font-black text-[var(--eclipse-1)] uppercase tracking-[0.2em] mb-4">Technical Latency</h3>
+                        <h3 class="simulator-text font-black text-[var(--foundation-blue-1)] uppercase tracking-[0.2em] mb-4">Technical Latency</h3>
                         <div id="problem-text-2" class="simulator-problem-text font-bold text-slate-800 uppercase leading-relaxed min-h-[60px] px-4">
                             $50M facility launch delay stalls client revenue-generation and eats capital investment.
                         </div>
                         <div class="progress-bar">
                             <div id="progress-2" class="progress-fill"></div>
                         </div>
-                        <button onclick="handleSimulation(2)" id="sim-btn-2" data-state="initial" class="haptic-btn w-full py-5 bg-[var(--pepper-dark)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg">
+                        <button onclick="handleSimulation(2)" id="sim-btn-2" data-state="initial" class="haptic-btn w-full py-5 bg-[var(--foundation-blue-1)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg">
                             Resolve Issue
                         </button>
                     </div>
@@ -478,14 +492,14 @@
                         <div id="status-icon-3" class="w-16 h-16 rounded-3xl bg-amber-50 text-amber-500 flex items-center justify-center mb-10 transition-all duration-500">
                             <i class="fa-solid fa-layer-group text-2xl"></i>
                         </div>
-                        <h3 class="simulator-text font-black text-[var(--eclipse-1)] uppercase tracking-[0.2em] mb-4">Resource Fragmentation</h3>
+                        <h3 class="simulator-text font-black text-[var(--foundation-blue-1)] uppercase tracking-[0.2em] mb-4">Resource Fragmentation</h3>
                         <div id="problem-text-3" class="simulator-problem-text font-bold text-slate-800 uppercase leading-relaxed min-h-[60px] px-4">
                             Directing 5 simultaneous $12M sites creating a "domino effect" where one crisis drains all resources.
                         </div>
                         <div class="progress-bar">
                             <div id="progress-3" class="progress-fill"></div>
                         </div>
-                        <button onclick="handleSimulation(3)" id="sim-btn-3" data-state="initial" class="haptic-btn w-full py-5 bg-[var(--pepper-dark)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg">
+                        <button onclick="handleSimulation(3)" id="sim-btn-3" data-state="initial" class="haptic-btn w-full py-5 bg-[var(--foundation-blue-1)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg">
                             Resolve Issue
                         </button>
                     </div>
@@ -497,24 +511,24 @@
         <section class="py-12 w-full flex flex-col items-center">
             <div class="reveal w-full flex flex-col items-center">
                 <div class="section-header">
-                    <h2 class="section-title text-[var(--eclipse-1)]">Academics</h2>
+                    <h2 class="section-title text-[var(--foundation-blue-1)]">Academics</h2>
                     <div class="section-divider"></div>
                 </div>
 
-                <button id="acadBtn" onclick="toggleSection('acad')" class="haptic-btn nexus-btn bg-[var(--eclipse-4)] pulse-wave">
+                <button id="acadBtn" onclick="toggleSection('acad')" class="haptic-btn nexus-btn bg-[var(--foundation-blue-2)] pulse-wave">
                     <i id="acadIcon" class="fa-solid fa-graduation-cap text-4xl text-white shake-icon"></i>
                 </button>
 
                 <div id="acadContent" class="exp-container space-y-6">
                     <div class="glass-card p-10 rounded-[2.5rem] text-center flex flex-col items-center shadow-sm">
-                        <i class="fa-solid fa-graduation-cap text-[var(--eclipse-1)] mb-6 text-2xl"></i>
+                        <i class="fa-solid fa-graduation-cap text-[var(--foundation-blue-1)] mb-6 text-2xl"></i>
                         <h4 class="text-2xl font-black uppercase text-[var(--eclipse-4)] leading-tight">M.Sc Project Management</h4>
-                        <p class="text-[11px] font-black text-[var(--eclipse-2)] uppercase mt-4 tracking-[0.25em]">NTU Singapore | GPA: 4.14</p>
+                        <p class="text-[11px] font-black text-[var(--foundation-blue-2)] uppercase mt-4 tracking-[0.25em]">NTU Singapore | GPA: 4.14</p>
                     </div>
                     <div class="glass-card p-10 rounded-[2.5rem] text-center flex flex-col items-center shadow-sm">
-                        <i class="fa-solid fa-user-graduate text-slate-400 mb-6 text-2xl"></i>
+                        <i class="fa-solid fa-user-graduate text-blue-400 mb-6 text-2xl"></i>
                         <h4 class="text-2xl font-black uppercase text-[var(--eclipse-4)] leading-tight">B.Tech Aerospace</h4>
-                        <p class="text-[11px] font-black text-slate-400 uppercase mt-4 tracking-[0.25em]">PM Institute | GPA: 4.07</p>
+                        <p class="text-[11px] font-black text-blue-400 uppercase mt-4 tracking-[0.25em]">PM Institute | GPA: 4.07</p>
                     </div>
                 </div>
             </div>
@@ -535,14 +549,14 @@
 
                     <div class="flex-grow text-center sm:text-left">
                         <div class="flex items-center justify-center sm:justify-start gap-3 mb-2">
-                            <span class="text-[10px] font-black text-[var(--eclipse-1)] uppercase tracking-[0.2em]">Credentialed</span>
-                            <div class="hidden sm:block h-[1px] flex-grow bg-slate-100"></div>
+                            <span class="text-[10px] font-black text-[var(--foundation-blue-1)] uppercase tracking-[0.2em]">Credentialed</span>
+                            <div class="hidden sm:block h-[1px] flex-grow bg-blue-100"></div>
                         </div>
                         <h3 class="text-xl font-black text-[var(--eclipse-4)] uppercase leading-tight mb-2">Project Management Professional</h3>
-                        <p class="text-[11px] text-[var(--eclipse-2)] font-bold uppercase tracking-wider">Cert #4181149 • 2025–2028</p>
+                        <p class="text-[11px] text-[var(--foundation-blue-2)] font-bold uppercase tracking-wider">Cert #4181149 • 2025–2028</p>
                     </div>
 
-                    <a href="https://drive.google.com/file/d/1GSi6xrRhk8LBgboyArKdwgUpK0te4lGS/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="haptic-btn w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-[var(--eclipse-4)] hover:bg-[var(--pepper-dark)] hover:text-white transition-all flex-shrink-0">
+                    <a href="https://drive.google.com/file/d/1GSi6xrRhk8LBgboyArKdwgUpK0te4lGS/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="haptic-btn w-12 h-12 rounded-full bg-white/80 flex items-center justify-center text-[var(--foundation-blue-1)] hover:bg-[var(--foundation-blue-1)] hover:text-white transition-all flex-shrink-0">
                         <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
                     </a>
                 </div>
@@ -552,16 +566,16 @@
         <!-- Footer -->
         <footer class="py-20 text-center w-full flex flex-col items-center">
             <div class="reveal w-full flex flex-col items-center">
-                <h2 class="text-5xl font-black uppercase tracking-tighter text-[var(--eclipse-4)] mb-16 leading-[0.9]">Ready to<br><span class="text-[var(--eclipse-1)]">Optimise?</span></h2>
+                <h2 class="text-5xl font-black uppercase tracking-tighter text-[var(--eclipse-4)] mb-16 leading-[0.9]">Ready to<br><span class="text-[var(--foundation-blue-1)]">Optimise?</span></h2>
                 <div class="flex flex-col sm:flex-row gap-6 w-full max-w-sm">
-                    <a href="mailto:sachidanandhamaditya@gmail.com" class="haptic-btn flex-1 py-6 bg-[var(--pepper-dark)] text-white rounded-full font-black text-[11px] uppercase tracking-[0.25em] shadow-2xl active:scale-95 transition-all text-center">
+                    <a href="mailto:sachidanandhamaditya@gmail.com" class="haptic-btn flex-1 py-6 bg-[var(--foundation-blue-1)] text-white rounded-full font-black text-[11px] uppercase tracking-[0.25em] shadow-2xl shadow-blue-500/30 active:scale-95 transition-all text-center">
                         Let's Connect
                     </a>
-                    <a href="https://drive.google.com/uc?export=download&id=1ECTxz4eec13It0jeHqNBNY9TgmaTa1JP" download target="_blank" class="haptic-btn flex-1 py-6 bg-[var(--eclipse-4)] text-white rounded-full font-black text-[11px] uppercase tracking-[0.25em] shadow-2xl active:scale-95 transition-all text-center">
+                    <a href="https://drive.google.com/uc?export=download&id=1ECTxz4eec13It0jeHqNBNY9TgmaTa1JP" download target="_blank" class="haptic-btn flex-1 py-6 bg-[var(--foundation-blue-2)] text-white rounded-full font-black text-[11px] uppercase tracking-[0.25em] shadow-2xl shadow-blue-400/30 active:scale-95 transition-all text-center">
                         CV Download
                     </a>
                 </div>
-                <p class="mt-20 text-[9px] font-black text-slate-400 uppercase tracking-[0.4em]">© 2025 Aditya Sachidanandham</p>
+                <p class="mt-20 text-[9px] font-black text-blue-300/60 uppercase tracking-[0.4em]">© 2025 Aditya Sachidanandham</p>
             </div>
         </footer>
     </main>
@@ -682,7 +696,7 @@
             card.classList.remove('active-solving');
             btn.innerText = "Resolve Issue";
             btn.setAttribute('data-state', 'initial');
-            btn.className = "haptic-btn w-full py-5 bg-[var(--pepper-dark)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg";
+            btn.className = "haptic-btn w-full py-5 bg-[var(--foundation-blue-1)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg";
             
             progress.style.width = '0%';
             text.innerText = initialProblems[id].text;
