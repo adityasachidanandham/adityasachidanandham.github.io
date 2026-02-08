@@ -67,6 +67,7 @@
             padding: 0 24px;
             position: relative;
             z-index: 1;
+            isolation: isolate;
         }
 
         /* Fixed Navigation */
@@ -75,8 +76,8 @@
             top: 0;
             left: 0;
             right: 0;
-            z-index: 100;
-            background-color: rgba(255, 255, 255, 0.95);
+            z-index: 9999;
+            background-color: rgba(255, 255, 255, 0.98);
             backdrop-filter: saturate(180%) blur(20px);
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             height: 72px;
@@ -86,6 +87,8 @@
             align-items: center;
             padding: 0 24px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
         }
 
         .nav-inner {
@@ -108,6 +111,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-section .reveal {
+            will-change: auto;
         }
 
         .section-header {
@@ -347,7 +356,7 @@
                     </div>
                     <div class="glass-card p-8 rounded-[2.5rem] border-l-4 border-slate-200 shadow-sm">
                         <div class="text-slate-400 font-black text-[10px] mb-4 uppercase tracking-[0.2em]">Jul 2022 — Jul 2024</div>
-                        <h3 class="text-2xl font-black uppercase tracking-tight text-[var(--eclipse-4)]">Site Manager</h3>
+                        <h3 class="text-2xl font-black uppercase tracking-tight text-[var(--eclipse-4)]">Engineer</h3>
                         <p class="text-xs font-bold text-slate-400 mb-6 uppercase">UMC, Soitec, Siltronic</p>
                         <p class="text-[14px] text-slate-600 font-bold leading-relaxed uppercase">• Collaborated on 5 complex $12M+ projects leading risk mitigation.</p>
                     </div>
