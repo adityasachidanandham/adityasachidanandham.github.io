@@ -248,7 +248,7 @@
             <div class="reveal">
                 <div class="pmp-tag">Project Management Professional</div>
                 <h1 class="hero-name">
-                    Aditya<br><span class="text-[var(--eclipse-1)]">Sachidanandham</span>
+                    \\Aditya<br><span class="text-[var(--eclipse-1)]">Sachidanandham</span>
                 </h1>
                 <p class="text-[var(--eclipse-3)] text-[14px] font-bold leading-relaxed mb-12 max-w-sm mx-auto">
                     Delivering $50M+ semiconductor automation projects with flawless execution and measurable impact.
