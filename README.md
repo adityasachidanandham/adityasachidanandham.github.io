@@ -151,7 +151,7 @@
 </head>
 <body class="pb-40 no-scrollbar">
 
-    <nav class="px-6 flex justify-between items-center fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 h-[72px]">
+    <nav class="px-6 flex justify-between items-center fixed top-0 w-full z-50 bg-white border-b border-slate-100 h-[72px]">
         <div class="text-[9px] font-black tracking-[0.3em] text-blue-600 uppercase">PMP® #4181149</div>
         <div class="flex gap-2">
             <a href="https://www.linkedin.com/in/aditya-sachidanandham" target="_blank" class="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center border border-slate-200 text-blue-600 active:scale-90 transition-transform">
