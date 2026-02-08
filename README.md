@@ -4,11 +4,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Aditya Sachidanandham | PMP® Portfolio</title>
     
+    <!-- Preload critical resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+        
+        /* Optimize rendering */
+        html {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
         
         :root {
             /* Blue Eclipse Palette */
@@ -34,28 +46,34 @@
             align-items: center;
         }
 
-        /* Restoration: Scroll Reveal Animation */
+        /* Restoration: Scroll Reveal Animation - Optimized */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            filter: blur(5px);
-            transition: all 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
         }
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
-            filter: blur(0px);
+        }
+        
+        /* Show hero content immediately */
+        .reveal-immediate {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
         }
 
         /* Restoration: Background Blobs */
         .blob {
             position: fixed;
             background: var(--eclipse-2);
-            filter: blur(120px);
+            filter: blur(100px);
             border-radius: 50%;
             z-index: -1;
-            opacity: 0.15;
+            opacity: 0.12;
             pointer-events: none;
+            will-change: transform;
+            transform: translate3d(0, 0, 0);
         }
 
         .main-content {
@@ -105,7 +123,7 @@
         }
 
         .hero-section {
-            margin-top: 100px;
+            margin-top: 120px;
             text-align: center;
             width: 100%;
             display: flex;
@@ -295,7 +313,7 @@
     <main class="main-content">
         <!-- Hero (Wrapped in reveal) -->
         <section class="hero-section"> 
-            <div class="reveal">
+            <div class="reveal reveal-immediate">
                 <div class="pmp-badge-hero inline-flex px-4 py-1.5 bg-[var(--eclipse-2)]/10 border border-[var(--eclipse-2)]/20 rounded-full text-[10px] font-black text-[var(--eclipse-1)] uppercase tracking-[0.15em] mb-6">
                     Project Management Professional
                 </div>
@@ -330,7 +348,7 @@
         </section>
 
         <!-- Experience -->
-        <section class="pt-4 pb-16 w-full flex flex-col items-center">
+        <section class="pt-4 pb-8 w-full flex flex-col items-center">
             <div class="reveal w-full flex flex-col items-center">
                 <div class="section-header">
                     <h2 class="section-title text-[var(--eclipse-1)]">Experience</h2>
@@ -365,7 +383,7 @@
         </section>
 
         <!-- Simulator -->
-        <section class="py-12 w-full flex flex-col items-center">
+        <section class="py-6 w-full flex flex-col items-center">
             <div class="reveal w-full flex flex-col items-center">
                 <div class="section-header">
                     <h2 class="section-title text-[var(--eclipse-4)]">The Simulator</h2>
@@ -429,7 +447,7 @@
         </section>
 
         <!-- Academics -->
-        <section class="py-12 w-full flex flex-col items-center">
+        <section class="py-6 w-full flex flex-col items-center">
             <div class="reveal w-full flex flex-col items-center">
                 <div class="section-header">
                     <h2 class="section-title text-[var(--eclipse-1)]">Academics</h2>
@@ -456,7 +474,7 @@
         </section>
 
         <!-- PMP Apple Section -->
-        <section class="mt-12 mb-8 w-full">
+        <section class="mt-6 mb-4 w-full">
             <div class="reveal">
                 <div class="apple-card w-full p-8 flex flex-col sm:flex-row items-center gap-8">
                     <div class="pmp-badge-container flex-shrink-0">
@@ -485,9 +503,9 @@
         </section>
 
         <!-- Footer -->
-        <footer class="py-20 text-center w-full flex flex-col items-center">
+        <footer class="py-12 text-center w-full flex flex-col items-center">
             <div class="reveal w-full flex flex-col items-center">
-                <h2 class="text-5xl font-black uppercase tracking-tighter text-[var(--eclipse-4)] mb-16 leading-[0.9]">Ready to<br><span class="text-[var(--eclipse-1)]">Optimise?</span></h2>
+                <h2 class="text-5xl font-black uppercase tracking-tighter text-[var(--eclipse-4)] mb-10 leading-[0.9]">Ready to<br><span class="text-[var(--eclipse-1)]">Optimise?</span></h2>
                 <div class="flex flex-col sm:flex-row gap-6 w-full max-w-sm">
                     <!-- UPDATED: Let's Connect Email -->
                     <a href="mailto:sachidanandhamaditya@gmail.com" class="haptic-btn flex-1 py-6 bg-[var(--eclipse-1)] text-white rounded-full font-black text-[11px] uppercase tracking-[0.25em] shadow-2xl shadow-[var(--eclipse-1)]/30 active:scale-95 transition-all text-center">
@@ -504,33 +522,39 @@
     </main>
 
     <script>
-        // FIX 6: Haptic feedback for all clickable buttons
-        function triggerHaptic() {
-            if (window.navigator && window.navigator.vibrate) {
-                window.navigator.vibrate(10); // 10ms vibration
-            }
-        }
-
-        // Add haptic feedback to all buttons with haptic-btn class
-        document.addEventListener('DOMContentLoaded', function() {
-            const hapticElements = document.querySelectorAll('.haptic-btn, button, a[href]');
-            hapticElements.forEach(element => {
-                element.addEventListener('touchstart', triggerHaptic);
-                element.addEventListener('click', triggerHaptic);
-            });
+        // Optimize initial page load - defer non-critical scripts
+        window.addEventListener('load', function() {
+            initializeAnimations();
         });
 
-        // FIX 5: Restoration: Intersection Observer for Scroll Reveal Animation (works on iPhone)
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
+        function initializeAnimations() {
+            // FIX 6: Haptic feedback for all clickable buttons
+            function triggerHaptic() {
+                if (window.navigator && window.navigator.vibrate) {
+                    window.navigator.vibrate(10); // 10ms vibration
                 }
+            }
+
+            // Add haptic feedback to all buttons with haptic-btn class
+            const hapticElements = document.querySelectorAll('.haptic-btn, button, a[href]');
+            hapticElements.forEach(element => {
+                element.addEventListener('touchstart', triggerHaptic, { passive: true });
+                element.addEventListener('click', triggerHaptic);
             });
-        }, { threshold: 0.1, rootMargin: '0px' });
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            // FIX 5: Restoration: Intersection Observer for Scroll Reveal Animation (works on iPhone)
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px' });
 
+            document.querySelectorAll('.reveal:not(.reveal-immediate)').forEach(el => observer.observe(el));
+        }
+
+        // Critical functions available immediately
         const initialProblems = {
             1: { text: "Managing $20M installation with 1:12 manager-to-labor ratio (100+ personnel) causing communication lag.", icon: 'fa-users-gear' },
             2: { text: "$50M facility launch delay stalls client revenue-generation and eats capital investment.", icon: 'fa-microchip' },
