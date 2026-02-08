@@ -321,7 +321,7 @@
                 </div>
                 <!-- FIX 2: Made name bolder with font-weight: 950 equivalent -->
                 <h1 class="text-5xl sm:text-6xl tracking-tighter uppercase leading-[0.9] mb-8 text-[var(--eclipse-4)]" style="font-weight: 950;">
-                    Aditya<br><span class="text-[var(--eclipse-1)]">Sachidanandham</span>
+                    <span class="text-[var(--eclipse-1)]">Aditya Sachidanandham</span>
                 </h1>
                 <!-- UPDATED: Text layout adjusted for 2 rows -->
                 <p class="text-[var(--eclipse-3)] text-[14px] font-bold leading-relaxed mb-12 max-w-md tracking-tight mx-auto">
