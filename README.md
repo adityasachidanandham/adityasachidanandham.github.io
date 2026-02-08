@@ -8,25 +8,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
         
         :root {
-            /* Deeper Lilac & Pearl Mix (+10% intensity) */
-            --lilac: #CDB4DB;
-            --deep-lilac: #7B2CBF;
-            --pearl-white: #F8F7FF;
-            --electric-purple: #9D4EDD; 
-            --surface: rgba(245, 235, 255, 0.5);
-            --text-main: #240046;
-            --text-dim: #5A189A;
+            /* Blue Eclipse Palette */
+            --eclipse-1: #272757; /* Primary */
+            --eclipse-2: #8686AC; /* Light */
+            --eclipse-3: #505081; /* Medium */
+            --eclipse-4: #0F0E47; /* Deep */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--pearl-white);
-            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: var(--eclipse-4);
             -webkit-tap-highlight-color: transparent;
             overflow-x: hidden;
             width: 100%;
@@ -35,36 +32,30 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
         }
 
-        /* Intensified Mesh Gradient */
-        .bg-mesh {
+        /* Restoration: Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            filter: blur(5px);
+            transition: all 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0px);
+        }
+
+        /* Restoration: Background Blobs */
+        .blob {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--eclipse-2);
+            filter: blur(120px);
+            border-radius: 50%;
             z-index: -1;
-            background: radial-gradient(at 0% 0%, var(--lilac) 0px, transparent 60%),
-                        radial-gradient(at 100% 0%, #E0AAFF 0px, transparent 60%),
-                        radial-gradient(at 100% 100%, #ffffff 0px, transparent 60%),
-                        radial-gradient(at 0% 100%, #BE95C4 0px, transparent 60%);
-            filter: blur(80px);
-            opacity: 0.8;
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            background: rgba(248, 247, 255, 0.7);
-            backdrop-filter: blur(24px);
-            border-bottom: 1px solid rgba(123, 44, 191, 0.15);
-            height: 72px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 24px;
+            opacity: 0.15;
+            pointer-events: none;
         }
 
         .main-content {
@@ -78,6 +69,23 @@
             z-index: 1;
         }
 
+        /* Fixed Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            height: 72px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+        }
+
         .hero-section {
             margin-top: 100px;
             text-align: center;
@@ -85,351 +93,396 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding-top: 4px;
         }
 
         .section-header {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             text-align: center;
             width: 100%;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
         }
 
         .section-title {
-            font-size: 1.875rem;
+            font-size: 1.75rem;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: -0.05em;
-            line-height: 1.2;
-            color: var(--text-main);
+            line-height: 1.1;
         }
 
         .section-divider {
-            width: 48px;
+            width: 40px;
             height: 4px;
-            background-color: var(--electric-purple);
+            background-color: var(--eclipse-2);
             margin-top: 0.75rem;
             border-radius: 99px;
-            opacity: 0.8;
+            opacity: 0.3;
         }
 
+        /* Nexus Button System */
         .nexus-btn {
-            width: 120px; height: 120px;
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            width: 110px; height: 110px;
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
             display: flex; align-items: center; justify-content: center;
-            border-radius: 3.5rem; cursor: pointer; z-index: 20;
+            border-radius: 3rem; cursor: pointer; z-index: 20;
             touch-action: manipulation;
-            flex-shrink: 0;
-            background: rgba(255, 255, 255, 0.9);
-            border: 2px solid rgba(157, 78, 221, 0.3);
-            box-shadow: 0 20px 40px rgba(123, 44, 191, 0.15);
+            box-shadow: 0 25px 50px -12px rgba(39, 39, 87, 0.25);
+            border: none;
+            outline: none;
         }
-        .nexus-btn.active { transform: rotate(90deg); background-color: #ef4444 !important; border-color: transparent; }
+        .nexus-btn:active { transform: scale(0.92); }
+        .nexus-btn.active { transform: rotate(90deg); background-color: #ef4444 !important; box-shadow: 0 25px 50px -12px rgba(239, 68, 68, 0.25); }
 
         .exp-container {
-            max-height: 0; overflow: hidden;
+            max-height: 0; 
+            overflow: hidden;
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            opacity: 0; width: 100%;
+            opacity: 0; 
+            width: 100%;
+            pointer-events: none;
         }
-        .exp-container.show { max-height: 4000px; opacity: 1; margin-top: 2.5rem; }
+        .exp-container.show { 
+            max-height: 2500px; 
+            opacity: 1; 
+            margin-top: 2.5rem; 
+            pointer-events: auto;
+        }
 
         .glass-card {
-            background: var(--surface);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(123, 44, 191, 0.15);
+            background: rgba(248, 250, 252, 0.8);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(241, 245, 249, 1);
             width: 100%;
-            transition: all 0.3s ease;
-        }
-        .glass-card:hover {
-            border-color: rgba(123, 44, 191, 0.4);
-            background: rgba(245, 235, 255, 0.7);
+            transition: transform 0.3s ease;
         }
 
         .apple-card {
-            background: var(--surface);
-            backdrop-filter: blur(12px);
-            border-radius: 24px;
-            border: 1px solid rgba(123, 44, 191, 0.15);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: #fbfbfd;
+            border-radius: 28px;
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
+        .apple-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+        }
+
         .pmp-badge-container {
-            background: #ffffff;
+            background: linear-gradient(135deg, var(--eclipse-1) 0%, var(--eclipse-4) 100%);
             width: 70px;
             height: 70px;
-            border-radius: 16px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            border: 1px solid rgba(157, 78, 221, 0.3);
+            box-shadow: 0 10px 20px rgba(39, 39, 87, 0.25);
         }
 
-        .pulse-wave { animation: pulse 2.5s infinite; }
+        .pulse-wave { animation: pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(157, 78, 221, 0.3); }
-            70% { box-shadow: 0 0 0 20px rgba(157, 78, 221, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(157, 78, 221, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(39, 39, 87, 0.4); }
+            70% { box-shadow: 0 0 0 25px rgba(39, 39, 87, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(39, 39, 87, 0); }
         }
 
         .no-scrollbar::-webkit-scrollbar { display: none; }
 
         .sim-card {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             height: auto;
-            min-height: 340px;
+            min-height: 360px;
             display: flex;
             flex-direction: column;
             width: 100%;
+            border: 1px solid #f1f5f9;
         }
-        .sim-card.active-solving { border-color: var(--electric-purple); background: rgba(235, 200, 255, 0.4); }
+        .sim-card.active-solving { 
+            border-color: var(--eclipse-1); 
+            background: #f0f0ff; 
+            transform: scale(1.02);
+        }
         
         @keyframes icon-shake {
-            0%, 85%, 100% { transform: translateX(0); }
-            87% { transform: translateX(-4px) rotate(-3deg); }
-            90% { transform: translateX(4px) rotate(3deg); }
+            0%, 80%, 100% { transform: translateX(0); }
+            85% { transform: translateX(-3px) rotate(-2deg); }
+            90% { transform: translateX(3px) rotate(2deg); }
+            95% { transform: translateX(-2px) rotate(-1deg); }
         }
-        .shake-icon { animation: icon-shake 3s ease-in-out infinite; }
+        .shake-icon { animation: icon-shake 4s ease-in-out infinite; }
 
-        .btn-primary {
-            background: #3C096C;
-            color: #ffffff;
-            transition: all 0.3s ease;
-        }
-        .btn-primary:hover {
-            background: var(--deep-lilac);
-            transform: translateY(-1px);
-        }
-
-        .text-gradient {
-            background: linear-gradient(to bottom, var(--text-main) 0%, var(--electric-purple) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .progress-bar {
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 99px;
+            overflow: hidden;
+            margin: 2rem 0;
+            width: 100%;
         }
 
-        .sim-btn-style {
-            background-color: #3C096C;
-            color: #ffffff !important;
-        }
-        .sim-btn-style.success {
-            background-color: #10b981;
-            color: #ffffff !important;
+        .progress-fill {
+            height: 100%;
+            background: var(--eclipse-1);
+            width: 0%;
+            transition: width 0.1s linear;
         }
     </style>
 </head>
-<body class="pb-40 no-scrollbar">
-    <div class="bg-mesh"></div>
+<body class="pb-24 no-scrollbar">
+
+    <!-- Restoration: Background blobs -->
+    <div class="blob" style="width: 450px; height: 450px; top: -150px; right: -150px;"></div>
+    <div class="blob" style="width: 350px; height: 350px; bottom: 5%; left: -120px;"></div>
 
     <nav>
-        <div class="text-[9px] font-black tracking-[0.3em] text-purple-900/40 uppercase">PMP® CERTIFIED</div>
-        <div class="flex gap-2">
-            <a href="https://www.linkedin.com/in/aditya-sachidanandham" target="_blank" class="w-10 h-10 rounded-xl bg-white/80 flex items-center justify-center border border-purple-100 text-purple-700 active:scale-90 transition-transform shadow-sm">
-                <i class="fa-brands fa-linkedin-in text-sm"></i>
+        <div class="text-[10px] font-black tracking-[0.3em] text-[var(--eclipse-1)] uppercase">PMP® CERTIFIED</div>
+        <div class="flex gap-3">
+            <!-- UPDATED: LinkedIn Link -->
+            <a href="https://www.linkedin.com/in/aditya-sachidanandham" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-2xl bg-white flex items-center justify-center border border-slate-200 text-[var(--eclipse-1)] active:scale-90 transition-all shadow-sm">
+                <i class="fa-brands fa-linkedin-in text-base"></i>
             </a>
-            <a href="https://wa.me/qr/NTQZ4PIDDIN3N1" target="_blank" class="w-10 h-10 rounded-xl bg-white/80 flex items-center justify-center border border-purple-100 text-purple-700 active:scale-90 transition-transform shadow-sm">
-                <i class="fa-brands fa-whatsapp text-lg"></i>
+            <!-- UPDATED: WhatsApp Link -->
+            <a href="https://wa.me/qr/NTQZ4PIDDIN3N1" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-2xl bg-white flex items-center justify-center border border-emerald-100 text-emerald-600 active:scale-90 transition-all shadow-sm">
+                <i class="fa-brands fa-whatsapp text-xl"></i>
             </a>
         </div>
     </nav>
 
     <main class="main-content">
-        <!-- Hero Section -->
+        <!-- Hero (Wrapped in reveal) -->
         <section class="hero-section"> 
-            <div class="inline-block px-3 py-1 bg-purple-100/50 border border-purple-200 rounded-full text-[9px] font-black text-deep-lilac uppercase tracking-widest mb-4 shadow-sm">
-                Project Management Professional
-            </div>
-            <h1 class="text-4xl sm:text-5xl font-black tracking-tighter uppercase leading-[0.95] mb-6 text-gradient">
-                Aditya<br>Sachidanandham
-            </h1>
-            <p class="text-text-dim text-sm font-bold leading-relaxed mb-10 max-w-xs uppercase">
-                3+ years delivering $50M+ automation installation projects for semiconductor leaders.
-            </p>
+            <div class="reveal">
+                <div class="inline-flex px-4 py-1.5 bg-[var(--eclipse-2)]/10 border border-[var(--eclipse-2)]/20 rounded-full text-[10px] font-black text-[var(--eclipse-1)] uppercase tracking-[0.15em] mb-6">
+                    Project Management Professional
+                </div>
+                <h1 class="text-5xl sm:text-6xl font-black tracking-tighter uppercase leading-[0.9] mb-8 text-[var(--eclipse-4)]">
+                    Aditya<br><span class="text-[var(--eclipse-1)]">Sachidanandham</span>
+                </h1>
+                <!-- UPDATED: Text layout adjusted for 2 rows -->
+                <p class="text-[var(--eclipse-3)] text-[14px] font-bold leading-relaxed mb-12 max-w-md tracking-tight mx-auto">
+                    Delivering $50M+ semiconductor automation projects with<br>flawless execution and measurable impact.
+                </p>
 
-            <div class="grid grid-cols-3 gap-3 mb-16 w-full">
-                <div class="glass-card p-5 rounded-3xl flex flex-col items-center justify-center shadow-sm">
-                    <i class="fa-solid fa-briefcase text-electric-purple mb-2 text-sm"></i>
-                    <div class="text-xl font-black text-purple-900">$50M+</div>
-                    <div class="text-[7px] font-bold text-text-dim uppercase tracking-wider">Portfolio</div>
-                </div>
-                <div class="glass-card p-5 rounded-3xl flex flex-col items-center justify-center shadow-sm">
-                    <i class="fa-solid fa-circle-check text-electric-purple mb-2 text-sm"></i>
-                    <div class="text-xl font-black text-purple-900">98%</div>
-                    <div class="text-[7px] font-bold text-text-dim uppercase tracking-wider">On-Time</div>
-                </div>
-                <div class="glass-card p-5 rounded-3xl flex flex-col items-center justify-center shadow-sm">
-                    <i class="fa-solid fa-arrow-trend-up text-electric-purple mb-2 text-sm"></i>
-                    <div class="text-xl font-black text-purple-900">11%</div>
-                    <div class="text-[7px] font-bold text-text-dim uppercase tracking-wider">Efficiency</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section class="pt-4 pb-12 w-full flex flex-col items-center">
-            <div class="section-header">
-                <h2 class="section-title">Experience</h2>
-                <div class="section-divider"></div>
-            </div>
-            
-            <button id="expBtn" onclick="toggleSection('exp')" class="nexus-btn pulse-wave">
-                <i id="expIcon" class="fa-solid fa-briefcase text-4xl text-electric-purple shake-icon"></i>
-            </button>
-
-            <div id="expContent" class="exp-container space-y-6">
-                <div class="glass-card p-8 rounded-[2rem] border-l-4 border-deep-lilac">
-                    <div class="text-deep-lilac/70 font-black text-xs mb-3 uppercase tracking-widest">Mar 2025 — Jan 2026</div>
-                    <h3 class="text-2xl font-black uppercase tracking-tight text-purple-950">Installation Manager</h3>
-                    <p class="text-sm font-bold text-text-dim mb-6 uppercase">STMicroelectronics</p>
-                    <p class="text-[14px] text-purple-900/80 font-bold leading-relaxed uppercase">• Led $20M automation project coordinating 100+ subcontractors.</p>
-                </div>
-                <div class="glass-card p-8 rounded-[2rem] border-l-4 border-purple-200">
-                    <div class="text-text-dim font-black text-xs mb-3 uppercase tracking-widest">Aug 2024 — Feb 2025</div>
-                    <h3 class="text-2xl font-black uppercase tracking-tight text-purple-950">Site Manager</h3>
-                    <p class="text-sm font-bold text-text-dim mb-6 uppercase">Texas Instruments</p>
-                    <p class="text-[14px] text-purple-900/80 font-bold leading-relaxed uppercase">• $50M On-site execution management with 31% faster resolution.</p>
-                </div>
-                <div class="glass-card p-8 rounded-[2rem] border-l-4 border-purple-200">
-                    <div class="text-text-dim font-black text-xs mb-3 uppercase tracking-widest">Jul 2022 — Jul 2024</div>
-                    <h3 class="text-2xl font-black uppercase tracking-tight text-purple-950">Engineer</h3>
-                    <p class="text-sm font-bold text-text-dim mb-6 uppercase">UMC, Soitec, Siltronic</p>
-                    <p class="text-[14px] text-purple-900/80 font-bold leading-relaxed uppercase">• Collaborated on 5 complex $12M+ projects leading risk mitigation.</p>
+                <div class="grid grid-cols-3 gap-4 mb-16 w-full">
+                    <div class="glass-card p-6 rounded-[2rem] flex flex-col items-center justify-center shadow-sm">
+                        <i class="fa-solid fa-briefcase text-[var(--eclipse-1)] mb-2.5 text-base"></i>
+                        <div class="text-2xl font-black text-[var(--eclipse-4)] leading-none">$50M+</div>
+                        <div class="text-[8px] font-black text-[var(--eclipse-2)] uppercase tracking-widest mt-2">Portfolio</div>
+                    </div>
+                    <div class="glass-card p-6 rounded-[2rem] flex flex-col items-center justify-center shadow-sm">
+                        <!-- UPDATED: Changed icon color from emerald-500 to var(--eclipse-4) to match text -->
+                        <i class="fa-solid fa-circle-check text-[var(--eclipse-4)] mb-2.5 text-base"></i>
+                        <div class="text-2xl font-black text-[var(--eclipse-4)] leading-none">98%</div>
+                        <div class="text-[8px] font-black text-[var(--eclipse-2)] uppercase tracking-widest mt-2">On-Time</div>
+                    </div>
+                    <div class="glass-card p-6 rounded-[2rem] flex flex-col items-center justify-center shadow-sm">
+                        <i class="fa-solid fa-arrow-trend-up text-[var(--eclipse-1)] mb-2.5 text-base"></i>
+                        <div class="text-2xl font-black text-[var(--eclipse-4)] leading-none">11%</div>
+                        <div class="text-[8px] font-black text-[var(--eclipse-2)] uppercase tracking-widest mt-2">Efficiency</div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Simulator Section -->
+        <!-- Experience -->
+        <section class="pt-4 pb-16 w-full flex flex-col items-center">
+            <div class="reveal w-full flex flex-col items-center">
+                <div class="section-header">
+                    <h2 class="section-title text-[var(--eclipse-1)]">Experience</h2>
+                    <div class="section-divider"></div>
+                </div>
+                
+                <button id="expBtn" onclick="toggleSection('exp')" class="nexus-btn bg-[var(--eclipse-1)] pulse-wave">
+                    <i id="expIcon" class="fa-solid fa-briefcase text-4xl text-white shake-icon"></i>
+                </button>
+
+                <div id="expContent" class="exp-container space-y-6">
+                    <div class="glass-card p-8 rounded-[2.5rem] border-l-4 border-[var(--eclipse-1)] shadow-lg shadow-[var(--eclipse-4)]/5">
+                        <div class="text-[var(--eclipse-1)] font-black text-[10px] mb-4 uppercase tracking-[0.2em]">Mar 2025 — Jan 2026</div>
+                        <h3 class="text-2xl font-black uppercase tracking-tight text-[var(--eclipse-4)]">Installation Manager</h3>
+                        <p class="text-xs font-bold text-[var(--eclipse-2)] mb-6 uppercase">STMicroelectronics</p>
+                        <p class="text-[14px] text-[var(--eclipse-3)] font-bold leading-relaxed uppercase">• Led $20M automation project coordinating 100+ subcontractors.</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-[2.5rem] border-l-4 border-slate-200 shadow-sm">
+                        <div class="text-slate-400 font-black text-[10px] mb-4 uppercase tracking-[0.2em]">Aug 2024 — Feb 2025</div>
+                        <h3 class="text-2xl font-black uppercase tracking-tight text-[var(--eclipse-4)]">Site Manager</h3>
+                        <p class="text-xs font-bold text-slate-400 mb-6 uppercase">Texas Instruments</p>
+                        <p class="text-[14px] text-slate-600 font-bold leading-relaxed uppercase">• $50M On-site execution management with 31% faster resolution.</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-[2.5rem] border-l-4 border-slate-200 shadow-sm">
+                        <div class="text-slate-400 font-black text-[10px] mb-4 uppercase tracking-[0.2em]">Jul 2022 — Jul 2024</div>
+                        <h3 class="text-2xl font-black uppercase tracking-tight text-[var(--eclipse-4)]">Engineer</h3>
+                        <p class="text-xs font-bold text-slate-400 mb-6 uppercase">UMC, Soitec, Siltronic</p>
+                        <p class="text-[14px] text-slate-600 font-bold leading-relaxed uppercase">• Collaborated on 5 complex $12M+ projects leading risk mitigation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Simulator -->
         <section class="py-12 w-full flex flex-col items-center">
-            <div class="section-header">
-                <h2 class="section-title">Simulator</h2>
-                <div class="section-divider"></div>
-                <p class="text-[10px] font-bold text-text-dim uppercase tracking-[0.2em] mt-3">Interactive Problem Solving</p>
-            </div>
-
-            <div class="space-y-6 w-full">
-                <div id="sim-card-1" class="sim-card glass-card p-6 py-10 rounded-[2.5rem] text-center flex flex-col items-center shadow-sm">
-                    <div id="status-icon-1" class="w-16 h-16 rounded-full bg-white text-electric-purple flex items-center justify-center mb-8 border border-purple-100 shadow-sm">
-                        <i class="fa-solid fa-users-gear text-2xl"></i>
-                    </div>
-                    <h3 class="text-[11px] font-black text-deep-lilac uppercase tracking-widest mb-3">Oversight Dilution</h3>
-                    <div id="problem-text-1" class="text-xs font-bold text-purple-900/90 uppercase leading-relaxed min-h-[60px] px-2">
-                        Managing $20M installation with 1:12 manager-to-labor ratio (100+ personnel) causing communication lag.
-                    </div>
-                    <div class="w-full bg-purple-200 h-1.5 rounded-full my-8 overflow-hidden">
-                        <div id="progress-1" class="bg-deep-lilac h-full w-0 transition-all duration-300"></div>
-                    </div>
-                    <button onclick="handleSimulation(1)" id="sim-btn-1" data-state="initial" class="w-full py-4 sim-btn-style rounded-2xl font-black text-[10px] uppercase tracking-widest active:scale-95 transition-all">
-                        Resolve
-                    </button>
+            <div class="reveal w-full flex flex-col items-center">
+                <div class="section-header">
+                    <h2 class="section-title text-[var(--eclipse-4)]">The Simulator</h2>
+                    <div class="section-divider"></div>
+                    <p class="text-[11px] font-black text-[var(--eclipse-2)] uppercase tracking-[0.25em] mt-4">Interactive Problem Solving</p>
                 </div>
 
-                <div id="sim-card-2" class="sim-card glass-card p-6 py-10 rounded-[2.5rem] text-center flex flex-col items-center shadow-sm">
-                    <div id="status-icon-2" class="w-16 h-16 rounded-full bg-white text-electric-purple flex items-center justify-center mb-8 border border-purple-100 shadow-sm">
-                        <i class="fa-solid fa-microchip text-2xl"></i>
+                <div class="space-y-6 w-full">
+                    <!-- Sim 1 -->
+                    <div id="sim-card-1" class="sim-card glass-card p-8 py-12 rounded-[3rem] text-center flex flex-col items-center shadow-sm">
+                        <div id="status-icon-1" class="w-16 h-16 rounded-3xl bg-amber-50 text-amber-500 flex items-center justify-center mb-10 transition-all duration-500">
+                            <i class="fa-solid fa-users-gear text-2xl"></i>
+                        </div>
+                        <h3 class="text-[12px] font-black text-[var(--eclipse-1)] uppercase tracking-[0.2em] mb-4">Oversight Dilution</h3>
+                        <div id="problem-text-1" class="text-xs font-bold text-slate-800 uppercase leading-relaxed min-h-[60px] px-4">
+                            Managing $20M installation with 1:12 manager-to-labor ratio (100+ personnel) causing communication lag.
+                        </div>
+                        <div class="progress-bar">
+                            <div id="progress-1" class="progress-fill"></div>
+                        </div>
+                        <button onclick="handleSimulation(1)" id="sim-btn-1" data-state="initial" class="w-full py-5 bg-[var(--eclipse-4)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg">
+                            Resolve Issue
+                        </button>
                     </div>
-                    <h3 class="text-[11px] font-black text-deep-lilac uppercase tracking-widest mb-3">Technical Latency</h3>
-                    <div id="problem-text-2" class="text-xs font-bold text-purple-900/90 uppercase leading-relaxed min-h-[60px] px-2">
-                        $50M facility launch delay stalls client revenue-generation and eats capital investment.
-                    </div>
-                    <div class="w-full bg-purple-200 h-1.5 rounded-full my-8 overflow-hidden">
-                        <div id="progress-2" class="bg-deep-lilac h-full w-0 transition-all duration-300"></div>
-                    </div>
-                    <button onclick="handleSimulation(2)" id="sim-btn-2" data-state="initial" class="w-full py-4 sim-btn-style rounded-2xl font-black text-[10px] uppercase tracking-widest active:scale-95 transition-all">
-                        Resolve
-                    </button>
-                </div>
 
-                <div id="sim-card-3" class="sim-card glass-card p-6 py-10 rounded-[2.5rem] text-center flex flex-col items-center shadow-sm">
-                    <div id="status-icon-3" class="w-16 h-16 rounded-full bg-white text-electric-purple flex items-center justify-center mb-8 border border-purple-100 shadow-sm">
-                        <i class="fa-solid fa-layer-group text-2xl"></i>
+                    <!-- Sim 2 -->
+                    <div id="sim-card-2" class="sim-card glass-card p-8 py-12 rounded-[3rem] text-center flex flex-col items-center shadow-sm">
+                        <div id="status-icon-2" class="w-16 h-16 rounded-3xl bg-amber-50 text-amber-500 flex items-center justify-center mb-10 transition-all duration-500">
+                            <i class="fa-solid fa-microchip text-2xl"></i>
+                        </div>
+                        <h3 class="text-[12px] font-black text-[var(--eclipse-1)] uppercase tracking-[0.2em] mb-4">Technical Latency</h3>
+                        <div id="problem-text-2" class="text-xs font-bold text-slate-800 uppercase leading-relaxed min-h-[60px] px-4">
+                            $50M facility launch delay stalls client revenue-generation and eats capital investment.
+                        </div>
+                        <div class="progress-bar">
+                            <div id="progress-2" class="progress-fill"></div>
+                        </div>
+                        <button onclick="handleSimulation(2)" id="sim-btn-2" data-state="initial" class="w-full py-5 bg-[var(--eclipse-4)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg">
+                            Resolve Issue
+                        </button>
                     </div>
-                    <h3 class="text-[11px] font-black text-deep-lilac uppercase tracking-widest mb-3">Resource Fragmentation</h3>
-                    <div id="problem-text-3" class="text-xs font-bold text-purple-900/90 uppercase leading-relaxed min-h-[60px] px-2">
-                        Directing 5 simultaneous $12M sites creating a "domino effect" where one crisis drains all resources.
+
+                    <!-- Sim 3 -->
+                    <div id="sim-card-3" class="sim-card glass-card p-8 py-12 rounded-[3rem] text-center flex flex-col items-center shadow-sm">
+                        <div id="status-icon-3" class="w-16 h-16 rounded-3xl bg-amber-50 text-amber-500 flex items-center justify-center mb-10 transition-all duration-500">
+                            <i class="fa-solid fa-layer-group text-2xl"></i>
+                        </div>
+                        <h3 class="text-[12px] font-black text-[var(--eclipse-1)] uppercase tracking-[0.2em] mb-4">Resource Fragmentation</h3>
+                        <div id="problem-text-3" class="text-xs font-bold text-slate-800 uppercase leading-relaxed min-h-[60px] px-4">
+                            Directing 5 simultaneous $12M sites creating a "domino effect" where one crisis drains all resources.
+                        </div>
+                        <div class="progress-bar">
+                            <div id="progress-3" class="progress-fill"></div>
+                        </div>
+                        <button onclick="handleSimulation(3)" id="sim-btn-3" data-state="initial" class="w-full py-5 bg-[var(--eclipse-4)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg">
+                            Resolve Issue
+                        </button>
                     </div>
-                    <div class="w-full bg-purple-200 h-1.5 rounded-full my-8 overflow-hidden">
-                        <div id="progress-3" class="bg-deep-lilac h-full w-0 transition-all duration-300"></div>
-                    </div>
-                    <button onclick="handleSimulation(3)" id="sim-btn-3" data-state="initial" class="w-full py-4 sim-btn-style rounded-2xl font-black text-[10px] uppercase tracking-widest active:scale-95 transition-all">
-                        Resolve
-                    </button>
                 </div>
             </div>
         </section>
 
-        <!-- Academics Section -->
+        <!-- Academics -->
         <section class="py-12 w-full flex flex-col items-center">
-            <div class="section-header">
-                <h2 class="section-title">Academics</h2>
-                <div class="section-divider"></div>
-            </div>
-
-            <button id="acadBtn" onclick="toggleSection('acad')" class="nexus-btn shadow-xl pulse-wave">
-                <i id="acadIcon" class="fa-solid fa-graduation-cap text-4xl text-electric-purple shake-icon"></i>
-            </button>
-
-            <div id="acadContent" class="exp-container space-y-6">
-                <div class="glass-card p-8 rounded-3xl text-center flex flex-col items-center shadow-sm">
-                    <i class="fa-solid fa-graduation-cap text-electric-purple mb-6 text-xl"></i>
-                    <h4 class="text-xl font-black uppercase text-purple-950 leading-tight">M.Sc Project Management</h4>
-                    <p class="text-[10px] font-black text-text-dim uppercase mt-4 tracking-widest">NTU Singapore | GPA: 4.14</p>
+            <div class="reveal w-full flex flex-col items-center">
+                <div class="section-header">
+                    <h2 class="section-title text-[var(--eclipse-1)]">Academics</h2>
+                    <div class="section-divider"></div>
                 </div>
-                <div class="glass-card p-8 rounded-3xl text-center flex flex-col items-center shadow-sm">
-                    <i class="fa-solid fa-user-graduate text-text-dim mb-6 text-xl"></i>
-                    <h4 class="text-xl font-black uppercase text-purple-950 leading-tight">B.Tech Aerospace</h4>
-                    <p class="text-[10px] font-black text-text-dim uppercase mt-4 tracking-widest">PM Institute | GPA: 4.07</p>
+
+                <button id="acadBtn" onclick="toggleSection('acad')" class="nexus-btn bg-[var(--eclipse-4)] pulse-wave">
+                    <i id="acadIcon" class="fa-solid fa-graduation-cap text-4xl text-white shake-icon"></i>
+                </button>
+
+                <div id="acadContent" class="exp-container space-y-6">
+                    <div class="glass-card p-10 rounded-[2.5rem] text-center flex flex-col items-center shadow-sm">
+                        <i class="fa-solid fa-graduation-cap text-[var(--eclipse-1)] mb-6 text-2xl"></i>
+                        <h4 class="text-2xl font-black uppercase text-[var(--eclipse-4)] leading-tight">M.Sc Project Management</h4>
+                        <p class="text-[11px] font-black text-[var(--eclipse-2)] uppercase mt-4 tracking-[0.25em]">NTU Singapore | GPA: 4.14</p>
+                    </div>
+                    <div class="glass-card p-10 rounded-[2.5rem] text-center flex flex-col items-center shadow-sm">
+                        <i class="fa-solid fa-user-graduate text-slate-400 mb-6 text-2xl"></i>
+                        <h4 class="text-2xl font-black uppercase text-[var(--eclipse-4)] leading-tight">B.Tech Aerospace</h4>
+                        <p class="text-[11px] font-black text-slate-400 uppercase mt-4 tracking-[0.25em]">PM Institute | GPA: 4.07</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Compact PMP Section -->
-        <section class="mb-6 w-full py-2">
-            <div class="apple-card w-full p-6 flex items-center gap-6 shadow-sm">
-                <div class="pmp-badge-container flex-shrink-0 shadow-sm">
-                    <div class="absolute inset-0 border-2 border-purple-50 rounded-2xl"></div>
-                    <div class="text-center">
-                        <div class="text-[8px] font-black text-electric-purple leading-none">PMP</div>
-                        <i class="fa-solid fa-award text-purple-900 text-xl my-0.5"></i>
-                        <div class="text-[6px] font-bold text-text-dim uppercase">Verified</div>
+        <!-- PMP Apple Section -->
+        <section class="mt-12 mb-8 w-full">
+            <div class="reveal">
+                <div class="apple-card w-full p-8 flex flex-col sm:flex-row items-center gap-8">
+                    <div class="pmp-badge-container flex-shrink-0">
+                        <div class="absolute inset-0 border-2 border-white/20 rounded-2xl"></div>
+                        <div class="text-center">
+                            <div class="text-[10px] font-black text-white/90 leading-none">PMP</div>
+                            <i class="fa-solid fa-award text-white text-2xl my-1"></i>
+                            <div class="text-[7px] font-bold text-white/70 uppercase">Verified</div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="flex-grow">
-                    <div class="flex items-center gap-2 mb-1">
-                        <span class="text-[9px] font-bold text-deep-lilac uppercase tracking-widest">Credentialed</span>
-                        <div class="h-px flex-grow bg-purple-200"></div>
+                    <div class="flex-grow text-center sm:text-left">
+                        <div class="flex items-center justify-center sm:justify-start gap-3 mb-2">
+                            <span class="text-[10px] font-black text-[var(--eclipse-1)] uppercase tracking-[0.2em]">Credentialed</span>
+                            <div class="hidden sm:block h-[1px] flex-grow bg-slate-100"></div>
+                        </div>
+                        <h3 class="text-xl font-black text-[var(--eclipse-4)] uppercase leading-tight mb-2">Project Management Professional</h3>
+                        <p class="text-[11px] text-[var(--eclipse-2)] font-bold uppercase tracking-wider">Cert #4181149 • 2025–2028</p>
                     </div>
-                    <h3 class="text-lg font-bold text-purple-950 leading-tight">Project Management Professional</h3>
-                    <p class="text-[11px] text-text-dim font-medium">Certification #4181149 • Valid until 2028</p>
-                </div>
 
-                <a href="https://drive.google.com/file/d/1GSi6xrRhk8LBgboyArKdwgUpK0te4lGS/view?usp=sharing" target="_blank" class="w-10 h-10 rounded-full bg-white border border-purple-100 flex items-center justify-center text-purple-700 hover:bg-purple-50 transition-colors flex-shrink-0 shadow-sm">
-                    <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
-                </a>
+                    <a href="https://drive.google.com/file/d/1GSi6xrRhk8LBgboyArKdwgUpK0te4lGS/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-[var(--eclipse-4)] hover:bg-[var(--eclipse-1)] hover:text-white transition-all flex-shrink-0">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                    </a>
+                </div>
             </div>
         </section>
 
         <!-- Footer -->
-        <footer class="py-12 text-center w-full flex flex-col items-center">
-            <h2 class="text-4xl font-black uppercase tracking-tighter text-purple-950 mb-12 leading-none">Ready to<br><span class="text-electric-purple">Optimise?</span></h2>
-            <div class="flex gap-4 flex-wrap justify-center w-full">
-                <a href="mailto:sachidanandhamaditya@gmail.com" class="flex-1 min-w-[200px] py-5 btn-primary rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-lg active:scale-95 text-center">
-                    Let's Connect
-                </a>
-                <a href="https://drive.google.com/uc?export=download&id=1ECTxz4eec13It0jeHqNBNY9TgmaTa1JP" download="Aditya_Sachidanandham_CV.pdf" class="flex-1 min-w-[200px] py-5 bg-white border border-purple-200 text-purple-900 rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-lg active:scale-95 text-center">
-                    CV Download
-                </a>
+        <footer class="py-20 text-center w-full flex flex-col items-center">
+            <div class="reveal w-full flex flex-col items-center">
+                <h2 class="text-5xl font-black uppercase tracking-tighter text-[var(--eclipse-4)] mb-16 leading-[0.9]">Ready to<br><span class="text-[var(--eclipse-1)]">Optimise?</span></h2>
+                <div class="flex flex-col sm:flex-row gap-6 w-full max-w-sm">
+                    <!-- UPDATED: Let's Connect Email -->
+                    <a href="mailto:sachidanandhamaditya@gmail.com" class="flex-1 py-6 bg-[var(--eclipse-1)] text-white rounded-full font-black text-[11px] uppercase tracking-[0.25em] shadow-2xl shadow-[var(--eclipse-1)]/30 active:scale-95 transition-all text-center">
+                        Let's Connect
+                    </a>
+                    <!-- UPDATED: CV Download Link -->
+                    <a href="https://drive.google.com/uc?export=download&id=1ECTxz4eec13It0jeHqNBNY9TgmaTa1JP" download target="_blank" class="flex-1 py-6 bg-[var(--eclipse-4)] text-white rounded-full font-black text-[11px] uppercase tracking-[0.25em] shadow-2xl shadow-[var(--eclipse-4)]/30 active:scale-95 transition-all text-center">
+                        CV Download
+                    </a>
+                </div>
+                <p class="mt-20 text-[9px] font-black text-slate-300 uppercase tracking-[0.4em]">© 2025 Aditya Sachidanandham</p>
             </div>
         </footer>
     </main>
 
     <script>
+        // Restoration: Intersection Observer for Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
         const initialProblems = {
             1: { text: "Managing $20M installation with 1:12 manager-to-labor ratio (100+ personnel) causing communication lag.", icon: 'fa-users-gear' },
             2: { text: "$50M facility launch delay stalls client revenue-generation and eats capital investment.", icon: 'fa-microchip' },
             3: { text: "Directing 5 simultaneous $12M sites creating a \"domino effect\" where one crisis drains all resources.", icon: 'fa-layer-group' }
+        };
+
+        const solutions = {
+            1: "Integrated Critical Path Method (CPM) with client production flows, securing a 98% on-time delivery rate.",
+            2: "Deployed data-driven Root Cause Analysis (RCA), cutting issue response time by 31%.",
+            3: "Centralized portfolio-wide scheduling to ensure all 5 sites met integration standards without resource shortages."
         };
 
         function toggleSection(type) {
@@ -443,12 +496,12 @@
             
             const originalIcons = { exp: 'fa-briefcase', acad: 'fa-graduation-cap' };
             if (!isClosing) {
-                icon.className = 'fa-solid fa-xmark text-4xl text-purple-900';
+                icon.className = 'fa-solid fa-xmark text-4xl text-white';
                 setTimeout(() => {
-                    content.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 400);
+                    content.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+                }, 500);
             } else {
-                icon.className = `fa-solid ${originalIcons[type]} text-4xl text-electric-purple shake-icon`;
+                icon.className = `fa-solid ${originalIcons[type]} text-4xl text-white shake-icon`;
             }
         }
 
@@ -466,32 +519,30 @@
             const text = document.getElementById(`problem-text-${id}`);
             const statusIcon = document.getElementById(`status-icon-${id}`);
 
-            const solutions = {
-                1: "Integrated Critical Path Method (CPM) with client production flows, securing a 98% on-time delivery rate.",
-                2: "Deployed data-driven Root Cause Analysis (RCA), cutting issue response time by 31%.",
-                3: "Centralized portfolio-wide scheduling to ensure all 5 sites met integration standards without resource shortages."
-            };
-
             card.classList.add('active-solving');
             btn.disabled = true;
             btn.innerText = "SIMULATING...";
 
             let width = 0;
+            const step = 2; 
             const interval = setInterval(() => {
-                width += 5;
+                width += step;
                 progress.style.width = width + '%';
+                
                 if (width >= 100) {
                     clearInterval(interval);
                     btn.disabled = false;
                     btn.innerText = "RESET SIMULATOR";
                     btn.setAttribute('data-state', 'deployed');
-                    btn.classList.add('success');
+                    btn.className = "w-full py-5 bg-emerald-500 text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg";
+                    
                     text.innerText = solutions[id];
-                    text.className = "text-xs font-bold text-emerald-700 uppercase leading-relaxed flex items-center justify-center min-h-[80px] px-2";
-                    statusIcon.className = "w-16 h-16 rounded-full bg-emerald-500/10 text-emerald-600 flex items-center justify-center mb-8 border border-emerald-500/20 transition-colors duration-500 shadow-sm";
+                    text.className = "text-xs font-black text-emerald-600 uppercase leading-relaxed flex items-center justify-center min-h-[80px] px-4";
+                    
+                    statusIcon.className = "w-16 h-16 rounded-3xl bg-emerald-50 text-emerald-500 flex items-center justify-center mb-10 transition-all duration-500";
                     statusIcon.innerHTML = '<i class="fa-solid fa-check-double text-2xl"></i>';
                 }
-            }, 50);
+            }, 30);
         }
 
         function resetSimulation(id) {
@@ -502,13 +553,15 @@
             const statusIcon = document.getElementById(`status-icon-${id}`);
 
             card.classList.remove('active-solving');
-            btn.innerText = "Resolve";
+            btn.innerText = "Resolve Issue";
             btn.setAttribute('data-state', 'initial');
-            btn.classList.remove('success');
+            btn.className = "w-full py-5 bg-[var(--eclipse-4)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg";
+            
             progress.style.width = '0%';
             text.innerText = initialProblems[id].text;
-            text.className = "text-xs font-bold text-purple-900/90 uppercase leading-relaxed min-h-[60px] px-2";
-            statusIcon.className = "w-16 h-16 rounded-full bg-white text-electric-purple flex items-center justify-center mb-8 border border-purple-100 shadow-sm";
+            text.className = "text-xs font-bold text-slate-800 uppercase leading-relaxed min-h-[60px] px-4";
+            
+            statusIcon.className = "w-16 h-16 rounded-3xl bg-amber-50 text-amber-500 flex items-center justify-center mb-10";
             statusIcon.innerHTML = `<i class="fa-solid ${initialProblems[id].icon} text-2xl"></i>`;
         }
     </script>
