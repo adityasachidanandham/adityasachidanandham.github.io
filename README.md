@@ -73,38 +73,32 @@
         nav {
             position: fixed;
             top: 0;
-            left: 50%;
-            transform: translateX(-50%);
+            left: 0;
+            right: 0;
             z-index: 100;
             background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: saturate(180%) blur(20px);
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             height: 72px;
             width: 100%;
-            max-width: 640px;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             padding: 0 24px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
 
-        /* FIX 1: Center nav content and hide badge on small screens */
-        .nav-content {
+        .nav-inner {
             width: 100%;
+            max-width: 640px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .nav-badge {
-            display: none;
-        }
-
-        @media (min-width: 640px) {
-            .nav-badge {
-                display: block;
-            }
+            text-align: left;
+            flex-shrink: 0;
         }
 
         .hero-section {
@@ -274,7 +268,7 @@
     <div class="blob" style="width: 350px; height: 350px; bottom: 5%; left: -120px;"></div>
 
     <nav>
-        <div class="nav-content">
+        <div class="nav-inner">
             <div class="nav-badge text-[10px] font-black tracking-[0.3em] text-[var(--eclipse-1)] uppercase">PMP® CERTIFIED</div>
             <div class="flex gap-3">
                 <!-- UPDATED: LinkedIn Link -->
