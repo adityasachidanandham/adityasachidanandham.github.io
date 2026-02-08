@@ -216,34 +216,6 @@
             </div>
         </section>
 
-        <!-- Compact PMP Apple-Style Section -->
-        <section class="mb-6 w-full py-6">
-            <div class="apple-card w-full p-6 flex items-center gap-6">
-                <!-- Badge Icon Reverted to Professional Style -->
-                <div class="pmp-badge-container flex-shrink-0">
-                    <div class="absolute inset-0 border-2 border-white/20 rounded-2xl"></div>
-                    <div class="text-center">
-                        <div class="text-[8px] font-black text-white/90 leading-none">PMP</div>
-                        <i class="fa-solid fa-award text-white text-xl my-0.5"></i>
-                        <div class="text-[6px] font-bold text-white/70 uppercase">Verified</div>
-                    </div>
-                </div>
-
-                <div class="flex-grow">
-                    <div class="flex items-center gap-2 mb-1">
-                        <span class="text-[9px] font-bold text-blue-600 uppercase tracking-widest">Credentialed</span>
-                        <div class="h-px flex-grow bg-gray-100"></div>
-                    </div>
-                    <h3 class="text-lg font-bold text-gray-900 leading-tight">Project Management Professional</h3>
-                    <p class="text-[11px] text-gray-400 font-medium">Certification #4181149 • Valid until 2028</p>
-                </div>
-
-                <a href="https://drive.google.com/file/d/1GSi6xrRhk8LBgboyArKdwgUpK0te4lGS/view?usp=sharing" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-900 hover:bg-gray-200 transition-colors flex-shrink-0">
-                    <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
-                </a>
-            </div>
-        </section>
-
         <!-- Experience Section -->
         <section class="pt-4 pb-12 w-full flex flex-col items-center">
             <div class="section-header">
@@ -358,6 +330,34 @@
                     <h4 class="text-xl font-black uppercase text-slate-900 leading-tight">B.Tech Aerospace</h4>
                     <p class="text-[10px] font-black text-slate-400 uppercase mt-4 tracking-widest">PM Institute | GPA: 4.07</p>
                 </div>
+            </div>
+        </section>
+
+        <!-- Compact PMP Apple-Style Section -->
+        <section class="mb-6 w-full py-6">
+            <div class="apple-card w-full p-6 flex items-center gap-6">
+                <!-- Badge Icon Reverted to Professional Style -->
+                <div class="pmp-badge-container flex-shrink-0">
+                    <div class="absolute inset-0 border-2 border-white/20 rounded-2xl"></div>
+                    <div class="text-center">
+                        <div class="text-[8px] font-black text-white/90 leading-none">PMP</div>
+                        <i class="fa-solid fa-award text-white text-xl my-0.5"></i>
+                        <div class="text-[6px] font-bold text-white/70 uppercase">Verified</div>
+                    </div>
+                </div>
+
+                <div class="flex-grow">
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="text-[9px] font-bold text-blue-600 uppercase tracking-widest">Credentialed</span>
+                        <div class="h-px flex-grow bg-gray-100"></div>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 leading-tight">Project Management Professional</h3>
+                    <p class="text-[11px] text-gray-400 font-medium">Certification #4181149 • Valid until 2028</p>
+                </div>
+
+                <a href="https://drive.google.com/file/d/1GSi6xrRhk8LBgboyArKdwgUpK0te4lGS/view?usp=sharing" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-900 hover:bg-gray-200 transition-colors flex-shrink-0">
+                    <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                </a>
             </div>
         </section>
 
