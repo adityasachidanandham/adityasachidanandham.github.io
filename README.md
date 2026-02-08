@@ -28,13 +28,20 @@
             --eclipse-2: #8686AC; /* Light */
             --eclipse-3: #505081; /* Medium */
             --eclipse-4: #0F0E47; /* Deep */
+            
+            /* Salt and Pepper Palette */
+            --salt-white: #FFFFFF;
+            --salt-light: #D4D4D4;
+            --salt-medium: #B3B3B3;
+            --pepper-dark: #2B2B2B;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #ffffff;
+            background: linear-gradient(135deg, var(--salt-white) 0%, var(--salt-light) 50%, var(--salt-medium) 100%);
+            background-attachment: fixed;
             color: var(--eclipse-4);
             -webkit-tap-highlight-color: transparent;
             overflow-x: hidden;
@@ -44,6 +51,24 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: relative;
+        }
+        
+        /* Alternative: Geometric pattern background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(90deg, var(--salt-light) 1px, transparent 1px),
+                linear-gradient(180deg, var(--salt-light) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.3;
+            z-index: -1;
+            pointer-events: none;
         }
 
         /* Restoration: Scroll Reveal Animation - Optimized */
@@ -63,17 +88,41 @@
             transform: translateY(0) !important;
         }
 
-        /* Restoration: Background Blobs */
+        /* Updated: Background Blobs with Salt & Pepper colors */
         .blob {
             position: fixed;
-            background: var(--eclipse-2);
-            filter: blur(100px);
+            filter: blur(120px);
             border-radius: 50%;
             z-index: -1;
-            opacity: 0.12;
+            opacity: 0.25;
             pointer-events: none;
             will-change: transform;
             transform: translate3d(0, 0, 0);
+        }
+        
+        .blob:nth-child(1) {
+            background: var(--pepper-dark);
+            width: 450px;
+            height: 450px;
+            top: -150px;
+            right: -150px;
+        }
+        
+        .blob:nth-child(2) {
+            background: var(--salt-medium);
+            width: 350px;
+            height: 350px;
+            bottom: 5%;
+            left: -120px;
+        }
+        
+        .blob:nth-child(3) {
+            background: var(--pepper-dark);
+            width: 300px;
+            height: 300px;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
         .main-content {
@@ -95,9 +144,9 @@
             left: 0;
             right: 0;
             z-index: 9999;
-            background-color: rgba(255, 255, 255, 0.98);
+            background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: saturate(180%) blur(20px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid var(--salt-light);
             height: 72px;
             width: 100%;
             display: flex;
@@ -157,10 +206,10 @@
         .section-divider {
             width: 40px;
             height: 4px;
-            background-color: var(--eclipse-2);
+            background-color: var(--pepper-dark);
             margin-top: 0.75rem;
             border-radius: 99px;
-            opacity: 0.3;
+            opacity: 0.4;
         }
 
         /* FIX 3: Reduced spacing for PMP badge */
@@ -176,7 +225,7 @@
             display: flex; align-items: center; justify-content: center;
             border-radius: 3rem; cursor: pointer; z-index: 20;
             touch-action: manipulation;
-            box-shadow: 0 25px 50px -12px rgba(39, 39, 87, 0.25);
+            box-shadow: 0 25px 50px -12px rgba(43, 43, 43, 0.25);
             border: none;
             outline: none;
         }
@@ -199,27 +248,29 @@
         }
 
         .glass-card {
-            background: rgba(248, 250, 252, 0.8);
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(16px);
-            border: 1px solid rgba(241, 245, 249, 1);
+            border: 1px solid rgba(212, 212, 212, 0.3);
             width: 100%;
             transition: transform 0.3s ease;
+            box-shadow: 0 4px 6px rgba(43, 43, 43, 0.05);
         }
 
         .apple-card {
-            background: #fbfbfd;
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 28px;
-            border: 1px solid rgba(0,0,0,0.04);
+            border: 1px solid var(--salt-light);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 16px rgba(43, 43, 43, 0.08);
         }
         
         .apple-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+            box-shadow: 0 20px 40px rgba(43, 43, 43, 0.12);
         }
 
         .pmp-badge-container {
-            background: linear-gradient(135deg, var(--eclipse-1) 0%, var(--eclipse-4) 100%);
+            background: linear-gradient(135deg, var(--pepper-dark) 0%, #1a1a1a 100%);
             width: 70px;
             height: 70px;
             border-radius: 20px;
@@ -227,14 +278,14 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            box-shadow: 0 10px 20px rgba(39, 39, 87, 0.25);
+            box-shadow: 0 10px 20px rgba(43, 43, 43, 0.3);
         }
 
         .pulse-wave { animation: pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(39, 39, 87, 0.4); }
-            70% { box-shadow: 0 0 0 25px rgba(39, 39, 87, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(39, 39, 87, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(43, 43, 43, 0.4); }
+            70% { box-shadow: 0 0 0 25px rgba(43, 43, 43, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(43, 43, 43, 0); }
         }
 
         .no-scrollbar::-webkit-scrollbar { display: none; }
@@ -246,11 +297,11 @@
             display: flex;
             flex-direction: column;
             width: 100%;
-            border: 1px solid #f1f5f9;
+            border: 1px solid var(--salt-light);
         }
         .sim-card.active-solving { 
-            border-color: var(--eclipse-1); 
-            background: #f0f0ff; 
+            border-color: var(--pepper-dark); 
+            background: rgba(212, 212, 212, 0.3); 
             transform: scale(1.02);
         }
         
@@ -264,7 +315,7 @@
 
         .progress-bar {
             height: 6px;
-            background: #e2e8f0;
+            background: var(--salt-light);
             border-radius: 99px;
             overflow: hidden;
             margin: 2rem 0;
@@ -273,7 +324,7 @@
 
         .progress-fill {
             height: 100%;
-            background: var(--eclipse-1);
+            background: var(--pepper-dark);
             width: 0%;
             transition: width 0.1s linear;
         }
@@ -290,19 +341,18 @@
 </head>
 <body class="pb-24 no-scrollbar">
 
-    <!-- Restoration: Background blobs -->
-    <div class="blob" style="width: 450px; height: 450px; top: -150px; right: -150px;"></div>
-    <div class="blob" style="width: 350px; height: 350px; bottom: 5%; left: -120px;"></div>
+    <!-- Updated: Background blobs with salt & pepper colors -->
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
 
     <nav>
         <div class="nav-inner">
             <div class="nav-badge text-[10px] font-black tracking-[0.3em] text-[var(--eclipse-1)] uppercase">PMP® CERTIFIED</div>
             <div class="flex gap-3">
-                <!-- UPDATED: LinkedIn Link -->
                 <a href="https://www.linkedin.com/in/aditya-sachidanandham" target="_blank" rel="noopener noreferrer" class="haptic-btn w-11 h-11 rounded-2xl bg-white flex items-center justify-center border border-slate-200 text-[var(--eclipse-1)] active:scale-90 transition-all shadow-sm">
                     <i class="fa-brands fa-linkedin-in text-base"></i>
                 </a>
-                <!-- UPDATED: WhatsApp Link -->
                 <a href="https://wa.me/qr/NTQZ4PIDDIN3N1" target="_blank" rel="noopener noreferrer" class="haptic-btn w-11 h-11 rounded-2xl bg-white flex items-center justify-center border border-emerald-100 text-emerald-600 active:scale-90 transition-all shadow-sm">
                     <i class="fa-brands fa-whatsapp text-xl"></i>
                 </a>
@@ -317,11 +367,9 @@
                 <div class="pmp-badge-hero inline-flex px-4 py-1.5 bg-[var(--eclipse-2)]/10 border border-[var(--eclipse-2)]/20 rounded-full text-[10px] font-black text-[var(--eclipse-1)] uppercase tracking-[0.15em] mb-6">
                     Project Management Professional
                 </div>
-                <!-- FIX 2: Made name bolder with font-weight: 950 equivalent -->
                 <h1 class="text-5xl sm:text-6xl tracking-tighter uppercase leading-[0.9] mb-8 text-[var(--eclipse-4)]" style="font-weight: 950;">
                     Aditya<br><span class="text-[var(--eclipse-1)]">Sachidanandham</span>
                 </h1>
-                <!-- UPDATED: Text layout adjusted for 2 rows -->
                 <p class="text-[var(--eclipse-3)] text-[14px] font-bold leading-relaxed mb-12 max-w-md tracking-tight mx-auto">
                     Delivering $50M+ semiconductor automation projects with<br>flawless execution and measurable impact.
                 </p>
@@ -333,7 +381,6 @@
                         <div class="text-[8px] font-black text-[var(--eclipse-2)] uppercase tracking-widest mt-2">Portfolio</div>
                     </div>
                     <div class="glass-card p-6 rounded-[2rem] flex flex-col items-center justify-center shadow-sm">
-                        <!-- UPDATED: Changed icon color from emerald-500 to var(--eclipse-4) to match text -->
                         <i class="fa-solid fa-circle-check text-[var(--eclipse-4)] mb-2.5 text-base"></i>
                         <div class="text-2xl font-black text-[var(--eclipse-4)] leading-none">98%</div>
                         <div class="text-[8px] font-black text-[var(--eclipse-2)] uppercase tracking-widest mt-2">On-Time</div>
@@ -355,24 +402,24 @@
                     <div class="section-divider"></div>
                 </div>
                 
-                <button id="expBtn" onclick="toggleSection('exp')" class="haptic-btn nexus-btn bg-[var(--eclipse-1)] pulse-wave">
+                <button id="expBtn" onclick="toggleSection('exp')" class="haptic-btn nexus-btn bg-[var(--pepper-dark)] pulse-wave">
                     <i id="expIcon" class="fa-solid fa-briefcase text-4xl text-white shake-icon"></i>
                 </button>
 
                 <div id="expContent" class="exp-container space-y-6">
-                    <div class="glass-card p-8 rounded-[2.5rem] border-l-4 border-[var(--eclipse-1)] shadow-lg shadow-[var(--eclipse-4)]/5">
+                    <div class="glass-card p-8 rounded-[2.5rem] border-l-4 border-[var(--pepper-dark)] shadow-lg">
                         <div class="text-[var(--eclipse-1)] font-black text-[10px] mb-4 uppercase tracking-[0.2em]">Mar 2025 — Jan 2026</div>
                         <h3 class="text-2xl font-black uppercase tracking-tight text-[var(--eclipse-4)]">Installation Manager</h3>
                         <p class="text-xs font-bold text-[var(--eclipse-2)] mb-6 uppercase">STMicroelectronics</p>
                         <p class="text-[14px] text-[var(--eclipse-3)] font-bold leading-relaxed uppercase">• Led $20M automation project coordinating 100+ subcontractors.</p>
                     </div>
-                    <div class="glass-card p-8 rounded-[2.5rem] border-l-4 border-slate-200 shadow-sm">
+                    <div class="glass-card p-8 rounded-[2.5rem] border-l-4 border-slate-300 shadow-sm">
                         <div class="text-slate-400 font-black text-[10px] mb-4 uppercase tracking-[0.2em]">Aug 2024 — Feb 2025</div>
                         <h3 class="text-2xl font-black uppercase tracking-tight text-[var(--eclipse-4)]">Site Manager</h3>
                         <p class="text-xs font-bold text-slate-400 mb-6 uppercase">Texas Instruments</p>
                         <p class="text-[14px] text-slate-600 font-bold leading-relaxed uppercase">• $50M On-site execution management with 31% faster resolution.</p>
                     </div>
-                    <div class="glass-card p-8 rounded-[2.5rem] border-l-4 border-slate-200 shadow-sm">
+                    <div class="glass-card p-8 rounded-[2.5rem] border-l-4 border-slate-300 shadow-sm">
                         <div class="text-slate-400 font-black text-[10px] mb-4 uppercase tracking-[0.2em]">Jul 2022 — Jul 2024</div>
                         <h3 class="text-2xl font-black uppercase tracking-tight text-[var(--eclipse-4)]">Engineer</h3>
                         <p class="text-xs font-bold text-slate-400 mb-6 uppercase">UMC, Soitec, Siltronic</p>
@@ -404,7 +451,7 @@
                         <div class="progress-bar">
                             <div id="progress-1" class="progress-fill"></div>
                         </div>
-                        <button onclick="handleSimulation(1)" id="sim-btn-1" data-state="initial" class="haptic-btn w-full py-5 bg-[var(--eclipse-4)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg">
+                        <button onclick="handleSimulation(1)" id="sim-btn-1" data-state="initial" class="haptic-btn w-full py-5 bg-[var(--pepper-dark)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg">
                             Resolve Issue
                         </button>
                     </div>
@@ -421,7 +468,7 @@
                         <div class="progress-bar">
                             <div id="progress-2" class="progress-fill"></div>
                         </div>
-                        <button onclick="handleSimulation(2)" id="sim-btn-2" data-state="initial" class="haptic-btn w-full py-5 bg-[var(--eclipse-4)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg">
+                        <button onclick="handleSimulation(2)" id="sim-btn-2" data-state="initial" class="haptic-btn w-full py-5 bg-[var(--pepper-dark)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg">
                             Resolve Issue
                         </button>
                     </div>
@@ -438,7 +485,7 @@
                         <div class="progress-bar">
                             <div id="progress-3" class="progress-fill"></div>
                         </div>
-                        <button onclick="handleSimulation(3)" id="sim-btn-3" data-state="initial" class="haptic-btn w-full py-5 bg-[var(--eclipse-4)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg">
+                        <button onclick="handleSimulation(3)" id="sim-btn-3" data-state="initial" class="haptic-btn w-full py-5 bg-[var(--pepper-dark)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg">
                             Resolve Issue
                         </button>
                     </div>
@@ -495,7 +542,7 @@
                         <p class="text-[11px] text-[var(--eclipse-2)] font-bold uppercase tracking-wider">Cert #4181149 • 2025–2028</p>
                     </div>
 
-                    <a href="https://drive.google.com/file/d/1GSi6xrRhk8LBgboyArKdwgUpK0te4lGS/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="haptic-btn w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-[var(--eclipse-4)] hover:bg-[var(--eclipse-1)] hover:text-white transition-all flex-shrink-0">
+                    <a href="https://drive.google.com/file/d/1GSi6xrRhk8LBgboyArKdwgUpK0te4lGS/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="haptic-btn w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-[var(--eclipse-4)] hover:bg-[var(--pepper-dark)] hover:text-white transition-all flex-shrink-0">
                         <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
                     </a>
                 </div>
@@ -507,16 +554,14 @@
             <div class="reveal w-full flex flex-col items-center">
                 <h2 class="text-5xl font-black uppercase tracking-tighter text-[var(--eclipse-4)] mb-16 leading-[0.9]">Ready to<br><span class="text-[var(--eclipse-1)]">Optimise?</span></h2>
                 <div class="flex flex-col sm:flex-row gap-6 w-full max-w-sm">
-                    <!-- UPDATED: Let's Connect Email -->
-                    <a href="mailto:sachidanandhamaditya@gmail.com" class="haptic-btn flex-1 py-6 bg-[var(--eclipse-1)] text-white rounded-full font-black text-[11px] uppercase tracking-[0.25em] shadow-2xl shadow-[var(--eclipse-1)]/30 active:scale-95 transition-all text-center">
+                    <a href="mailto:sachidanandhamaditya@gmail.com" class="haptic-btn flex-1 py-6 bg-[var(--pepper-dark)] text-white rounded-full font-black text-[11px] uppercase tracking-[0.25em] shadow-2xl active:scale-95 transition-all text-center">
                         Let's Connect
                     </a>
-                    <!-- UPDATED: CV Download Link -->
-                    <a href="https://drive.google.com/uc?export=download&id=1ECTxz4eec13It0jeHqNBNY9TgmaTa1JP" download target="_blank" class="haptic-btn flex-1 py-6 bg-[var(--eclipse-4)] text-white rounded-full font-black text-[11px] uppercase tracking-[0.25em] shadow-2xl shadow-[var(--eclipse-4)]/30 active:scale-95 transition-all text-center">
+                    <a href="https://drive.google.com/uc?export=download&id=1ECTxz4eec13It0jeHqNBNY9TgmaTa1JP" download target="_blank" class="haptic-btn flex-1 py-6 bg-[var(--eclipse-4)] text-white rounded-full font-black text-[11px] uppercase tracking-[0.25em] shadow-2xl active:scale-95 transition-all text-center">
                         CV Download
                     </a>
                 </div>
-                <p class="mt-20 text-[9px] font-black text-slate-300 uppercase tracking-[0.4em]">© 2025 Aditya Sachidanandham</p>
+                <p class="mt-20 text-[9px] font-black text-slate-400 uppercase tracking-[0.4em]">© 2025 Aditya Sachidanandham</p>
             </div>
         </footer>
     </main>
@@ -637,7 +682,7 @@
             card.classList.remove('active-solving');
             btn.innerText = "Resolve Issue";
             btn.setAttribute('data-state', 'initial');
-            btn.className = "haptic-btn w-full py-5 bg-[var(--eclipse-4)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg";
+            btn.className = "haptic-btn w-full py-5 bg-[var(--pepper-dark)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg";
             
             progress.style.width = '0%';
             text.innerText = initialProblems[id].text;
