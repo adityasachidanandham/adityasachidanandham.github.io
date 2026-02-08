@@ -44,6 +44,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding-top: 72px;
         }
 
         /* Restoration: Scroll Reveal Animation - Optimized */
@@ -107,6 +108,7 @@
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
+            overflow: hidden;
         }
 
         .nav-inner {
@@ -123,7 +125,7 @@
         }
 
         .hero-section {
-            margin-top: 120px;
+            margin-top: 50px;
             text-align: center;
             width: 100%;
             display: flex;
