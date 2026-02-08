@@ -35,7 +35,16 @@
             padding: 0 24px;
         }
 
-        /* Unified Section Heading Style for Perfect Centering */
+        .hero-section {
+            margin-top: 76px;
+            text-align: center;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 4px;
+        }
+
         .section-header {
             display: flex;
             flex-direction: column;
@@ -62,7 +71,6 @@
             border-radius: 99px;
         }
 
-        /* Main Action Buttons (Experience/Academics) */
         .nexus-btn {
             width: 120px; height: 120px;
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -87,6 +95,32 @@
             border: 1px solid #f1f5f9;
             width: 100%;
         }
+
+        /* --- NEW STYLES FROM SOURCE --- */
+        .apple-card {
+            background: #fbfbfd;
+            border-radius: 24px;
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .apple-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.04);
+        }
+
+        .pmp-badge-container {
+            background: linear-gradient(135deg, #005bb7 0%, #003e8c 100%);
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 8px 16px rgba(0, 91, 183, 0.2);
+        }
+        /* --------------------------- */
 
         .pulse-wave { animation: pulse 2.5s infinite; }
         @keyframes pulse {
@@ -117,9 +151,8 @@
 </head>
 <body class="pb-40 no-scrollbar">
 
-    <!-- Header Navigation -->
     <nav class="px-6 flex justify-between items-center fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 h-[72px]">
-        <div class="text-[9px] font-black tracking-[0.3em] text-blue-600 uppercase">PMP® CERTIFIED</div>
+        <div class="text-[9px] font-black tracking-[0.3em] text-blue-600 uppercase">PMP® #4181149</div>
         <div class="flex gap-2">
             <a href="https://www.linkedin.com/in/aditya-sachidanandham" target="_blank" class="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center border border-slate-200 text-blue-600 active:scale-90 transition-transform">
                 <i class="fa-brands fa-linkedin-in text-sm"></i>
@@ -132,7 +165,7 @@
 
     <main class="main-content">
         <!-- Hero Section -->
-        <section class="mt-[110px] text-center w-full flex flex-col items-center"> 
+        <section class="hero-section"> 
             <div class="inline-block px-3 py-1 bg-blue-50 border border-blue-100 rounded-full text-[9px] font-black text-blue-600 uppercase tracking-widest mb-4">
                 Project Management Professional
             </div>
@@ -143,7 +176,6 @@
                 3+ years delivering $50M+ automation installation projects for semiconductor leaders.
             </p>
 
-            <!-- Metrics -->
             <div class="grid grid-cols-3 gap-3 mb-16 w-full">
                 <div class="glass-card p-5 rounded-3xl flex flex-col items-center justify-center shadow-sm">
                     <i class="fa-solid fa-briefcase text-blue-600 mb-2 text-sm"></i>
@@ -163,8 +195,36 @@
             </div>
         </section>
 
+        <!-- Compact PMP Apple-Style Section -->
+        <section class="mb-6 w-full py-6">
+            <div class="apple-card w-full p-6 flex items-center gap-6">
+                <!-- Badge Icon Reverted to Professional Style -->
+                <div class="pmp-badge-container flex-shrink-0">
+                    <div class="absolute inset-0 border-2 border-white/20 rounded-2xl"></div>
+                    <div class="text-center">
+                        <div class="text-[8px] font-black text-white/90 leading-none">PMP</div>
+                        <i class="fa-solid fa-award text-white text-xl my-0.5"></i>
+                        <div class="text-[6px] font-bold text-white/70 uppercase">Verified</div>
+                    </div>
+                </div>
+
+                <div class="flex-grow">
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="text-[9px] font-bold text-blue-600 uppercase tracking-widest">Credentialed</span>
+                        <div class="h-px flex-grow bg-gray-100"></div>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 leading-tight">Project Management Professional</h3>
+                    <p class="text-[11px] text-gray-400 font-medium">Certification #4181149 • Valid until 2028</p>
+                </div>
+
+                <a href="https://drive.google.com/file/d/1GSi6xrRhk8LBgboyArKdwgUpK0te4lGS/view?usp=sharing" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-900 hover:bg-gray-200 transition-colors flex-shrink-0">
+                    <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                </a>
+            </div>
+        </section>
+
         <!-- Experience Section -->
-        <section class="py-12 w-full flex flex-col items-center">
+        <section class="pt-4 pb-12 w-full flex flex-col items-center">
             <div class="section-header">
                 <h2 class="section-title text-blue-600">Experience</h2>
                 <div class="section-divider"></div>
@@ -205,7 +265,6 @@
             </div>
 
             <div class="space-y-6 w-full">
-                <!-- Card 1 -->
                 <div id="sim-card-1" class="sim-card glass-card p-6 py-10 rounded-[2.5rem] text-center flex flex-col items-center shadow-sm">
                     <div id="status-icon-1" class="w-16 h-16 rounded-full bg-amber-50 text-amber-500 flex items-center justify-center mb-8">
                         <i class="fa-solid fa-users-gear text-2xl"></i>
@@ -222,7 +281,6 @@
                     </button>
                 </div>
 
-                <!-- Card 2 -->
                 <div id="sim-card-2" class="sim-card glass-card p-6 py-10 rounded-[2.5rem] text-center flex flex-col items-center shadow-sm">
                     <div id="status-icon-2" class="w-16 h-16 rounded-full bg-amber-50 text-amber-500 flex items-center justify-center mb-8">
                         <i class="fa-solid fa-microchip text-2xl"></i>
@@ -239,7 +297,6 @@
                     </button>
                 </div>
 
-                <!-- Card 3 -->
                 <div id="sim-card-3" class="sim-card glass-card p-6 py-10 rounded-[2.5rem] text-center flex flex-col items-center shadow-sm">
                     <div id="status-icon-3" class="w-16 h-16 rounded-full bg-amber-50 text-amber-500 flex items-center justify-center mb-8">
                         <i class="fa-solid fa-layer-group text-2xl"></i>
