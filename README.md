@@ -1,3 +1,4 @@
+!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -33,6 +34,8 @@
             flex-direction: column;
             align-items: center;
             padding: 0 24px;
+            position: relative;
+            z-index: 1;
         }
 
         .hero-section {
@@ -147,11 +150,30 @@
             90% { transform: translateX(4px) rotate(3deg); }
         }
         .shake-icon { animation: icon-shake 3s ease-in-out infinite; }
+
+        /* FIX: Ensure nav stays on top during scroll/zoom */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background-color: #ffffff;
+            border-bottom: 1px solid #f1f5f9;
+            height: 72px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
     </style>
 </head>
 <body class="pb-40 no-scrollbar">
 
-    <nav class="px-6 flex justify-between items-center fixed top-0 w-full z-50 bg-white border-b border-slate-100 h-[72px]">
+    <nav>
         <div class="text-[9px] font-black tracking-[0.3em] text-blue-600 uppercase">PMP® #4181149</div>
         <div class="flex gap-2">
             <a href="https://www.linkedin.com/in/aditya-sachidanandham" target="_blank" class="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center border border-slate-200 text-blue-600 active:scale-90 transition-transform">
