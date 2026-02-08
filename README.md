@@ -81,9 +81,28 @@
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             height: 72px;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             padding: 0 24px;
+        }
+
+        /* FIX 1: Center nav content and hide badge on small screens */
+        .nav-content {
+            width: 100%;
+            max-width: 640px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-badge {
+            display: none;
+        }
+
+        @media (min-width: 640px) {
+            .nav-badge {
+                display: block;
+            }
         }
 
         .hero-section {
@@ -119,6 +138,12 @@
             margin-top: 0.75rem;
             border-radius: 99px;
             opacity: 0.3;
+        }
+
+        /* FIX 3: Reduced spacing for PMP badge */
+        .pmp-badge-hero {
+            padding-top: 1mm;
+            padding-bottom: 1mm;
         }
 
         /* Nexus Button System */
@@ -229,6 +254,15 @@
             width: 0%;
             transition: width 0.1s linear;
         }
+
+        /* FIX 4: Larger simulator text (30% increase) */
+        .simulator-text {
+            font-size: 15.6px; /* 12px * 1.3 */
+        }
+
+        .simulator-problem-text {
+            font-size: 15.6px; /* 12px * 1.3 */
+        }
     </style>
 </head>
 <body class="pb-24 no-scrollbar">
@@ -238,16 +272,18 @@
     <div class="blob" style="width: 350px; height: 350px; bottom: 5%; left: -120px;"></div>
 
     <nav>
-        <div class="text-[10px] font-black tracking-[0.3em] text-[var(--eclipse-1)] uppercase">PMP® CERTIFIED</div>
-        <div class="flex gap-3">
-            <!-- UPDATED: LinkedIn Link -->
-            <a href="https://www.linkedin.com/in/aditya-sachidanandham" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-2xl bg-white flex items-center justify-center border border-slate-200 text-[var(--eclipse-1)] active:scale-90 transition-all shadow-sm">
-                <i class="fa-brands fa-linkedin-in text-base"></i>
-            </a>
-            <!-- UPDATED: WhatsApp Link -->
-            <a href="https://wa.me/qr/NTQZ4PIDDIN3N1" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-2xl bg-white flex items-center justify-center border border-emerald-100 text-emerald-600 active:scale-90 transition-all shadow-sm">
-                <i class="fa-brands fa-whatsapp text-xl"></i>
-            </a>
+        <div class="nav-content">
+            <div class="nav-badge text-[10px] font-black tracking-[0.3em] text-[var(--eclipse-1)] uppercase">PMP® CERTIFIED</div>
+            <div class="flex gap-3">
+                <!-- UPDATED: LinkedIn Link -->
+                <a href="https://www.linkedin.com/in/aditya-sachidanandham" target="_blank" rel="noopener noreferrer" class="haptic-btn w-11 h-11 rounded-2xl bg-white flex items-center justify-center border border-slate-200 text-[var(--eclipse-1)] active:scale-90 transition-all shadow-sm">
+                    <i class="fa-brands fa-linkedin-in text-base"></i>
+                </a>
+                <!-- UPDATED: WhatsApp Link -->
+                <a href="https://wa.me/qr/NTQZ4PIDDIN3N1" target="_blank" rel="noopener noreferrer" class="haptic-btn w-11 h-11 rounded-2xl bg-white flex items-center justify-center border border-emerald-100 text-emerald-600 active:scale-90 transition-all shadow-sm">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                </a>
+            </div>
         </div>
     </nav>
 
@@ -255,10 +291,11 @@
         <!-- Hero (Wrapped in reveal) -->
         <section class="hero-section"> 
             <div class="reveal">
-                <div class="inline-flex px-4 py-1.5 bg-[var(--eclipse-2)]/10 border border-[var(--eclipse-2)]/20 rounded-full text-[10px] font-black text-[var(--eclipse-1)] uppercase tracking-[0.15em] mb-6">
+                <div class="pmp-badge-hero inline-flex px-4 py-1.5 bg-[var(--eclipse-2)]/10 border border-[var(--eclipse-2)]/20 rounded-full text-[10px] font-black text-[var(--eclipse-1)] uppercase tracking-[0.15em] mb-6">
                     Project Management Professional
                 </div>
-                <h1 class="text-5xl sm:text-6xl font-black tracking-tighter uppercase leading-[0.9] mb-8 text-[var(--eclipse-4)]">
+                <!-- FIX 2: Made name bolder with font-weight: 950 equivalent -->
+                <h1 class="text-5xl sm:text-6xl tracking-tighter uppercase leading-[0.9] mb-8 text-[var(--eclipse-4)]" style="font-weight: 950;">
                     Aditya<br><span class="text-[var(--eclipse-1)]">Sachidanandham</span>
                 </h1>
                 <!-- UPDATED: Text layout adjusted for 2 rows -->
@@ -295,7 +332,7 @@
                     <div class="section-divider"></div>
                 </div>
                 
-                <button id="expBtn" onclick="toggleSection('exp')" class="nexus-btn bg-[var(--eclipse-1)] pulse-wave">
+                <button id="expBtn" onclick="toggleSection('exp')" class="haptic-btn nexus-btn bg-[var(--eclipse-1)] pulse-wave">
                     <i id="expIcon" class="fa-solid fa-briefcase text-4xl text-white shake-icon"></i>
                 </button>
 
@@ -314,7 +351,7 @@
                     </div>
                     <div class="glass-card p-8 rounded-[2.5rem] border-l-4 border-slate-200 shadow-sm">
                         <div class="text-slate-400 font-black text-[10px] mb-4 uppercase tracking-[0.2em]">Jul 2022 — Jul 2024</div>
-                        <h3 class="text-2xl font-black uppercase tracking-tight text-[var(--eclipse-4)]">Engineer</h3>
+                        <h3 class="text-2xl font-black uppercase tracking-tight text-[var(--eclipse-4)]">Site Manager</h3>
                         <p class="text-xs font-bold text-slate-400 mb-6 uppercase">UMC, Soitec, Siltronic</p>
                         <p class="text-[14px] text-slate-600 font-bold leading-relaxed uppercase">• Collaborated on 5 complex $12M+ projects leading risk mitigation.</p>
                     </div>
@@ -328,7 +365,7 @@
                 <div class="section-header">
                     <h2 class="section-title text-[var(--eclipse-4)]">The Simulator</h2>
                     <div class="section-divider"></div>
-                    <p class="text-[11px] font-black text-[var(--eclipse-2)] uppercase tracking-[0.25em] mt-4">Interactive Problem Solving</p>
+                    <p class="simulator-text text-[11px] font-black text-[var(--eclipse-2)] uppercase tracking-[0.25em] mt-4">Interactive Problem Solving</p>
                 </div>
 
                 <div class="space-y-6 w-full">
@@ -337,14 +374,14 @@
                         <div id="status-icon-1" class="w-16 h-16 rounded-3xl bg-amber-50 text-amber-500 flex items-center justify-center mb-10 transition-all duration-500">
                             <i class="fa-solid fa-users-gear text-2xl"></i>
                         </div>
-                        <h3 class="text-[12px] font-black text-[var(--eclipse-1)] uppercase tracking-[0.2em] mb-4">Oversight Dilution</h3>
-                        <div id="problem-text-1" class="text-xs font-bold text-slate-800 uppercase leading-relaxed min-h-[60px] px-4">
+                        <h3 class="simulator-text font-black text-[var(--eclipse-1)] uppercase tracking-[0.2em] mb-4">Oversight Dilution</h3>
+                        <div id="problem-text-1" class="simulator-problem-text font-bold text-slate-800 uppercase leading-relaxed min-h-[60px] px-4">
                             Managing $20M installation with 1:12 manager-to-labor ratio (100+ personnel) causing communication lag.
                         </div>
                         <div class="progress-bar">
                             <div id="progress-1" class="progress-fill"></div>
                         </div>
-                        <button onclick="handleSimulation(1)" id="sim-btn-1" data-state="initial" class="w-full py-5 bg-[var(--eclipse-4)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg">
+                        <button onclick="handleSimulation(1)" id="sim-btn-1" data-state="initial" class="haptic-btn w-full py-5 bg-[var(--eclipse-4)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg">
                             Resolve Issue
                         </button>
                     </div>
@@ -354,14 +391,14 @@
                         <div id="status-icon-2" class="w-16 h-16 rounded-3xl bg-amber-50 text-amber-500 flex items-center justify-center mb-10 transition-all duration-500">
                             <i class="fa-solid fa-microchip text-2xl"></i>
                         </div>
-                        <h3 class="text-[12px] font-black text-[var(--eclipse-1)] uppercase tracking-[0.2em] mb-4">Technical Latency</h3>
-                        <div id="problem-text-2" class="text-xs font-bold text-slate-800 uppercase leading-relaxed min-h-[60px] px-4">
+                        <h3 class="simulator-text font-black text-[var(--eclipse-1)] uppercase tracking-[0.2em] mb-4">Technical Latency</h3>
+                        <div id="problem-text-2" class="simulator-problem-text font-bold text-slate-800 uppercase leading-relaxed min-h-[60px] px-4">
                             $50M facility launch delay stalls client revenue-generation and eats capital investment.
                         </div>
                         <div class="progress-bar">
                             <div id="progress-2" class="progress-fill"></div>
                         </div>
-                        <button onclick="handleSimulation(2)" id="sim-btn-2" data-state="initial" class="w-full py-5 bg-[var(--eclipse-4)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg">
+                        <button onclick="handleSimulation(2)" id="sim-btn-2" data-state="initial" class="haptic-btn w-full py-5 bg-[var(--eclipse-4)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg">
                             Resolve Issue
                         </button>
                     </div>
@@ -371,14 +408,14 @@
                         <div id="status-icon-3" class="w-16 h-16 rounded-3xl bg-amber-50 text-amber-500 flex items-center justify-center mb-10 transition-all duration-500">
                             <i class="fa-solid fa-layer-group text-2xl"></i>
                         </div>
-                        <h3 class="text-[12px] font-black text-[var(--eclipse-1)] uppercase tracking-[0.2em] mb-4">Resource Fragmentation</h3>
-                        <div id="problem-text-3" class="text-xs font-bold text-slate-800 uppercase leading-relaxed min-h-[60px] px-4">
+                        <h3 class="simulator-text font-black text-[var(--eclipse-1)] uppercase tracking-[0.2em] mb-4">Resource Fragmentation</h3>
+                        <div id="problem-text-3" class="simulator-problem-text font-bold text-slate-800 uppercase leading-relaxed min-h-[60px] px-4">
                             Directing 5 simultaneous $12M sites creating a "domino effect" where one crisis drains all resources.
                         </div>
                         <div class="progress-bar">
                             <div id="progress-3" class="progress-fill"></div>
                         </div>
-                        <button onclick="handleSimulation(3)" id="sim-btn-3" data-state="initial" class="w-full py-5 bg-[var(--eclipse-4)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg">
+                        <button onclick="handleSimulation(3)" id="sim-btn-3" data-state="initial" class="haptic-btn w-full py-5 bg-[var(--eclipse-4)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg">
                             Resolve Issue
                         </button>
                     </div>
@@ -394,7 +431,7 @@
                     <div class="section-divider"></div>
                 </div>
 
-                <button id="acadBtn" onclick="toggleSection('acad')" class="nexus-btn bg-[var(--eclipse-4)] pulse-wave">
+                <button id="acadBtn" onclick="toggleSection('acad')" class="haptic-btn nexus-btn bg-[var(--eclipse-4)] pulse-wave">
                     <i id="acadIcon" class="fa-solid fa-graduation-cap text-4xl text-white shake-icon"></i>
                 </button>
 
@@ -435,7 +472,7 @@
                         <p class="text-[11px] text-[var(--eclipse-2)] font-bold uppercase tracking-wider">Cert #4181149 • 2025–2028</p>
                     </div>
 
-                    <a href="https://drive.google.com/file/d/1GSi6xrRhk8LBgboyArKdwgUpK0te4lGS/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-[var(--eclipse-4)] hover:bg-[var(--eclipse-1)] hover:text-white transition-all flex-shrink-0">
+                    <a href="https://drive.google.com/file/d/1GSi6xrRhk8LBgboyArKdwgUpK0te4lGS/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="haptic-btn w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-[var(--eclipse-4)] hover:bg-[var(--eclipse-1)] hover:text-white transition-all flex-shrink-0">
                         <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
                     </a>
                 </div>
@@ -448,11 +485,11 @@
                 <h2 class="text-5xl font-black uppercase tracking-tighter text-[var(--eclipse-4)] mb-16 leading-[0.9]">Ready to<br><span class="text-[var(--eclipse-1)]">Optimise?</span></h2>
                 <div class="flex flex-col sm:flex-row gap-6 w-full max-w-sm">
                     <!-- UPDATED: Let's Connect Email -->
-                    <a href="mailto:sachidanandhamaditya@gmail.com" class="flex-1 py-6 bg-[var(--eclipse-1)] text-white rounded-full font-black text-[11px] uppercase tracking-[0.25em] shadow-2xl shadow-[var(--eclipse-1)]/30 active:scale-95 transition-all text-center">
+                    <a href="mailto:sachidanandhamaditya@gmail.com" class="haptic-btn flex-1 py-6 bg-[var(--eclipse-1)] text-white rounded-full font-black text-[11px] uppercase tracking-[0.25em] shadow-2xl shadow-[var(--eclipse-1)]/30 active:scale-95 transition-all text-center">
                         Let's Connect
                     </a>
                     <!-- UPDATED: CV Download Link -->
-                    <a href="https://drive.google.com/uc?export=download&id=1ECTxz4eec13It0jeHqNBNY9TgmaTa1JP" download target="_blank" class="flex-1 py-6 bg-[var(--eclipse-4)] text-white rounded-full font-black text-[11px] uppercase tracking-[0.25em] shadow-2xl shadow-[var(--eclipse-4)]/30 active:scale-95 transition-all text-center">
+                    <a href="https://drive.google.com/uc?export=download&id=1ECTxz4eec13It0jeHqNBNY9TgmaTa1JP" download target="_blank" class="haptic-btn flex-1 py-6 bg-[var(--eclipse-4)] text-white rounded-full font-black text-[11px] uppercase tracking-[0.25em] shadow-2xl shadow-[var(--eclipse-4)]/30 active:scale-95 transition-all text-center">
                         CV Download
                     </a>
                 </div>
@@ -462,14 +499,30 @@
     </main>
 
     <script>
-        // Restoration: Intersection Observer for Scroll Reveal
+        // FIX 6: Haptic feedback for all clickable buttons
+        function triggerHaptic() {
+            if (window.navigator && window.navigator.vibrate) {
+                window.navigator.vibrate(10); // 10ms vibration
+            }
+        }
+
+        // Add haptic feedback to all buttons with haptic-btn class
+        document.addEventListener('DOMContentLoaded', function() {
+            const hapticElements = document.querySelectorAll('.haptic-btn, button, a[href]');
+            hapticElements.forEach(element => {
+                element.addEventListener('touchstart', triggerHaptic);
+                element.addEventListener('click', triggerHaptic);
+            });
+        });
+
+        // FIX 5: Restoration: Intersection Observer for Scroll Reveal Animation (works on iPhone)
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.1, rootMargin: '0px' });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
@@ -534,10 +587,10 @@
                     btn.disabled = false;
                     btn.innerText = "RESET SIMULATOR";
                     btn.setAttribute('data-state', 'deployed');
-                    btn.className = "w-full py-5 bg-emerald-500 text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg";
+                    btn.className = "haptic-btn w-full py-5 bg-emerald-500 text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg";
                     
                     text.innerText = solutions[id];
-                    text.className = "text-xs font-black text-emerald-600 uppercase leading-relaxed flex items-center justify-center min-h-[80px] px-4";
+                    text.className = "simulator-problem-text font-black text-emerald-600 uppercase leading-relaxed flex items-center justify-center min-h-[80px] px-4";
                     
                     statusIcon.className = "w-16 h-16 rounded-3xl bg-emerald-50 text-emerald-500 flex items-center justify-center mb-10 transition-all duration-500";
                     statusIcon.innerHTML = '<i class="fa-solid fa-check-double text-2xl"></i>';
@@ -555,11 +608,11 @@
             card.classList.remove('active-solving');
             btn.innerText = "Resolve Issue";
             btn.setAttribute('data-state', 'initial');
-            btn.className = "w-full py-5 bg-[var(--eclipse-4)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg";
+            btn.className = "haptic-btn w-full py-5 bg-[var(--eclipse-4)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg";
             
             progress.style.width = '0%';
             text.innerText = initialProblems[id].text;
-            text.className = "text-xs font-bold text-slate-800 uppercase leading-relaxed min-h-[60px] px-4";
+            text.className = "simulator-problem-text font-bold text-slate-800 uppercase leading-relaxed min-h-[60px] px-4";
             
             statusIcon.className = "w-16 h-16 rounded-3xl bg-amber-50 text-amber-500 flex items-center justify-center mb-10";
             statusIcon.innerHTML = `<i class="fa-solid ${initialProblems[id].icon} text-2xl"></i>`;
