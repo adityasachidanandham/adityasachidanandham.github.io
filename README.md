@@ -334,7 +334,7 @@
         </section>
 
         <!-- Compact PMP Apple-Style Section -->
-        <section class="mb-6 w-full py-6">
+        <section class="mb-6 w-full py-2">
             <div class="apple-card w-full p-6 flex items-center gap-6">
                 <!-- Badge Icon Reverted to Professional Style -->
                 <div class="pmp-badge-container flex-shrink-0">
@@ -362,11 +362,16 @@
         </section>
 
         <!-- Footer -->
-        <footer class="py-24 text-center w-full flex flex-col items-center">
+        <footer class="py-12 text-center w-full flex flex-col items-center">
             <h2 class="text-4xl font-black uppercase tracking-tighter text-slate-900 mb-12 leading-none">Ready to<br><span class="text-blue-600">Optimise?</span></h2>
-            <a href="mailto:sachidanandhamaditya@gmail.com" class="px-12 py-5 bg-blue-600 text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-xl active:scale-95 transition-all cursor-pointer">
-                Let's Connect
-            </a>
+            <div class="flex gap-4 flex-wrap justify-center">
+                <a href="mailto:sachidanandhamaditya@gmail.com" class="px-12 py-5 bg-blue-600 text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-xl active:scale-95 transition-all cursor-pointer">
+                    Let's Connect
+                </a>
+                <a href="https://drive.google.com/uc?export=download&id=1ECTxz4eec13It0jeHqNBNY9TgmaTa1JP" download="Aditya_Sachidanandham_CV.pdf" class="px-12 py-5 bg-slate-900 text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-xl active:scale-95 transition-all cursor-pointer">
+                    CV Download
+                </a>
+            </div>
         </footer>
     </main>
 
