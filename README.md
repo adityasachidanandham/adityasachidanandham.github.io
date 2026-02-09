@@ -20,14 +20,15 @@
         html {
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            scroll-behavior: smooth;
         }
         
         :root {
             /* Blue Eclipse Palette */
-            --eclipse-1: #272757; /* Primary */
-            --eclipse-2: #8686AC; /* Light */
-            --eclipse-3: #505081; /* Medium */
-            --eclipse-4: #0F0E47; /* Deep */
+            --eclipse-1: #272757;
+            --eclipse-2: #8686AC;
+            --eclipse-3: #505081;
+            --eclipse-4: #0F0E47;
             
             /* Shopify Foundations Palette */
             --foundation-blue-1: #3D52A0; /* Deep blue */
@@ -80,7 +81,7 @@
             pointer-events: none;
         }
 
-        /* Restoration: Scroll Reveal Animation - Optimized */
+        /* Scroll Reveal Animation */
         .reveal {
             opacity: 0;
             transform: translateY(20px);
@@ -91,13 +92,13 @@
             transform: translateY(0);
         }
         
-        /* Show hero content immediately */
+        /* Show content immediately */
         .reveal-immediate {
             opacity: 1 !important;
             transform: translateY(0) !important;
         }
 
-        /* Updated: Background Blobs with blue tones */
+        /* Background Blobs */
         .blob {
             position: fixed;
             filter: blur(100px);
@@ -111,26 +112,20 @@
         
         .blob:nth-child(1) {
             background: rgba(61, 82, 160, 0.5);
-            width: 500px;
-            height: 500px;
-            top: -150px;
-            right: -150px;
+            width: 500px; height: 500px;
+            top: -150px; right: -150px;
         }
         
         .blob:nth-child(2) {
             background: rgba(173, 187, 218, 0.6);
-            width: 400px;
-            height: 400px;
-            bottom: 10%;
-            left: -150px;
+            width: 400px; height: 400px;
+            bottom: 10%; left: -150px;
         }
         
         .blob:nth-child(3) {
             background: rgba(112, 145, 230, 0.4);
-            width: 350px;
-            height: 350px;
-            top: 50%;
-            right: -100px;
+            width: 350px; height: 350px;
+            top: 50%; right: -100px;
         }
 
         .main-content {
@@ -148,9 +143,7 @@
         /* Fixed Navigation */
         nav {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             z-index: 9999;
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: saturate(180%) blur(20px);
@@ -220,7 +213,6 @@
             opacity: 0.6;
         }
 
-        /* FIX 3: Reduced spacing for PMP badge */
         .pmp-badge-hero {
             padding-top: 1mm;
             padding-bottom: 1mm;
@@ -285,12 +277,10 @@
 
         .pmp-badge-container {
             background: linear-gradient(135deg, var(--foundation-blue-1) 0%, var(--foundation-blue-2) 100%);
-            width: 70px;
-            height: 70px;
+            width: 70px; height: 70px;
             border-radius: 20px;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: center; justify-content: center;
             position: relative;
             box-shadow: 0 12px 24px rgba(61, 82, 160, 0.35);
         }
@@ -343,19 +333,13 @@
             transition: width 0.1s linear;
         }
 
-        /* FIX 4: Larger simulator text (30% increase) */
-        .simulator-text {
-            font-size: 15.6px; /* 12px * 1.3 */
-        }
-
-        .simulator-problem-text {
-            font-size: 15.6px; /* 12px * 1.3 */
-        }
+        .simulator-text { font-size: 15.6px; }
+        .simulator-problem-text { font-size: 15.6px; }
     </style>
 </head>
 <body class="pb-24 no-scrollbar">
 
-    <!-- Updated: Background blobs with blue/purple tones -->
+    <!-- Background blobs -->
     <div class="blob"></div>
     <div class="blob"></div>
     <div class="blob"></div>
@@ -564,7 +548,7 @@
         </section>
 
         <!-- Footer -->
-        <footer class="py-20 text-center w-full flex flex-col items-center">
+        <footer class="py-20 text-center w-full flex flex-col items-center relative z-50">
             <div class="reveal w-full flex flex-col items-center">
                 <h2 class="text-5xl font-black uppercase tracking-tighter text-[var(--eclipse-4)] mb-16 leading-[0.9]">Ready to<br><span class="text-[var(--foundation-blue-1)]">Optimise?</span></h2>
                 <div class="flex flex-col sm:flex-row gap-6 w-full max-w-sm">
@@ -575,8 +559,9 @@
                         CV Download
                     </a>
                 </div>
-                <p class="mt-20 text-[9px] font-black text-blue-300/60 uppercase tracking-[0.4em]">© 2025 Aditya Sachidanandham</p>
             </div>
+            <!-- FIXED: Moved copyright outside of .reveal to ensure visibility -->
+            <p class="mt-20 text-[9px] font-black text-blue-900/60 uppercase tracking-[0.4em] relative z-50">© 2025 Aditya Sachidanandham</p>
         </footer>
     </main>
 
@@ -587,7 +572,7 @@
         });
 
         function initializeAnimations() {
-            // FIX 6: Haptic feedback for all clickable buttons
+            // Haptic feedback for all clickable buttons
             function triggerHaptic() {
                 if (window.navigator && window.navigator.vibrate) {
                     window.navigator.vibrate(10); // 10ms vibration
@@ -601,7 +586,7 @@
                 element.addEventListener('click', triggerHaptic);
             });
 
-            // FIX 5: Restoration: Intersection Observer for Scroll Reveal Animation (works on iPhone)
+            // Intersection Observer for Scroll Reveal Animation
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
