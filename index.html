@@ -288,18 +288,49 @@
             opacity: 0.6;
         }
 
-        /* Enhanced haptic feedback styles */
+        /* ENHANCED: Touch feedback styles with visual feedback */
         .haptic-btn {
             position: relative;
             cursor: pointer;
             user-select: none;
             -webkit-user-select: none;
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            transition: transform 0.1s ease;
         }
         
         .haptic-btn:active {
             transform: scale(0.96);
-            transition: transform 0.1s ease;
+        }
+        
+        /* Visual pulse effect on touch */
+        .haptic-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            opacity: 0;
+        }
+        
+        .haptic-btn.touching::after {
+            animation: touchPulse 0.6s ease-out;
+        }
+        
+        @keyframes touchPulse {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 0.8;
+            }
+            100% {
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+            }
         }
 
         /* MOBILE OPTIMIZED: Nexus Button System */
@@ -654,7 +685,7 @@
                     <div class="section-divider"></div>
                 </div>
                 
-                <button id="expBtn" onclick="toggleSection('exp')" class="haptic-btn nexus-btn bg-[var(--foundation-blue-1)] pulse-wave">
+                <button id="expBtn" onclick="toggleSection('exp')" class="haptic-btn touch-vibrate nexus-btn bg-[var(--foundation-blue-1)] pulse-wave">
                     <i id="expIcon" class="fa-solid fa-briefcase text-white shake-icon"></i>
                 </button>
 
@@ -703,7 +734,7 @@
                         <div class="progress-bar">
                             <div id="progress-1" class="progress-fill"></div>
                         </div>
-                        <button onclick="handleSimulation(1)" id="sim-btn-1" data-state="initial" class="haptic-btn sim-button bg-[var(--foundation-blue-1)] text-white rounded-[1.25rem] font-black uppercase active:scale-95 transition-all shadow-lg">
+                        <button onclick="handleSimulation(1)" id="sim-btn-1" data-state="initial" class="haptic-btn touch-vibrate sim-button bg-[var(--foundation-blue-1)] text-white rounded-[1.25rem] font-black uppercase active:scale-95 transition-all shadow-lg">
                             Resolve Issue
                         </button>
                     </div>
@@ -720,7 +751,7 @@
                         <div class="progress-bar">
                             <div id="progress-2" class="progress-fill"></div>
                         </div>
-                        <button onclick="handleSimulation(2)" id="sim-btn-2" data-state="initial" class="haptic-btn sim-button bg-[var(--foundation-blue-1)] text-white rounded-[1.25rem] font-black uppercase active:scale-95 transition-all shadow-lg">
+                        <button onclick="handleSimulation(2)" id="sim-btn-2" data-state="initial" class="haptic-btn touch-vibrate sim-button bg-[var(--foundation-blue-1)] text-white rounded-[1.25rem] font-black uppercase active:scale-95 transition-all shadow-lg">
                             Resolve Issue
                         </button>
                     </div>
@@ -737,7 +768,7 @@
                         <div class="progress-bar">
                             <div id="progress-3" class="progress-fill"></div>
                         </div>
-                        <button onclick="handleSimulation(3)" id="sim-btn-3" data-state="initial" class="haptic-btn sim-button bg-[var(--foundation-blue-1)] text-white rounded-[1.25rem] font-black uppercase active:scale-95 transition-all shadow-lg">
+                        <button onclick="handleSimulation(3)" id="sim-btn-3" data-state="initial" class="haptic-btn touch-vibrate sim-button bg-[var(--foundation-blue-1)] text-white rounded-[1.25rem] font-black uppercase active:scale-95 transition-all shadow-lg">
                             Resolve Issue
                         </button>
                     </div>
@@ -753,7 +784,7 @@
                     <div class="section-divider"></div>
                 </div>
 
-                <button id="acadBtn" onclick="toggleSection('acad')" class="haptic-btn nexus-btn bg-[var(--foundation-blue-2)] pulse-wave">
+                <button id="acadBtn" onclick="toggleSection('acad')" class="haptic-btn touch-vibrate nexus-btn bg-[var(--foundation-blue-2)] pulse-wave">
                     <i id="acadIcon" class="fa-solid fa-graduation-cap text-white shake-icon"></i>
                 </button>
 
@@ -806,10 +837,10 @@
             <div class="reveal w-full flex flex-col items-center">
                 <h2 class="footer-title font-black uppercase tracking-tighter text-[var(--eclipse-4)]">Ready to<br><span class="text-[var(--foundation-blue-1)]">Optimise?</span></h2>
                 <div class="footer-buttons flex flex-col sm:flex-row w-full px-4">
-                    <a href="mailto:sachidanandhamaditya@gmail.com" class="haptic-btn footer-button flex-1 bg-[var(--foundation-blue-1)] text-white rounded-full font-black uppercase shadow-2xl shadow-blue-500/30 active:scale-95 transition-all text-center">
+                    <a href="mailto:sachidanandhamaditya@gmail.com" class="haptic-btn touch-vibrate footer-button flex-1 bg-[var(--foundation-blue-1)] text-white rounded-full font-black uppercase shadow-2xl shadow-blue-500/30 active:scale-95 transition-all text-center">
                         Let's Connect
                     </a>
-                    <a href="https://drive.google.com/uc?export=download&id=1ECTxz4eec13It0jeHqNBNY9TgmaTa1JP" download target="_blank" class="haptic-btn footer-button flex-1 bg-[var(--foundation-blue-2)] text-white rounded-full font-black uppercase shadow-2xl shadow-blue-400/30 active:scale-95 transition-all text-center mt-4 sm:mt-0">
+                    <a href="https://drive.google.com/uc?export=download&id=1ECTxz4eec13It0jeHqNBNY9TgmaTa1JP" download target="_blank" class="haptic-btn touch-vibrate footer-button flex-1 bg-[var(--foundation-blue-2)] text-white rounded-full font-black uppercase shadow-2xl shadow-blue-400/30 active:scale-95 transition-all text-center mt-4 sm:mt-0">
                         CV Download
                     </a>
                 </div>
@@ -822,6 +853,7 @@
         // Enhanced haptic feedback and luxury animations
         window.addEventListener('load', function() {
             initializeAnimations();
+            addTouchVibration();
         });
 
         function initializeAnimations() {
@@ -880,6 +912,31 @@
             }, observerOptions);
 
             document.querySelectorAll('.reveal:not(.reveal-immediate)').forEach(el => observer.observe(el));
+        }
+
+        // ENHANCED: Special touch vibration for specific buttons
+        function addTouchVibration() {
+            const touchVibrateElements = document.querySelectorAll('.touch-vibrate');
+            
+            touchVibrateElements.forEach(element => {
+                // Add visual pulse effect class
+                element.addEventListener('touchstart', function(e) {
+                    this.classList.add('touching');
+                    
+                    // Strong vibration pattern for these specific buttons
+                    if (window.navigator && window.navigator.vibrate) {
+                        window.navigator.vibrate([20, 10, 15]); // More pronounced vibration
+                    }
+                }, { passive: true });
+                
+                element.addEventListener('touchend', function(e) {
+                    this.classList.remove('touching');
+                }, { passive: true });
+                
+                element.addEventListener('touchcancel', function(e) {
+                    this.classList.remove('touching');
+                }, { passive: true });
+            });
         }
 
         // Critical functions available immediately
@@ -944,7 +1001,7 @@
                     btn.disabled = false;
                     btn.innerText = "RESET SIMULATOR";
                     btn.setAttribute('data-state', 'deployed');
-                    btn.className = "haptic-btn sim-button bg-emerald-500 text-white rounded-[1.25rem] font-black uppercase active:scale-95 transition-all shadow-lg";
+                    btn.className = "haptic-btn touch-vibrate sim-button bg-emerald-500 text-white rounded-[1.25rem] font-black uppercase active:scale-95 transition-all shadow-lg";
                     
                     text.innerText = solutions[id];
                     text.className = "sim-problem-text font-black text-emerald-600 uppercase flex items-center justify-center";
@@ -970,7 +1027,7 @@
             card.classList.remove('active-solving');
             btn.innerText = "Resolve Issue";
             btn.setAttribute('data-state', 'initial');
-            btn.className = "haptic-btn sim-button bg-[var(--foundation-blue-1)] text-white rounded-[1.25rem] font-black uppercase active:scale-95 transition-all shadow-lg";
+            btn.className = "haptic-btn touch-vibrate sim-button bg-[var(--foundation-blue-1)] text-white rounded-[1.25rem] font-black uppercase active:scale-95 transition-all shadow-lg";
             
             progress.style.width = '0%';
             text.innerText = initialProblems[id].text;
