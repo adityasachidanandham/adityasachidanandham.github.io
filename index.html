@@ -64,6 +64,29 @@
             align-items: center;
             position: relative;
             min-height: 100vh;
+            /* Apple-like viewport scaling */
+            transform-origin: top center;
+        }
+        
+        /* Viewport-based scaling for perfect fit */
+        @media (min-width: 641px) and (max-width: 1024px) {
+            body { zoom: 0.85; }
+        }
+        
+        @media (min-width: 1025px) and (max-width: 1440px) {
+            body { zoom: 0.95; }
+        }
+        
+        @media (min-width: 1441px) {
+            body { zoom: 1.1; }
+        }
+        
+        @media (max-width: 375px) {
+            body { zoom: 0.9; }
+        }
+        
+        @media (max-width: 320px) {
+            body { zoom: 0.85; }
         }
         
         /* Subtle overlay pattern */
@@ -82,12 +105,14 @@
             pointer-events: none;
         }
 
-        /* ENHANCED: Luxury Scroll Reveal Animations */
+        /* ENHANCED: Premium Scroll Reveal Animations */
         .reveal {
             opacity: 0;
-            transform: translateY(50px) scale(0.95);
-            filter: blur(8px);
-            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(60px) scale(0.92);
+            filter: blur(10px);
+            transition: opacity 1.4s cubic-bezier(0.19, 1, 0.22, 1),
+                        transform 1.4s cubic-bezier(0.19, 1, 0.22, 1),
+                        filter 1.4s cubic-bezier(0.19, 1, 0.22, 1);
         }
         .reveal.active {
             opacity: 1;
@@ -95,11 +120,11 @@
             filter: blur(0);
         }
         
-        /* Staggered reveal for luxury effect */
+        /* Staggered reveal for premium effect */
         .reveal:nth-child(1) { transition-delay: 0s; }
-        .reveal:nth-child(2) { transition-delay: 0.1s; }
-        .reveal:nth-child(3) { transition-delay: 0.2s; }
-        .reveal:nth-child(4) { transition-delay: 0.3s; }
+        .reveal:nth-child(2) { transition-delay: 0.15s; }
+        .reveal:nth-child(3) { transition-delay: 0.3s; }
+        .reveal:nth-child(4) { transition-delay: 0.45s; }
         
         /* Show content immediately */
         .reveal-immediate {
@@ -363,7 +388,7 @@
         .nexus-btn {
             width: 95px; 
             height: 95px;
-            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
             display: flex; 
             align-items: center; 
             justify-content: center;
@@ -376,7 +401,11 @@
             outline: none;
         }
         .nexus-btn:active { transform: scale(0.92); }
-        .nexus-btn.active { transform: rotate(90deg); background-color: #ef4444 !important; box-shadow: 0 25px 50px -12px rgba(239, 68, 68, 0.25); }
+        .nexus-btn.active { 
+            transform: rotate(90deg); 
+            background-color: #ef4444 !important; 
+            box-shadow: 0 28px 56px -12px rgba(239, 68, 68, 0.3); 
+        }
         
         .nexus-btn i {
             font-size: 2.25rem;
@@ -397,20 +426,20 @@
             pointer-events: auto;
         }
 
-        /* ENHANCED: Luxury glass card hover effects - NO haptic on hover */
+        /* ENHANCED: Premium glass card hover effects */
         .glass-card {
             background: rgba(255, 255, 255, 0.75);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.4);
             width: 100%;
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
             box-shadow: 0 8px 32px rgba(61, 82, 160, 0.12);
         }
         
         .glass-card:hover {
-            background: rgba(255, 255, 255, 0.85);
-            box-shadow: 0 20px 60px rgba(61, 82, 160, 0.25);
-            transform: translateY(-8px) scale(1.02);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 24px 64px rgba(61, 82, 160, 0.28);
+            transform: translateY(-10px) scale(1.015);
         }
 
         /* MOBILE OPTIMIZED: Experience Cards */
@@ -440,18 +469,18 @@
             line-height: 1.4;
         }
 
-        /* ENHANCED: Luxury apple card effects - NO haptic on hover */
+        /* ENHANCED: Premium apple card effects */
         .apple-card {
             background: rgba(255, 255, 255, 0.85);
             border-radius: 28px;
             border: 1px solid rgba(255, 255, 255, 0.5);
-            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
             box-shadow: 0 12px 32px rgba(61, 82, 160, 0.15);
         }
         
         .apple-card:hover {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 30px 70px rgba(61, 82, 160, 0.35);
+            transform: translateY(-14px) scale(1.018);
+            box-shadow: 0 32px 80px rgba(61, 82, 160, 0.38);
             background: rgba(255, 255, 255, 0.95);
         }
 
@@ -490,9 +519,9 @@
 
         .no-scrollbar::-webkit-scrollbar { display: none; }
 
-        /* ENHANCED: Luxury simulator card effects - NO haptic on state change */
+        /* ENHANCED: Premium simulator card effects */
         .sim-card {
-            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
             height: auto;
             min-height: 320px;
             display: flex;
@@ -505,9 +534,9 @@
         }
         .sim-card.active-solving { 
             border-color: var(--foundation-blue-1); 
-            background: rgba(173, 187, 218, 0.3); 
-            transform: scale(1.03) translateY(-4px);
-            box-shadow: 0 20px 50px rgba(61, 82, 160, 0.25);
+            background: rgba(173, 187, 218, 0.35); 
+            transform: scale(1.025) translateY(-6px);
+            box-shadow: 0 24px 56px rgba(61, 82, 160, 0.28);
         }
         
         @keyframes icon-shake {
@@ -744,7 +773,7 @@
                 <div class="section-header">
                     <h2 class="section-title text-[var(--eclipse-4)]">The Simulator</h2>
                     <div class="section-divider"></div>
-                    <p class="text-[10px] font-black text-[var(--foundation-blue-2)] uppercase tracking-[0.2em] mt-3">Interactive Problem Solving</p>
+                    <p class="text-[10px] font-black text-[var(--eclipse-4)] uppercase tracking-[0.2em] mt-3">Interactive Problem Solving</p>
                 </div>
 
                 <div class="space-y-5 w-full">
@@ -755,7 +784,7 @@
                         </div>
                         <h3 class="sim-title font-black text-[var(--foundation-blue-1)] uppercase">Oversight Dilution</h3>
                         <div id="problem-text-1" class="sim-problem-text font-bold text-slate-800 uppercase">
-                            Managing $20M installation with 1:12 manager-to-labor ratio (100+ personnel) causing communication lag.
+                            100+ subcontractors on $20M installation. Critical issues taking 6-8 hours to resolve.
                         </div>
                         <div class="progress-bar">
                             <div id="progress-1" class="progress-fill"></div>
@@ -772,7 +801,7 @@
                         </div>
                         <h3 class="sim-title font-black text-[var(--foundation-blue-1)] uppercase">Technical Latency</h3>
                         <div id="problem-text-2" class="sim-problem-text font-bold text-slate-800 uppercase">
-                            $50M facility launch delay stalls client revenue-generation and eats capital investment.
+                            $50M facility facing recurring technical failures. Schedule delays risking millions in lost production.
                         </div>
                         <div class="progress-bar">
                             <div id="progress-2" class="progress-fill"></div>
@@ -787,9 +816,9 @@
                         <div id="status-icon-3" class="sim-status-icon rounded-3xl bg-amber-50 text-amber-500 flex items-center justify-center transition-all duration-500">
                             <i class="fa-solid fa-layer-group"></i>
                         </div>
-                        <h3 class="sim-title font-black text-[var(--foundation-blue-1)] uppercase">Resource Fragmentation</h3>
+                        <h3 class="sim-title font-black text-[var(--formation-blue-1)] uppercase">Resource Fragmentation</h3>
                         <div id="problem-text-3" class="sim-problem-text font-bold text-slate-800 uppercase">
-                            Directing 5 simultaneous $12M sites creating a "domino effect" where one crisis drains all resources.
+                            AMHS integration encountering compatibility issues between new automation and legacy infrastructure.
                         </div>
                         <div class="progress-bar">
                             <div id="progress-3" class="progress-fill"></div>
@@ -883,19 +912,19 @@
         });
 
         function initializeAnimations() {
-            // Luxury Intersection Observer with enhanced animations - NO HAPTIC ON SCROLL
+            // Premium Intersection Observer with enhanced animations
             const observerOptions = {
-                threshold: [0, 0.1, 0.2, 0.3],
-                rootMargin: '-50px'
+                threshold: [0, 0.08, 0.15, 0.25],
+                rootMargin: '-40px'
             };
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // Add staggered entrance animation - NO VIBRATION
+                        // Add staggered entrance animation with premium timing
                         setTimeout(() => {
                             entry.target.classList.add('active');
-                        }, 100);
+                        }, 80);
                     }
                 });
             }, observerOptions);
@@ -1038,15 +1067,15 @@
 
         // Critical functions available immediately
         const initialProblems = {
-            1: { text: "Managing $20M installation with 1:12 manager-to-labor ratio (100+ personnel) causing communication lag.", icon: 'fa-users-gear' },
-            2: { text: "$50M facility launch delay stalls client revenue-generation and eats capital investment.", icon: 'fa-microchip' },
-            3: { text: "Directing 5 simultaneous $12M sites creating a \"domino effect\" where one crisis drains all resources.", icon: 'fa-layer-group' }
+            1: { text: "100+ subcontractors on $20M installation. Critical issues taking 6-8 hours to resolve.", icon: 'fa-users-gear' },
+            2: { text: "$50M facility facing recurring technical failures. Schedule delays risking millions in lost production.", icon: 'fa-microchip' },
+            3: { text: "AMHS integration encountering compatibility issues between new automation and legacy infrastructure.", icon: 'fa-layer-group' }
         };
 
         const solutions = {
-            1: "Integrated Critical Path Method (CPM) with client production flows, securing a 98% on-time delivery rate.",
-            2: "Deployed data-driven Root Cause Analysis (RCA), cutting issue response time by 31%.",
-            3: "Centralized portfolio-wide scheduling to ensure all 5 sites met integration standards without resource shortages."
+            1: "Established tiered communication protocol with daily stand-ups and real-time issue tracking. Reduced escalation time from 6-8 hours to under 2 hours. Maintained 98% on-time delivery.",
+            2: "Deployed systematic root cause analysis and proactive issue tracking. Cut resolution time by 31% and eliminated 3-week delay risk.",
+            3: "Led cross-functional troubleshooting with client teams. Identified root cause incompatibilities and implemented phased integration. Achieved successful commissioning without operational disruption."
         };
 
         function toggleSection(type) {
@@ -1101,7 +1130,7 @@
                     btn.className = "haptic-btn touch-vibrate sim-button bg-emerald-500 text-white rounded-[1.25rem] font-black uppercase active:scale-95 transition-all shadow-lg";
                     
                     text.innerText = solutions[id];
-                    text.className = "sim-problem-text font-black text-emerald-600 uppercase flex items-center justify-center";
+                    text.className = "sim-problem-text font-black text-white uppercase flex items-center justify-center";
                     
                     statusIcon.className = "sim-status-icon rounded-3xl bg-emerald-50 text-emerald-500 flex items-center justify-center transition-all duration-500";
                     statusIcon.innerHTML = '<i class="fa-solid fa-check-double"></i>';
