@@ -144,13 +144,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 0 24px;
+            padding: 0 20px;
             position: relative;
             z-index: 1;
             isolation: isolate;
         }
 
-        /* Fixed Navigation */
+        /* MOBILE OPTIMIZED: Fixed Navigation */
         nav {
             position: fixed;
             top: 0; left: 0; right: 0;
@@ -158,12 +158,12 @@
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: saturate(180%) blur(20px);
             border-bottom: 1px solid rgba(173, 187, 218, 0.3);
-            height: 72px;
+            height: 64px;
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 0 24px;
+            padding: 0 20px;
             box-shadow: 0 1px 3px rgba(61, 82, 160, 0.08);
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
@@ -180,10 +180,13 @@
         .nav-badge {
             text-align: left;
             flex-shrink: 0;
+            font-size: 8px;
+            letter-spacing: 0.25em;
         }
 
+        /* MOBILE OPTIMIZED: Hero Section */
         .hero-section {
-            margin-top: 100px;
+            margin-top: 80px;
             text-align: center;
             width: 100%;
             display: flex;
@@ -197,20 +200,65 @@
             will-change: auto;
         }
 
-        /* FIX 1: Reduced hero title font size by 5% for mobile fit */
+        /* MOBILE OPTIMIZED: Hero Title - Properly reduced by 5% */
         .hero-title {
-            font-size: 47.5px; /* Was 50px (5xl), now reduced by 5% */
+            font-size: 2.85rem; /* 45.6px - exactly 5% less than 48px (3xl) */
             font-weight: 950;
             text-transform: uppercase;
             letter-spacing: -0.05em;
             line-height: 0.9;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
         
         @media (min-width: 640px) {
             .hero-title {
-                font-size: 57px; /* Was 60px (6xl), now reduced by 5% */
+                font-size: 3.42rem; /* 54.72px - exactly 5% less than 57.6px (4xl) */
             }
+        }
+
+        /* MOBILE OPTIMIZED: PMP Badge */
+        .pmp-badge-hero {
+            padding: 0.25rem 0.75rem;
+            font-size: 8px;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.25rem;
+        }
+
+        /* MOBILE OPTIMIZED: Hero Description */
+        .hero-description {
+            font-size: 12px;
+            line-height: 1.5;
+            margin-bottom: 2.5rem;
+            max-width: 90%;
+            padding: 0 10px;
+        }
+
+        /* MOBILE OPTIMIZED: Stats Grid */
+        .stats-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 3rem;
+            width: 100%;
+        }
+
+        .stat-card {
+            padding: 1.25rem 0.75rem;
+        }
+
+        .stat-icon {
+            font-size: 14px;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 7px;
+            margin-top: 0.5rem;
+            letter-spacing: 0.15em;
         }
 
         .section-header {
@@ -219,11 +267,12 @@
             align-items: center;
             text-align: center;
             width: 100%;
-            margin-bottom: 2rem;
+            margin-bottom: 1.75rem;
         }
 
+        /* MOBILE OPTIMIZED: Section Title */
         .section-title {
-            font-size: 1.75rem;
+            font-size: 1.5rem;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: -0.05em;
@@ -231,20 +280,15 @@
         }
 
         .section-divider {
-            width: 40px;
-            height: 4px;
+            width: 35px;
+            height: 3px;
             background: linear-gradient(90deg, var(--foundation-blue-1), var(--foundation-blue-2));
-            margin-top: 0.75rem;
+            margin-top: 0.625rem;
             border-radius: 99px;
             opacity: 0.6;
         }
 
-        .pmp-badge-hero {
-            padding-top: 1mm;
-            padding-bottom: 1mm;
-        }
-
-        /* FIX 2: Enhanced haptic feedback styles */
+        /* Enhanced haptic feedback styles */
         .haptic-btn {
             position: relative;
             cursor: pointer;
@@ -258,19 +302,28 @@
             transition: transform 0.1s ease;
         }
 
-        /* Nexus Button System with enhanced haptic */
+        /* MOBILE OPTIMIZED: Nexus Button System */
         .nexus-btn {
-            width: 110px; height: 110px;
+            width: 95px; 
+            height: 95px;
             transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 3rem; cursor: pointer; z-index: 20;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            border-radius: 2.5rem; 
+            cursor: pointer; 
+            z-index: 20;
             touch-action: manipulation;
-            box-shadow: 0 25px 50px -12px rgba(61, 82, 160, 0.3);
+            box-shadow: 0 20px 40px -12px rgba(61, 82, 160, 0.3);
             border: none;
             outline: none;
         }
         .nexus-btn:active { transform: scale(0.92); }
         .nexus-btn.active { transform: rotate(90deg); background-color: #ef4444 !important; box-shadow: 0 25px 50px -12px rgba(239, 68, 68, 0.25); }
+        
+        .nexus-btn i {
+            font-size: 2.25rem;
+        }
 
         .exp-container {
             max-height: 0; 
@@ -283,7 +336,7 @@
         .exp-container.show { 
             max-height: 2500px; 
             opacity: 1; 
-            margin-top: 2.5rem; 
+            margin-top: 2rem; 
             pointer-events: auto;
         }
 
@@ -303,6 +356,33 @@
             transform: translateY(-8px) scale(1.02);
         }
 
+        /* MOBILE OPTIMIZED: Experience Cards */
+        .exp-card {
+            padding: 1.5rem;
+            border-radius: 2rem;
+        }
+
+        .exp-date {
+            font-size: 9px;
+            margin-bottom: 0.75rem;
+            letter-spacing: 0.15em;
+        }
+
+        .exp-title {
+            font-size: 1.35rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .exp-company {
+            font-size: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .exp-description {
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
         /* ENHANCED: Luxury apple card effects */
         .apple-card {
             background: rgba(255, 255, 255, 0.85);
@@ -318,14 +398,30 @@
             background: rgba(255, 255, 255, 0.95);
         }
 
+        /* MOBILE OPTIMIZED: PMP Badge Container */
         .pmp-badge-container {
             background: linear-gradient(135deg, var(--foundation-blue-1) 0%, var(--foundation-blue-2) 100%);
-            width: 70px; height: 70px;
-            border-radius: 20px;
+            width: 60px; 
+            height: 60px;
+            border-radius: 18px;
             display: flex;
-            align-items: center; justify-content: center;
+            align-items: center; 
+            justify-content: center;
             position: relative;
-            box-shadow: 0 12px 24px rgba(61, 82, 160, 0.35);
+            box-shadow: 0 10px 20px rgba(61, 82, 160, 0.35);
+        }
+
+        .pmp-badge-text-top {
+            font-size: 9px;
+        }
+
+        .pmp-badge-icon {
+            font-size: 1.5rem;
+            margin: 0.25rem 0;
+        }
+
+        .pmp-badge-text-bottom {
+            font-size: 6px;
         }
 
         .pulse-wave { animation: pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
@@ -341,11 +437,14 @@
         .sim-card {
             transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
             height: auto;
-            min-height: 360px;
+            min-height: 320px;
             display: flex;
             flex-direction: column;
             width: 100%;
             border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 1.5rem;
+            padding-top: 2.5rem;
+            padding-bottom: 2.5rem;
         }
         .sim-card.active-solving { 
             border-color: var(--foundation-blue-1); 
@@ -362,12 +461,37 @@
         }
         .shake-icon { animation: icon-shake 4s ease-in-out infinite; }
 
+        /* MOBILE OPTIMIZED: Simulator Elements */
+        .sim-status-icon {
+            width: 56px;
+            height: 56px;
+            margin-bottom: 2rem;
+        }
+
+        .sim-status-icon i {
+            font-size: 1.5rem;
+        }
+
+        .sim-title {
+            font-size: 13px;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.75rem;
+        }
+
+        .sim-problem-text {
+            font-size: 13px;
+            line-height: 1.4;
+            min-height: 55px;
+            padding: 0 0.75rem;
+            margin-bottom: 1rem;
+        }
+
         .progress-bar {
-            height: 6px;
+            height: 5px;
             background: rgba(173, 187, 218, 0.3);
             border-radius: 99px;
             overflow: hidden;
-            margin: 2rem 0;
+            margin: 1.5rem 0;
             width: 100%;
         }
 
@@ -378,8 +502,93 @@
             transition: width 0.1s linear;
         }
 
-        .simulator-text { font-size: 15.6px; }
-        .simulator-problem-text { font-size: 15.6px; }
+        .sim-button {
+            width: 100%;
+            padding: 1.125rem 0;
+            font-size: 10px;
+            letter-spacing: 0.15em;
+        }
+
+        /* MOBILE OPTIMIZED: Academics Cards */
+        .acad-card {
+            padding: 2rem 1.5rem;
+        }
+
+        .acad-icon {
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .acad-title {
+            font-size: 1.35rem;
+            line-height: 1.2;
+        }
+
+        .acad-details {
+            font-size: 10px;
+            margin-top: 0.75rem;
+            letter-spacing: 0.2em;
+        }
+
+        /* MOBILE OPTIMIZED: PMP Card */
+        .pmp-card {
+            padding: 1.5rem;
+            gap: 1.5rem;
+        }
+
+        .pmp-card-label {
+            font-size: 9px;
+            letter-spacing: 0.15em;
+        }
+
+        .pmp-card-title {
+            font-size: 1.125rem;
+            line-height: 1.2;
+            margin-bottom: 0.375rem;
+        }
+
+        .pmp-card-cert {
+            font-size: 10px;
+        }
+
+        .pmp-card-link {
+            width: 48px;
+            height: 48px;
+        }
+
+        .pmp-card-link i {
+            font-size: 0.875rem;
+        }
+
+        /* MOBILE OPTIMIZED: Footer */
+        .footer-title {
+            font-size: 2.5rem;
+            line-height: 0.9;
+            margin-bottom: 3rem;
+        }
+
+        .footer-buttons {
+            gap: 1rem;
+            max-width: 100%;
+        }
+
+        .footer-button {
+            padding: 1.125rem 0;
+            font-size: 10px;
+            letter-spacing: 0.2em;
+        }
+
+        .footer-copyright {
+            margin-top: 4rem;
+            font-size: 8px;
+            letter-spacing: 0.3em;
+        }
+
+        /* MOBILE OPTIMIZED: Section Spacing */
+        .section-spacing {
+            padding-top: 2.5rem;
+            padding-bottom: 3rem;
+        }
     </style>
 </head>
 <body class="pb-24 no-scrollbar">
@@ -391,55 +600,54 @@
 
     <nav>
         <div class="nav-inner">
-            <div class="nav-badge text-[10px] font-black tracking-[0.3em] text-[var(--foundation-blue-1)] uppercase">PMP® CERTIFIED</div>
-            <div class="flex gap-3">
-                <a href="https://www.linkedin.com/in/aditya-sachidanandham" target="_blank" rel="noopener noreferrer" class="haptic-btn w-11 h-11 rounded-2xl bg-white flex items-center justify-center border border-blue-100 text-[var(--foundation-blue-1)] active:scale-90 transition-all shadow-sm">
-                    <i class="fa-brands fa-linkedin-in text-base"></i>
+            <div class="nav-badge font-black text-[var(--foundation-blue-1)] uppercase">PMP® CERTIFIED</div>
+            <div class="flex gap-2">
+                <a href="https://www.linkedin.com/in/aditya-sachidanandham" target="_blank" rel="noopener noreferrer" class="haptic-btn w-10 h-10 rounded-xl bg-white flex items-center justify-center border border-blue-100 text-[var(--foundation-blue-1)] active:scale-90 transition-all shadow-sm">
+                    <i class="fa-brands fa-linkedin-in text-sm"></i>
                 </a>
-                <a href="https://wa.me/qr/NTQZ4PIDDIN3N1" target="_blank" rel="noopener noreferrer" class="haptic-btn w-11 h-11 rounded-2xl bg-white flex items-center justify-center border border-emerald-100 text-emerald-600 active:scale-90 transition-all shadow-sm">
-                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                <a href="https://wa.me/qr/NTQZ4PIDDIN3N1" target="_blank" rel="noopener noreferrer" class="haptic-btn w-10 h-10 rounded-xl bg-white flex items-center justify-center border border-emerald-100 text-emerald-600 active:scale-90 transition-all shadow-sm">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
                 </a>
             </div>
         </div>
     </nav>
 
     <main class="main-content">
-        <!-- Hero (Wrapped in reveal) -->
+        <!-- Hero -->
         <section class="hero-section"> 
             <div class="reveal reveal-immediate">
-                <div class="pmp-badge-hero inline-flex px-4 py-1.5 bg-white/40 backdrop-blur-md border border-white/50 rounded-full text-[10px] font-black text-[var(--foundation-blue-1)] uppercase tracking-[0.15em] mb-6">
+                <div class="pmp-badge-hero inline-flex bg-white/40 backdrop-blur-md border border-white/50 rounded-full font-black text-[var(--foundation-blue-1)] uppercase">
                     Project Management Professional
                 </div>
-                <!-- FIX 1: Applied reduced font size class -->
                 <h1 class="hero-title text-[var(--eclipse-4)] tracking-tighter uppercase">
                     Aditya<br><span class="text-[var(--foundation-blue-1)]">Sachidanandham</span>
                 </h1>
-                <p class="text-[var(--eclipse-3)] text-[14px] font-bold leading-relaxed mb-12 max-w-md tracking-tight mx-auto">
+                <p class="hero-description text-[var(--eclipse-3)] font-bold tracking-tight mx-auto">
                     Delivering $50M+ semiconductor automation projects with<br>flawless execution and measurable impact.
                 </p>
 
-                <div class="grid grid-cols-3 gap-4 mb-16 w-full">
-                    <div class="glass-card p-6 rounded-[2rem] flex flex-col items-center justify-center shadow-sm">
-                        <i class="fa-solid fa-briefcase text-[var(--foundation-blue-1)] mb-2.5 text-base"></i>
-                        <div class="text-2xl font-black text-[var(--eclipse-4)] leading-none">$50M+</div>
-                        <div class="text-[8px] font-black text-[var(--foundation-blue-2)] uppercase tracking-widest mt-2">Portfolio</div>
+                <div class="stats-grid grid w-full">
+                    <div class="stat-card glass-card rounded-[2rem] flex flex-col items-center justify-center shadow-sm">
+                        <i class="stat-icon fa-solid fa-briefcase text-[var(--foundation-blue-1)]"></i>
+                        <div class="stat-number font-black text-[var(--eclipse-4)]">$50M+</div>
+                        <div class="stat-label font-black text-[var(--foundation-blue-2)] uppercase tracking-widest">Portfolio</div>
                     </div>
-                    <div class="glass-card p-6 rounded-[2rem] flex flex-col items-center justify-center shadow-sm">
-                        <i class="fa-solid fa-circle-check text-[var(--eclipse-4)] mb-2.5 text-base"></i>
-                        <div class="text-2xl font-black text-[var(--eclipse-4)] leading-none">98%</div>
-                        <div class="text-[8px] font-black text-[var(--foundation-blue-2)] uppercase tracking-widest mt-2">On-Time</div>
+                    <div class="stat-card glass-card rounded-[2rem] flex flex-col items-center justify-center shadow-sm">
+                        <i class="stat-icon fa-solid fa-circle-check text-[var(--eclipse-4)]"></i>
+                        <div class="stat-number font-black text-[var(--eclipse-4)]">98%</div>
+                        <div class="stat-label font-black text-[var(--foundation-blue-2)] uppercase tracking-widest">On-Time</div>
                     </div>
-                    <div class="glass-card p-6 rounded-[2rem] flex flex-col items-center justify-center shadow-sm">
-                        <i class="fa-solid fa-arrow-trend-up text-[var(--foundation-blue-1)] mb-2.5 text-base"></i>
-                        <div class="text-2xl font-black text-[var(--eclipse-4)] leading-none">11%</div>
-                        <div class="text-[8px] font-black text-[var(--foundation-blue-2)] uppercase tracking-widest mt-2">Efficiency</div>
+                    <div class="stat-card glass-card rounded-[2rem] flex flex-col items-center justify-center shadow-sm">
+                        <i class="stat-icon fa-solid fa-arrow-trend-up text-[var(--foundation-blue-1)]"></i>
+                        <div class="stat-number font-black text-[var(--eclipse-4)]">11%</div>
+                        <div class="stat-label font-black text-[var(--foundation-blue-2)] uppercase tracking-widest">Efficiency</div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Experience -->
-        <section class="pt-4 pb-16 w-full flex flex-col items-center">
+        <section class="section-spacing w-full flex flex-col items-center">
             <div class="reveal w-full flex flex-col items-center">
                 <div class="section-header">
                     <h2 class="section-title text-[var(--foundation-blue-1)]">Experience</h2>
@@ -447,89 +655,89 @@
                 </div>
                 
                 <button id="expBtn" onclick="toggleSection('exp')" class="haptic-btn nexus-btn bg-[var(--foundation-blue-1)] pulse-wave">
-                    <i id="expIcon" class="fa-solid fa-briefcase text-4xl text-white shake-icon"></i>
+                    <i id="expIcon" class="fa-solid fa-briefcase text-white shake-icon"></i>
                 </button>
 
-                <div id="expContent" class="exp-container space-y-6">
-                    <div class="glass-card p-8 rounded-[2.5rem] border-l-4 border-[var(--foundation-blue-1)] shadow-lg">
-                        <div class="text-[var(--foundation-blue-1)] font-black text-[10px] mb-4 uppercase tracking-[0.2em]">Mar 2025 — Jan 2026</div>
-                        <h3 class="text-2xl font-black uppercase tracking-tight text-[var(--eclipse-4)]">Installation Manager</h3>
-                        <p class="text-xs font-bold text-[var(--foundation-blue-2)] mb-6 uppercase">STMicroelectronics</p>
-                        <p class="text-[14px] text-[var(--eclipse-3)] font-bold leading-relaxed uppercase">• Led $20M automation project coordinating 100+ subcontractors.</p>
+                <div id="expContent" class="exp-container space-y-5 w-full">
+                    <div class="exp-card glass-card border-l-4 border-[var(--foundation-blue-1)] shadow-lg">
+                        <div class="exp-date text-[var(--foundation-blue-1)] font-black uppercase">Mar 2025 — Jan 2026</div>
+                        <h3 class="exp-title font-black uppercase tracking-tight text-[var(--eclipse-4)]">Installation Manager</h3>
+                        <p class="exp-company font-bold text-[var(--foundation-blue-2)] uppercase">STMicroelectronics</p>
+                        <p class="exp-description text-[var(--eclipse-3)] font-bold uppercase">• Led $20M automation project coordinating 100+ subcontractors.</p>
                     </div>
-                    <div class="glass-card p-8 rounded-[2.5rem] border-l-4 border-blue-200 shadow-sm">
-                        <div class="text-blue-400 font-black text-[10px] mb-4 uppercase tracking-[0.2em]">Aug 2024 — Feb 2025</div>
-                        <h3 class="text-2xl font-black uppercase tracking-tight text-[var(--eclipse-4)]">Site Manager</h3>
-                        <p class="text-xs font-bold text-blue-400 mb-6 uppercase">Texas Instruments</p>
-                        <p class="text-[14px] text-slate-600 font-bold leading-relaxed uppercase">• $50M On-site execution management with 31% faster resolution.</p>
+                    <div class="exp-card glass-card border-l-4 border-blue-200 shadow-sm">
+                        <div class="exp-date text-blue-400 font-black uppercase">Aug 2024 — Feb 2025</div>
+                        <h3 class="exp-title font-black uppercase tracking-tight text-[var(--eclipse-4)]">Site Manager</h3>
+                        <p class="exp-company font-bold text-blue-400 uppercase">Texas Instruments</p>
+                        <p class="exp-description text-slate-600 font-bold uppercase">• $50M On-site execution management with 31% faster resolution.</p>
                     </div>
-                    <div class="glass-card p-8 rounded-[2.5rem] border-l-4 border-blue-200 shadow-sm">
-                        <div class="text-blue-400 font-black text-[10px] mb-4 uppercase tracking-[0.2em]">Jul 2022 — Jul 2024</div>
-                        <h3 class="text-2xl font-black uppercase tracking-tight text-[var(--eclipse-4)]">Engineer</h3>
-                        <p class="text-xs font-bold text-blue-400 mb-6 uppercase">UMC, Soitec, Siltronic</p>
-                        <p class="text-[14px] text-slate-600 font-bold leading-relaxed uppercase">• Collaborated on 5 complex $12M+ projects leading risk mitigation.</p>
+                    <div class="exp-card glass-card border-l-4 border-blue-200 shadow-sm">
+                        <div class="exp-date text-blue-400 font-black uppercase">Jul 2022 — Jul 2024</div>
+                        <h3 class="exp-title font-black uppercase tracking-tight text-[var(--eclipse-4)]">Engineer</h3>
+                        <p class="exp-company font-bold text-blue-400 uppercase">UMC, Soitec, Siltronic</p>
+                        <p class="exp-description text-slate-600 font-bold uppercase">• Collaborated on 5 complex $12M+ projects leading risk mitigation.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Simulator -->
-        <section class="py-12 w-full flex flex-col items-center">
+        <section class="section-spacing w-full flex flex-col items-center">
             <div class="reveal w-full flex flex-col items-center">
                 <div class="section-header">
                     <h2 class="section-title text-[var(--eclipse-4)]">The Simulator</h2>
                     <div class="section-divider"></div>
-                    <p class="simulator-text text-[11px] font-black text-[var(--foundation-blue-2)] uppercase tracking-[0.25em] mt-4">Interactive Problem Solving</p>
+                    <p class="text-[10px] font-black text-[var(--foundation-blue-2)] uppercase tracking-[0.2em] mt-3">Interactive Problem Solving</p>
                 </div>
 
-                <div class="space-y-6 w-full">
+                <div class="space-y-5 w-full">
                     <!-- Sim 1 -->
-                    <div id="sim-card-1" class="sim-card glass-card p-8 py-12 rounded-[3rem] text-center flex flex-col items-center shadow-sm">
-                        <div id="status-icon-1" class="w-16 h-16 rounded-3xl bg-amber-50 text-amber-500 flex items-center justify-center mb-10 transition-all duration-500">
-                            <i class="fa-solid fa-users-gear text-2xl"></i>
+                    <div id="sim-card-1" class="sim-card glass-card rounded-[2.5rem] text-center flex flex-col items-center shadow-sm">
+                        <div id="status-icon-1" class="sim-status-icon rounded-3xl bg-amber-50 text-amber-500 flex items-center justify-center transition-all duration-500">
+                            <i class="fa-solid fa-users-gear"></i>
                         </div>
-                        <h3 class="simulator-text font-black text-[var(--foundation-blue-1)] uppercase tracking-[0.2em] mb-4">Oversight Dilution</h3>
-                        <div id="problem-text-1" class="simulator-problem-text font-bold text-slate-800 uppercase leading-relaxed min-h-[60px] px-4">
+                        <h3 class="sim-title font-black text-[var(--foundation-blue-1)] uppercase">Oversight Dilution</h3>
+                        <div id="problem-text-1" class="sim-problem-text font-bold text-slate-800 uppercase">
                             Managing $20M installation with 1:12 manager-to-labor ratio (100+ personnel) causing communication lag.
                         </div>
                         <div class="progress-bar">
                             <div id="progress-1" class="progress-fill"></div>
                         </div>
-                        <button onclick="handleSimulation(1)" id="sim-btn-1" data-state="initial" class="haptic-btn w-full py-5 bg-[var(--foundation-blue-1)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg">
+                        <button onclick="handleSimulation(1)" id="sim-btn-1" data-state="initial" class="haptic-btn sim-button bg-[var(--foundation-blue-1)] text-white rounded-[1.25rem] font-black uppercase active:scale-95 transition-all shadow-lg">
                             Resolve Issue
                         </button>
                     </div>
 
                     <!-- Sim 2 -->
-                    <div id="sim-card-2" class="sim-card glass-card p-8 py-12 rounded-[3rem] text-center flex flex-col items-center shadow-sm">
-                        <div id="status-icon-2" class="w-16 h-16 rounded-3xl bg-amber-50 text-amber-500 flex items-center justify-center mb-10 transition-all duration-500">
-                            <i class="fa-solid fa-microchip text-2xl"></i>
+                    <div id="sim-card-2" class="sim-card glass-card rounded-[2.5rem] text-center flex flex-col items-center shadow-sm">
+                        <div id="status-icon-2" class="sim-status-icon rounded-3xl bg-amber-50 text-amber-500 flex items-center justify-center transition-all duration-500">
+                            <i class="fa-solid fa-microchip"></i>
                         </div>
-                        <h3 class="simulator-text font-black text-[var(--foundation-blue-1)] uppercase tracking-[0.2em] mb-4">Technical Latency</h3>
-                        <div id="problem-text-2" class="simulator-problem-text font-bold text-slate-800 uppercase leading-relaxed min-h-[60px] px-4">
+                        <h3 class="sim-title font-black text-[var(--foundation-blue-1)] uppercase">Technical Latency</h3>
+                        <div id="problem-text-2" class="sim-problem-text font-bold text-slate-800 uppercase">
                             $50M facility launch delay stalls client revenue-generation and eats capital investment.
                         </div>
                         <div class="progress-bar">
                             <div id="progress-2" class="progress-fill"></div>
                         </div>
-                        <button onclick="handleSimulation(2)" id="sim-btn-2" data-state="initial" class="haptic-btn w-full py-5 bg-[var(--foundation-blue-1)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg">
+                        <button onclick="handleSimulation(2)" id="sim-btn-2" data-state="initial" class="haptic-btn sim-button bg-[var(--foundation-blue-1)] text-white rounded-[1.25rem] font-black uppercase active:scale-95 transition-all shadow-lg">
                             Resolve Issue
                         </button>
                     </div>
 
                     <!-- Sim 3 -->
-                    <div id="sim-card-3" class="sim-card glass-card p-8 py-12 rounded-[3rem] text-center flex flex-col items-center shadow-sm">
-                        <div id="status-icon-3" class="w-16 h-16 rounded-3xl bg-amber-50 text-amber-500 flex items-center justify-center mb-10 transition-all duration-500">
-                            <i class="fa-solid fa-layer-group text-2xl"></i>
+                    <div id="sim-card-3" class="sim-card glass-card rounded-[2.5rem] text-center flex flex-col items-center shadow-sm">
+                        <div id="status-icon-3" class="sim-status-icon rounded-3xl bg-amber-50 text-amber-500 flex items-center justify-center transition-all duration-500">
+                            <i class="fa-solid fa-layer-group"></i>
                         </div>
-                        <h3 class="simulator-text font-black text-[var(--foundation-blue-1)] uppercase tracking-[0.2em] mb-4">Resource Fragmentation</h3>
-                        <div id="problem-text-3" class="simulator-problem-text font-bold text-slate-800 uppercase leading-relaxed min-h-[60px] px-4">
+                        <h3 class="sim-title font-black text-[var(--foundation-blue-1)] uppercase">Resource Fragmentation</h3>
+                        <div id="problem-text-3" class="sim-problem-text font-bold text-slate-800 uppercase">
                             Directing 5 simultaneous $12M sites creating a "domino effect" where one crisis drains all resources.
                         </div>
                         <div class="progress-bar">
                             <div id="progress-3" class="progress-fill"></div>
                         </div>
-                        <button onclick="handleSimulation(3)" id="sim-btn-3" data-state="initial" class="haptic-btn w-full py-5 bg-[var(--foundation-blue-1)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg">
+                        <button onclick="handleSimulation(3)" id="sim-btn-3" data-state="initial" class="haptic-btn sim-button bg-[var(--foundation-blue-1)] text-white rounded-[1.25rem] font-black uppercase active:scale-95 transition-all shadow-lg">
                             Resolve Issue
                         </button>
                     </div>
@@ -538,7 +746,7 @@
         </section>
 
         <!-- Academics -->
-        <section class="py-12 w-full flex flex-col items-center">
+        <section class="section-spacing w-full flex flex-col items-center">
             <div class="reveal w-full flex flex-col items-center">
                 <div class="section-header">
                     <h2 class="section-title text-[var(--foundation-blue-1)]">Academics</h2>
@@ -546,79 +754,78 @@
                 </div>
 
                 <button id="acadBtn" onclick="toggleSection('acad')" class="haptic-btn nexus-btn bg-[var(--foundation-blue-2)] pulse-wave">
-                    <i id="acadIcon" class="fa-solid fa-graduation-cap text-4xl text-white shake-icon"></i>
+                    <i id="acadIcon" class="fa-solid fa-graduation-cap text-white shake-icon"></i>
                 </button>
 
-                <div id="acadContent" class="exp-container space-y-6">
-                    <div class="glass-card p-10 rounded-[2.5rem] text-center flex flex-col items-center shadow-sm">
-                        <i class="fa-solid fa-graduation-cap text-[var(--foundation-blue-1)] mb-6 text-2xl"></i>
-                        <h4 class="text-2xl font-black uppercase text-[var(--eclipse-4)] leading-tight">M.Sc Project Management</h4>
-                        <p class="text-[11px] font-black text-[var(--foundation-blue-2)] uppercase mt-4 tracking-[0.25em]">NTU Singapore | GPA: 4.14</p>
+                <div id="acadContent" class="exp-container space-y-5 w-full">
+                    <div class="acad-card glass-card rounded-[2.5rem] text-center flex flex-col items-center shadow-sm">
+                        <i class="acad-icon fa-solid fa-graduation-cap text-[var(--foundation-blue-1)]"></i>
+                        <h4 class="acad-title font-black uppercase text-[var(--eclipse-4)]">M.Sc Project Management</h4>
+                        <p class="acad-details font-black text-[var(--foundation-blue-2)] uppercase">NTU Singapore | GPA: 4.14</p>
                     </div>
-                    <div class="glass-card p-10 rounded-[2.5rem] text-center flex flex-col items-center shadow-sm">
-                        <i class="fa-solid fa-user-graduate text-blue-400 mb-6 text-2xl"></i>
-                        <h4 class="text-2xl font-black uppercase text-[var(--eclipse-4)] leading-tight">B.Tech Aerospace</h4>
-                        <p class="text-[11px] font-black text-blue-400 uppercase mt-4 tracking-[0.25em]">PM Institute | GPA: 4.07</p>
+                    <div class="acad-card glass-card rounded-[2.5rem] text-center flex flex-col items-center shadow-sm">
+                        <i class="acad-icon fa-solid fa-user-graduate text-blue-400"></i>
+                        <h4 class="acad-title font-black uppercase text-[var(--eclipse-4)]">B.Tech Aerospace</h4>
+                        <p class="acad-details font-black text-blue-400 uppercase">PM Institute | GPA: 4.07</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- PMP Apple Section -->
-        <section class="mt-12 mb-8 w-full">
+        <section class="mt-8 mb-6 w-full">
             <div class="reveal">
-                <div class="apple-card w-full p-8 flex flex-col sm:flex-row items-center gap-8">
+                <div class="pmp-card apple-card w-full flex flex-col sm:flex-row items-center">
                     <div class="pmp-badge-container flex-shrink-0">
                         <div class="absolute inset-0 border-2 border-white/20 rounded-2xl"></div>
                         <div class="text-center">
-                            <div class="text-[10px] font-black text-white/90 leading-none">PMP</div>
-                            <i class="fa-solid fa-award text-white text-2xl my-1"></i>
-                            <div class="text-[7px] font-bold text-white/70 uppercase">Verified</div>
+                            <div class="pmp-badge-text-top font-black text-white/90 leading-none">PMP</div>
+                            <i class="pmp-badge-icon fa-solid fa-award text-white"></i>
+                            <div class="pmp-badge-text-bottom font-bold text-white/70 uppercase">Verified</div>
                         </div>
                     </div>
 
-                    <div class="flex-grow text-center sm:text-left">
-                        <div class="flex items-center justify-center sm:justify-start gap-3 mb-2">
-                            <span class="text-[10px] font-black text-[var(--foundation-blue-1)] uppercase tracking-[0.2em]">Credentialed</span>
+                    <div class="flex-grow text-center sm:text-left mt-4 sm:mt-0">
+                        <div class="flex items-center justify-center sm:justify-start gap-2 mb-1">
+                            <span class="pmp-card-label font-black text-[var(--foundation-blue-1)] uppercase">Credentialed</span>
                             <div class="hidden sm:block h-[1px] flex-grow bg-blue-100"></div>
                         </div>
-                        <h3 class="text-xl font-black text-[var(--eclipse-4)] uppercase leading-tight mb-2">Project Management Professional</h3>
-                        <p class="text-[11px] text-[var(--foundation-blue-2)] font-bold uppercase tracking-wider">Cert #4181149 • 2025–2028</p>
+                        <h3 class="pmp-card-title font-black text-[var(--eclipse-4)] uppercase">Project Management Professional</h3>
+                        <p class="pmp-card-cert text-[var(--foundation-blue-2)] font-bold uppercase tracking-wider">Cert #4181149 • 2025–2028</p>
                     </div>
 
-                    <a href="https://drive.google.com/file/d/1GSi6xrRhk8LBgboyArKdwgUpK0te4lGS/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="haptic-btn w-12 h-12 rounded-full bg-white/80 flex items-center justify-center text-[var(--foundation-blue-1)] hover:bg-[var(--foundation-blue-1)] hover:text-white transition-all flex-shrink-0">
-                        <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                    <a href="https://drive.google.com/file/d/1GSi6xrRhk8LBgboyArKdwgUpK0te4lGS/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="haptic-btn pmp-card-link rounded-full bg-white/80 flex items-center justify-center text-[var(--foundation-blue-1)] hover:bg-[var(--foundation-blue-1)] hover:text-white transition-all flex-shrink-0 mt-4 sm:mt-0">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
                     </a>
                 </div>
             </div>
         </section>
 
         <!-- Footer -->
-        <footer class="py-20 text-center w-full flex flex-col items-center relative z-50">
+        <footer class="py-16 text-center w-full flex flex-col items-center relative z-50">
             <div class="reveal w-full flex flex-col items-center">
-                <h2 class="text-5xl font-black uppercase tracking-tighter text-[var(--eclipse-4)] mb-16 leading-[0.9]">Ready to<br><span class="text-[var(--foundation-blue-1)]">Optimise?</span></h2>
-                <div class="flex flex-col sm:flex-row gap-6 w-full max-w-sm">
-                    <a href="mailto:sachidanandhamaditya@gmail.com" class="haptic-btn flex-1 py-6 bg-[var(--foundation-blue-1)] text-white rounded-full font-black text-[11px] uppercase tracking-[0.25em] shadow-2xl shadow-blue-500/30 active:scale-95 transition-all text-center">
+                <h2 class="footer-title font-black uppercase tracking-tighter text-[var(--eclipse-4)]">Ready to<br><span class="text-[var(--foundation-blue-1)]">Optimise?</span></h2>
+                <div class="footer-buttons flex flex-col sm:flex-row w-full px-4">
+                    <a href="mailto:sachidanandhamaditya@gmail.com" class="haptic-btn footer-button flex-1 bg-[var(--foundation-blue-1)] text-white rounded-full font-black uppercase shadow-2xl shadow-blue-500/30 active:scale-95 transition-all text-center">
                         Let's Connect
                     </a>
-                    <a href="https://drive.google.com/uc?export=download&id=1ECTxz4eec13It0jeHqNBNY9TgmaTa1JP" download target="_blank" class="haptic-btn flex-1 py-6 bg-[var(--foundation-blue-2)] text-white rounded-full font-black text-[11px] uppercase tracking-[0.25em] shadow-2xl shadow-blue-400/30 active:scale-95 transition-all text-center">
+                    <a href="https://drive.google.com/uc?export=download&id=1ECTxz4eec13It0jeHqNBNY9TgmaTa1JP" download target="_blank" class="haptic-btn footer-button flex-1 bg-[var(--foundation-blue-2)] text-white rounded-full font-black uppercase shadow-2xl shadow-blue-400/30 active:scale-95 transition-all text-center mt-4 sm:mt-0">
                         CV Download
                     </a>
                 </div>
             </div>
-            <!-- FIXED: Moved copyright outside of .reveal to ensure visibility -->
-            <p class="mt-20 text-[9px] font-black text-blue-900/60 uppercase tracking-[0.4em] relative z-50">© 2025 Aditya Sachidanandham</p>
+            <p class="footer-copyright font-black text-blue-900/60 uppercase relative z-50">© 2025 Aditya Sachidanandham</p>
         </footer>
     </main>
 
     <script>
-        // FIX 2 & 3: Enhanced haptic feedback and luxury animations
+        // Enhanced haptic feedback and luxury animations
         window.addEventListener('load', function() {
             initializeAnimations();
         });
 
         function initializeAnimations() {
-            // FIX 2: Enhanced haptic feedback function with multiple patterns
+            // Enhanced haptic feedback function with multiple patterns
             function triggerHaptic(intensity = 'medium') {
                 if (window.navigator && window.navigator.vibrate) {
                     const patterns = {
@@ -632,7 +839,7 @@
                 }
             }
 
-            // FIX 2: Add haptic feedback to ALL clickable elements
+            // Add haptic feedback to ALL clickable elements
             const hapticElements = document.querySelectorAll('.haptic-btn, button, a[href], .glass-card, .apple-card, .sim-card');
             hapticElements.forEach(element => {
                 // Touch events for mobile
@@ -653,7 +860,7 @@
                 }
             });
 
-            // FIX 3: Luxury Intersection Observer with enhanced animations
+            // Luxury Intersection Observer with enhanced animations
             const observerOptions = {
                 threshold: [0, 0.1, 0.2, 0.3],
                 rootMargin: '-50px'
@@ -699,12 +906,12 @@
             
             const originalIcons = { exp: 'fa-briefcase', acad: 'fa-graduation-cap' };
             if (!isClosing) {
-                icon.className = 'fa-solid fa-xmark text-4xl text-white';
+                icon.className = 'fa-solid fa-xmark text-white shake-icon';
                 setTimeout(() => {
                     content.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
                 }, 500);
             } else {
-                icon.className = `fa-solid ${originalIcons[type]} text-4xl text-white shake-icon`;
+                icon.className = `fa-solid ${originalIcons[type]} text-white shake-icon`;
             }
         }
 
@@ -737,13 +944,13 @@
                     btn.disabled = false;
                     btn.innerText = "RESET SIMULATOR";
                     btn.setAttribute('data-state', 'deployed');
-                    btn.className = "haptic-btn w-full py-5 bg-emerald-500 text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg";
+                    btn.className = "haptic-btn sim-button bg-emerald-500 text-white rounded-[1.25rem] font-black uppercase active:scale-95 transition-all shadow-lg";
                     
                     text.innerText = solutions[id];
-                    text.className = "simulator-problem-text font-black text-emerald-600 uppercase leading-relaxed flex items-center justify-center min-h-[80px] px-4";
+                    text.className = "sim-problem-text font-black text-emerald-600 uppercase flex items-center justify-center";
                     
-                    statusIcon.className = "w-16 h-16 rounded-3xl bg-emerald-50 text-emerald-500 flex items-center justify-center mb-10 transition-all duration-500";
-                    statusIcon.innerHTML = '<i class="fa-solid fa-check-double text-2xl"></i>';
+                    statusIcon.className = "sim-status-icon rounded-3xl bg-emerald-50 text-emerald-500 flex items-center justify-center transition-all duration-500";
+                    statusIcon.innerHTML = '<i class="fa-solid fa-check-double"></i>';
                     
                     // Success haptic pattern
                     if (window.navigator && window.navigator.vibrate) {
@@ -763,14 +970,14 @@
             card.classList.remove('active-solving');
             btn.innerText = "Resolve Issue";
             btn.setAttribute('data-state', 'initial');
-            btn.className = "haptic-btn w-full py-5 bg-[var(--foundation-blue-1)] text-white rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-lg";
+            btn.className = "haptic-btn sim-button bg-[var(--foundation-blue-1)] text-white rounded-[1.25rem] font-black uppercase active:scale-95 transition-all shadow-lg";
             
             progress.style.width = '0%';
             text.innerText = initialProblems[id].text;
-            text.className = "simulator-problem-text font-bold text-slate-800 uppercase leading-relaxed min-h-[60px] px-4";
+            text.className = "sim-problem-text font-bold text-slate-800 uppercase";
             
-            statusIcon.className = "w-16 h-16 rounded-3xl bg-amber-50 text-amber-500 flex items-center justify-center mb-10";
-            statusIcon.innerHTML = `<i class="fa-solid ${initialProblems[id].icon} text-2xl"></i>`;
+            statusIcon.className = "sim-status-icon rounded-3xl bg-amber-50 text-amber-500 flex items-center justify-center";
+            statusIcon.innerHTML = `<i class="fa-solid ${initialProblems[id].icon}"></i>`;
         }
     </script>
 </body>
