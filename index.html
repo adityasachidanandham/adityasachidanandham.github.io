@@ -200,28 +200,35 @@
             will-change: auto;
         }
 
-        /* ANDROID FIX: Further reduced hero title to prevent overflow */
+        /* FULLY RESPONSIVE: Fluid Typography for Hero Title */
         .hero-title {
-            font-size: 2.5rem; /* 40px - reduced from 45.6px for Android compatibility */
+            /* Fluid typography: scales from 32px at 320px screen to 54px at 640px screen */
+            font-size: clamp(2rem, 5vw + 1rem, 3.375rem);
             font-weight: 950;
             text-transform: uppercase;
             letter-spacing: -0.05em;
-            line-height: 0.9;
+            line-height: 0.95;
             margin-bottom: 1.5rem;
-            word-break: break-word; /* Ensure text breaks properly */
-            max-width: 100%; /* Prevent overflow */
+            width: 100%;
+            max-width: 100%;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            hyphens: manual;
         }
         
-        @media (min-width: 640px) {
-            .hero-title {
-                font-size: 3.2rem; /* 51.2px - reduced from 54.72px for safety */
+        /* Prevent awkward breaks - keep full name together when possible */
+        .hero-title span {
+            display: inline-block;
+            white-space: nowrap;
+        }
+        
+        /* On very small screens, allow the span to wrap */
+        @media (max-width: 320px) {
+            .hero-title span {
+                white-space: normal;
             }
-        }
-        
-        /* Additional safety for very small screens */
-        @media (max-width: 360px) {
             .hero-title {
-                font-size: 2.2rem; /* 35.2px for very small Android devices */
+                font-size: 1.875rem; /* 30px minimum */
             }
         }
 
@@ -233,13 +240,23 @@
             margin-bottom: 1.25rem;
         }
 
-        /* MOBILE OPTIMIZED: Hero Description */
+        /* FULLY RESPONSIVE: Fluid Typography for Hero Description */
         .hero-description {
-            font-size: 12px;
-            line-height: 1.5;
+            /* Fluid typography: scales from 11px to 13px */
+            font-size: clamp(0.6875rem, 1.5vw + 0.5rem, 0.8125rem);
+            line-height: 1.6;
             margin-bottom: 2.5rem;
-            max-width: 90%;
-            padding: 0 10px;
+            max-width: 95%;
+            padding: 0 5px;
+            text-align: center;
+            /* Allow natural text wrapping without forcing line breaks */
+        }
+        
+        /* Remove hard-coded line breaks on mobile */
+        @media (max-width: 480px) {
+            .hero-description br {
+                display: none;
+            }
         }
 
         /* MOBILE OPTIMIZED: Stats Grid */
@@ -660,10 +677,10 @@
                     Project Management Professional
                 </div>
                 <h1 class="hero-title text-[var(--eclipse-4)] tracking-tighter uppercase">
-                    Aditya<br><span class="text-[var(--foundation-blue-1)]">Sachidanandham</span>
+                    Aditya<br><span>Sachidanandham</span>
                 </h1>
                 <p class="hero-description text-[var(--eclipse-3)] font-bold tracking-tight mx-auto">
-                    Delivering $50M+ semiconductor automation projects with<br>flawless execution and measurable impact.
+                    Delivering $50M+ semiconductor automation projects with<br class="hidden sm:inline">flawless execution and measurable impact.
                 </p>
 
                 <div class="stats-grid grid w-full">
