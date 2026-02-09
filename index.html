@@ -200,19 +200,28 @@
             will-change: auto;
         }
 
-        /* MOBILE OPTIMIZED: Hero Title - Properly reduced by 5% */
+        /* ANDROID FIX: Further reduced hero title to prevent overflow */
         .hero-title {
-            font-size: 2.85rem; /* 45.6px - exactly 5% less than 48px (3xl) */
+            font-size: 2.5rem; /* 40px - reduced from 45.6px for Android compatibility */
             font-weight: 950;
             text-transform: uppercase;
             letter-spacing: -0.05em;
             line-height: 0.9;
             margin-bottom: 1.5rem;
+            word-break: break-word; /* Ensure text breaks properly */
+            max-width: 100%; /* Prevent overflow */
         }
         
         @media (min-width: 640px) {
             .hero-title {
-                font-size: 3.42rem; /* 54.72px - exactly 5% less than 57.6px (4xl) */
+                font-size: 3.2rem; /* 51.2px - reduced from 54.72px for safety */
+            }
+        }
+        
+        /* Additional safety for very small screens */
+        @media (max-width: 360px) {
+            .hero-title {
+                font-size: 2.2rem; /* 35.2px for very small Android devices */
             }
         }
 
@@ -288,7 +297,7 @@
             opacity: 0.6;
         }
 
-        /* ENHANCED: Touch feedback styles with visual feedback */
+        /* ENHANCED: Touch feedback styles - ONLY for functional buttons */
         .haptic-btn {
             position: relative;
             cursor: pointer;
@@ -302,7 +311,7 @@
             transform: scale(0.96);
         }
         
-        /* Visual pulse effect on touch */
+        /* Visual pulse effect on touch - ONLY for functional buttons */
         .haptic-btn::after {
             content: '';
             position: absolute;
@@ -371,7 +380,7 @@
             pointer-events: auto;
         }
 
-        /* ENHANCED: Luxury glass card hover effects */
+        /* ENHANCED: Luxury glass card hover effects - NO haptic on hover */
         .glass-card {
             background: rgba(255, 255, 255, 0.75);
             backdrop-filter: blur(20px);
@@ -414,7 +423,7 @@
             line-height: 1.4;
         }
 
-        /* ENHANCED: Luxury apple card effects */
+        /* ENHANCED: Luxury apple card effects - NO haptic on hover */
         .apple-card {
             background: rgba(255, 255, 255, 0.85);
             border-radius: 28px;
@@ -464,7 +473,7 @@
 
         .no-scrollbar::-webkit-scrollbar { display: none; }
 
-        /* ENHANCED: Luxury simulator card effects */
+        /* ENHANCED: Luxury simulator card effects - NO haptic on state change */
         .sim-card {
             transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
             height: auto;
@@ -633,10 +642,10 @@
         <div class="nav-inner">
             <div class="nav-badge font-black text-[var(--foundation-blue-1)] uppercase">PMP® CERTIFIED</div>
             <div class="flex gap-2">
-                <a href="https://www.linkedin.com/in/aditya-sachidanandham" target="_blank" rel="noopener noreferrer" class="haptic-btn w-10 h-10 rounded-xl bg-white flex items-center justify-center border border-blue-100 text-[var(--foundation-blue-1)] active:scale-90 transition-all shadow-sm">
+                <a href="https://www.linkedin.com/in/aditya-sachidanandham" target="_blank" rel="noopener noreferrer" class="haptic-btn touch-vibrate w-10 h-10 rounded-xl bg-white flex items-center justify-center border border-blue-100 text-[var(--foundation-blue-1)] active:scale-90 transition-all shadow-sm">
                     <i class="fa-brands fa-linkedin-in text-sm"></i>
                 </a>
-                <a href="https://wa.me/qr/NTQZ4PIDDIN3N1" target="_blank" rel="noopener noreferrer" class="haptic-btn w-10 h-10 rounded-xl bg-white flex items-center justify-center border border-emerald-100 text-emerald-600 active:scale-90 transition-all shadow-sm">
+                <a href="https://wa.me/qr/NTQZ4PIDDIN3N1" target="_blank" rel="noopener noreferrer" class="haptic-btn touch-vibrate w-10 h-10 rounded-xl bg-white flex items-center justify-center border border-emerald-100 text-emerald-600 active:scale-90 transition-all shadow-sm">
                     <i class="fa-brands fa-whatsapp text-lg"></i>
                 </a>
             </div>
@@ -807,14 +816,14 @@
         <section class="mt-8 mb-6 w-full">
             <div class="reveal">
                 <div class="pmp-card apple-card w-full flex flex-col sm:flex-row items-center">
-                    <div class="pmp-badge-container flex-shrink-0">
+                    <a href="https://drive.google.com/file/d/1GSi6xrRhk8LBgboyArKdwgUpK0te4lGS/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="haptic-btn touch-vibrate pmp-badge-container flex-shrink-0">
                         <div class="absolute inset-0 border-2 border-white/20 rounded-2xl"></div>
                         <div class="text-center">
                             <div class="pmp-badge-text-top font-black text-white/90 leading-none">PMP</div>
                             <i class="pmp-badge-icon fa-solid fa-award text-white"></i>
                             <div class="pmp-badge-text-bottom font-bold text-white/70 uppercase">Verified</div>
                         </div>
-                    </div>
+                    </a>
 
                     <div class="flex-grow text-center sm:text-left mt-4 sm:mt-0">
                         <div class="flex items-center justify-center sm:justify-start gap-2 mb-1">
@@ -825,7 +834,7 @@
                         <p class="pmp-card-cert text-[var(--foundation-blue-2)] font-bold uppercase tracking-wider">Cert #4181149 • 2025–2028</p>
                     </div>
 
-                    <a href="https://drive.google.com/file/d/1GSi6xrRhk8LBgboyArKdwgUpK0te4lGS/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="haptic-btn pmp-card-link rounded-full bg-white/80 flex items-center justify-center text-[var(--foundation-blue-1)] hover:bg-[var(--foundation-blue-1)] hover:text-white transition-all flex-shrink-0 mt-4 sm:mt-0">
+                    <a href="https://drive.google.com/file/d/1GSi6xrRhk8LBgboyArKdwgUpK0te4lGS/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="haptic-btn touch-vibrate pmp-card-link rounded-full bg-white/80 flex items-center justify-center text-[var(--foundation-blue-1)] hover:bg-[var(--foundation-blue-1)] hover:text-white transition-all flex-shrink-0 mt-4 sm:mt-0">
                         <i class="fa-solid fa-arrow-up-right-from-square"></i>
                     </a>
                 </div>
@@ -850,14 +859,36 @@
     </main>
 
     <script>
-        // Enhanced haptic feedback and luxury animations
+        // OPTIMIZED: Haptic feedback ONLY for functional buttons
         window.addEventListener('load', function() {
             initializeAnimations();
-            addTouchVibration();
+            addSelectiveHaptics();
         });
 
         function initializeAnimations() {
-            // Enhanced haptic feedback function with multiple patterns
+            // Luxury Intersection Observer with enhanced animations - NO HAPTIC ON SCROLL
+            const observerOptions = {
+                threshold: [0, 0.1, 0.2, 0.3],
+                rootMargin: '-50px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Add staggered entrance animation - NO VIBRATION
+                        setTimeout(() => {
+                            entry.target.classList.add('active');
+                        }, 100);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal:not(.reveal-immediate)').forEach(el => observer.observe(el));
+        }
+
+        // FIXED: Selective haptics ONLY for functional buttons
+        function addSelectiveHaptics() {
+            // Enhanced haptic feedback function
             function triggerHaptic(intensity = 'medium') {
                 if (window.navigator && window.navigator.vibrate) {
                     const patterns = {
@@ -871,70 +902,29 @@
                 }
             }
 
-            // Add haptic feedback to ALL clickable elements
-            const hapticElements = document.querySelectorAll('.haptic-btn, button, a[href], .glass-card, .apple-card, .sim-card');
-            hapticElements.forEach(element => {
+            // ONLY add haptic to elements with .touch-vibrate class
+            // These are: LinkedIn, WhatsApp, Experience btn, Academics btn, Simulator buttons, PMP badge, PMP link, Let's Connect, CV Download
+            const functionalButtons = document.querySelectorAll('.touch-vibrate');
+            
+            functionalButtons.forEach(element => {
                 // Touch events for mobile
                 element.addEventListener('touchstart', (e) => {
-                    triggerHaptic('medium');
-                }, { passive: true });
-                
-                // Click events for desktop
-                element.addEventListener('click', () => {
-                    triggerHaptic('medium');
-                });
-                
-                // Special haptic for buttons
-                if (element.tagName === 'BUTTON') {
-                    element.addEventListener('touchstart', (e) => {
-                        triggerHaptic('strong');
-                    }, { passive: true });
-                }
-            });
-
-            // Luxury Intersection Observer with enhanced animations
-            const observerOptions = {
-                threshold: [0, 0.1, 0.2, 0.3],
-                rootMargin: '-50px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // Add staggered entrance animation
-                        setTimeout(() => {
-                            entry.target.classList.add('active');
-                            // Trigger light haptic on scroll reveal
-                            triggerHaptic('light');
-                        }, 100);
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.reveal:not(.reveal-immediate)').forEach(el => observer.observe(el));
-        }
-
-        // ENHANCED: Special touch vibration for specific buttons
-        function addTouchVibration() {
-            const touchVibrateElements = document.querySelectorAll('.touch-vibrate');
-            
-            touchVibrateElements.forEach(element => {
-                // Add visual pulse effect class
-                element.addEventListener('touchstart', function(e) {
-                    this.classList.add('touching');
+                    element.classList.add('touching');
                     
-                    // Strong vibration pattern for these specific buttons
-                    if (window.navigator && window.navigator.vibrate) {
-                        window.navigator.vibrate([20, 10, 15]); // More pronounced vibration
+                    // Determine haptic intensity based on button type
+                    if (element.classList.contains('nexus-btn') || element.classList.contains('sim-button')) {
+                        triggerHaptic('strong'); // Stronger for main action buttons
+                    } else {
+                        triggerHaptic('medium'); // Medium for other functional buttons
                     }
                 }, { passive: true });
                 
-                element.addEventListener('touchend', function(e) {
-                    this.classList.remove('touching');
+                element.addEventListener('touchend', (e) => {
+                    element.classList.remove('touching');
                 }, { passive: true });
                 
-                element.addEventListener('touchcancel', function(e) {
-                    this.classList.remove('touching');
+                element.addEventListener('touchcancel', (e) => {
+                    element.classList.remove('touching');
                 }, { passive: true });
             });
         }
