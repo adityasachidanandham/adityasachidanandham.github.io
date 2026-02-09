@@ -82,21 +82,30 @@
             pointer-events: none;
         }
 
-        /* Scroll Reveal Animation */
+        /* ENHANCED: Luxury Scroll Reveal Animations */
         .reveal {
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+            transform: translateY(50px) scale(0.95);
+            filter: blur(8px);
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .reveal.active {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
+            filter: blur(0);
         }
+        
+        /* Staggered reveal for luxury effect */
+        .reveal:nth-child(1) { transition-delay: 0s; }
+        .reveal:nth-child(2) { transition-delay: 0.1s; }
+        .reveal:nth-child(3) { transition-delay: 0.2s; }
+        .reveal:nth-child(4) { transition-delay: 0.3s; }
         
         /* Show content immediately */
         .reveal-immediate {
             opacity: 1 !important;
-            transform: translateY(0) !important;
+            transform: translateY(0) scale(1) !important;
+            filter: blur(0) !important;
         }
 
         /* Background Blobs */
@@ -188,6 +197,22 @@
             will-change: auto;
         }
 
+        /* FIX 1: Reduced hero title font size by 5% for mobile fit */
+        .hero-title {
+            font-size: 47.5px; /* Was 50px (5xl), now reduced by 5% */
+            font-weight: 950;
+            text-transform: uppercase;
+            letter-spacing: -0.05em;
+            line-height: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        @media (min-width: 640px) {
+            .hero-title {
+                font-size: 57px; /* Was 60px (6xl), now reduced by 5% */
+            }
+        }
+
         .section-header {
             display: flex;
             flex-direction: column;
@@ -219,7 +244,21 @@
             padding-bottom: 1mm;
         }
 
-        /* Nexus Button System */
+        /* FIX 2: Enhanced haptic feedback styles */
+        .haptic-btn {
+            position: relative;
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+        
+        .haptic-btn:active {
+            transform: scale(0.96);
+            transition: transform 0.1s ease;
+        }
+
+        /* Nexus Button System with enhanced haptic */
         .nexus-btn {
             width: 110px; height: 110px;
             transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -248,31 +287,34 @@
             pointer-events: auto;
         }
 
+        /* ENHANCED: Luxury glass card hover effects */
         .glass-card {
             background: rgba(255, 255, 255, 0.75);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.4);
             width: 100%;
-            transition: transform 0.3s ease;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             box-shadow: 0 8px 32px rgba(61, 82, 160, 0.12);
         }
         
         .glass-card:hover {
             background: rgba(255, 255, 255, 0.85);
-            box-shadow: 0 12px 40px rgba(61, 82, 160, 0.18);
+            box-shadow: 0 20px 60px rgba(61, 82, 160, 0.25);
+            transform: translateY(-8px) scale(1.02);
         }
 
+        /* ENHANCED: Luxury apple card effects */
         .apple-card {
             background: rgba(255, 255, 255, 0.85);
             border-radius: 28px;
             border: 1px solid rgba(255, 255, 255, 0.5);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
             box-shadow: 0 12px 32px rgba(61, 82, 160, 0.15);
         }
         
         .apple-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 48px rgba(61, 82, 160, 0.25);
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 30px 70px rgba(61, 82, 160, 0.35);
             background: rgba(255, 255, 255, 0.95);
         }
 
@@ -295,8 +337,9 @@
 
         .no-scrollbar::-webkit-scrollbar { display: none; }
 
+        /* ENHANCED: Luxury simulator card effects */
         .sim-card {
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
             height: auto;
             min-height: 360px;
             display: flex;
@@ -307,7 +350,8 @@
         .sim-card.active-solving { 
             border-color: var(--foundation-blue-1); 
             background: rgba(173, 187, 218, 0.3); 
-            transform: scale(1.02);
+            transform: scale(1.03) translateY(-4px);
+            box-shadow: 0 20px 50px rgba(61, 82, 160, 0.25);
         }
         
         @keyframes icon-shake {
@@ -366,7 +410,8 @@
                 <div class="pmp-badge-hero inline-flex px-4 py-1.5 bg-white/40 backdrop-blur-md border border-white/50 rounded-full text-[10px] font-black text-[var(--foundation-blue-1)] uppercase tracking-[0.15em] mb-6">
                     Project Management Professional
                 </div>
-                <h1 class="text-5xl sm:text-6xl tracking-tighter uppercase leading-[0.9] mb-8 text-[var(--eclipse-4)]" style="font-weight: 950;">
+                <!-- FIX 1: Applied reduced font size class -->
+                <h1 class="hero-title text-[var(--eclipse-4)] tracking-tighter uppercase">
                     Aditya<br><span class="text-[var(--foundation-blue-1)]">Sachidanandham</span>
                 </h1>
                 <p class="text-[var(--eclipse-3)] text-[14px] font-bold leading-relaxed mb-12 max-w-md tracking-tight mx-auto">
@@ -567,34 +612,65 @@
     </main>
 
     <script>
-        // Optimize initial page load - defer non-critical scripts
+        // FIX 2 & 3: Enhanced haptic feedback and luxury animations
         window.addEventListener('load', function() {
             initializeAnimations();
         });
 
         function initializeAnimations() {
-            // Haptic feedback for all clickable buttons
-            function triggerHaptic() {
+            // FIX 2: Enhanced haptic feedback function with multiple patterns
+            function triggerHaptic(intensity = 'medium') {
                 if (window.navigator && window.navigator.vibrate) {
-                    window.navigator.vibrate(10); // 10ms vibration
+                    const patterns = {
+                        light: [5],
+                        medium: [15],
+                        strong: [25],
+                        double: [10, 50, 10],
+                        success: [10, 30, 10, 30, 10]
+                    };
+                    window.navigator.vibrate(patterns[intensity] || patterns.medium);
                 }
             }
 
-            // Add haptic feedback to all buttons with haptic-btn class
-            const hapticElements = document.querySelectorAll('.haptic-btn, button, a[href]');
+            // FIX 2: Add haptic feedback to ALL clickable elements
+            const hapticElements = document.querySelectorAll('.haptic-btn, button, a[href], .glass-card, .apple-card, .sim-card');
             hapticElements.forEach(element => {
-                element.addEventListener('touchstart', triggerHaptic, { passive: true });
-                element.addEventListener('click', triggerHaptic);
+                // Touch events for mobile
+                element.addEventListener('touchstart', (e) => {
+                    triggerHaptic('medium');
+                }, { passive: true });
+                
+                // Click events for desktop
+                element.addEventListener('click', () => {
+                    triggerHaptic('medium');
+                });
+                
+                // Special haptic for buttons
+                if (element.tagName === 'BUTTON') {
+                    element.addEventListener('touchstart', (e) => {
+                        triggerHaptic('strong');
+                    }, { passive: true });
+                }
             });
 
-            // Intersection Observer for Scroll Reveal Animation
+            // FIX 3: Luxury Intersection Observer with enhanced animations
+            const observerOptions = {
+                threshold: [0, 0.1, 0.2, 0.3],
+                rootMargin: '-50px'
+            };
+
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
+                        // Add staggered entrance animation
+                        setTimeout(() => {
+                            entry.target.classList.add('active');
+                            // Trigger light haptic on scroll reveal
+                            triggerHaptic('light');
+                        }, 100);
                     }
                 });
-            }, { threshold: 0.1, rootMargin: '0px' });
+            }, observerOptions);
 
             document.querySelectorAll('.reveal:not(.reveal-immediate)').forEach(el => observer.observe(el));
         }
@@ -668,6 +744,11 @@
                     
                     statusIcon.className = "w-16 h-16 rounded-3xl bg-emerald-50 text-emerald-500 flex items-center justify-center mb-10 transition-all duration-500";
                     statusIcon.innerHTML = '<i class="fa-solid fa-check-double text-2xl"></i>';
+                    
+                    // Success haptic pattern
+                    if (window.navigator && window.navigator.vibrate) {
+                        window.navigator.vibrate([10, 30, 10, 30, 10]);
+                    }
                 }
             }, 30);
         }
